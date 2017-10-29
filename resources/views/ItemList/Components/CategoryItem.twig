@@ -53,12 +53,12 @@
                 <!-- ITEM DETAILS -->
                 <div class="thumb-content">
                     <div class="cat-item-titel-ao">
-                        <p class="thumb-title">${ item.data.texts | itemName(1) }</p>
-                        <p class="thumb-title small">${ item.data.texts | itemName(2) }</p>
+                        <p class="thumb-title">${ texts | itemName(1) }</p>
+                        <p class="thumb-title small">${ texts | itemName(2) }</p>
                     </div>
 
                     {#<a href="${ itemData | itemURL }" class="thumb-title small">#}
-                    {#${ texts | itemName {{ configItemName }} }#}
+                        {#${ texts | itemName {{ configItemName }} }#}
                     {#</a>#}
                     <div class="thumb-meta">
 
@@ -79,27 +79,27 @@
                         </div>
 
                         {#old#}
-                        <div class="prices">
+                        {#<div class="prices">#}
 
-                            <a href="${ itemData | itemURL }" v-if="recommendedRetailPrice > 0" class="price-view-port">
-                                <del class="crossprice">
-                                    ${ recommendedRetailPrice | currency itemData.calculatedPrices.rrp.currency }
-                                </del>
-                            </a>
+                            {#<a href="${ itemData | itemURL }" v-if="recommendedRetailPrice > 0" class="price-view-port">#}
+                                {#<del class="crossprice">#}
+                                    {#${ recommendedRetailPrice | currency itemData.calculatedPrices.rrp.currency }#}
+                                {#</del>#}
+                            {#</a>#}
 
-                            <a href="${ itemData | itemURL }">
-                                <div class="price">
-                                    ${ variationRetailPrice | currency itemData.calculatedPrices.default.currency } <sup>*</sup>
-                                </div>
-                            </a>
-                        </div>
+                            {#<a href="${ itemData | itemURL }">#}
+                                {#<div class="price">#}
+                                    {#${ variationRetailPrice | currency itemData.calculatedPrices.default.currency } <sup>*</sup>#}
+                                {#</div>#}
+                            {#</a>#}
+                        {#</div>#}
 
-                        <div class="category-unit-price"
-                                v-if="!(itemData.unit.unitOfMeasurement === 'C62' && itemData.unit.content === 1)">
-                            <span>${ itemData.unit.content }</span>
-                            <span>${ itemData.unit.names.name }</span> |
-                                                                       ${ itemData.calculatedPrices.formatted.basePrice }
-                        </div>
+                        {#<div class="category-unit-price"#}
+                                {#v-if="!(itemData.unit.unitOfMeasurement === 'C62' && itemData.unit.content === 1)">#}
+                            {#<span>${ itemData.unit.content }</span>#}
+                            {#<span>${ itemData.unit.names.name }</span> |#}
+                                                                       {#${ itemData.calculatedPrices.formatted.basePrice }#}
+                        {#</div>#}
                     </div>
 
                     {#fuss#}
