@@ -13,16 +13,18 @@
 
 <script type="x/template" id="vue-item-list">
     <div id="vue-rendered-item-list"
-         class="item-list-frame{% if loadingAnimationType == "blur" %} blur-effect{% endif %}"
-         v-bind:class="{ 'loading': isLoading, 'is-loaded': !isLoading }">
+            class="item-list-frame{% if loadingAnimationType == "blur" %} blur-effect{% endif %}"
+            v-bind:class="{ 'loading': isLoading, 'is-loaded': !isLoading }">
 
         {% if loadingAnimationType != "blur" %}
             {% include "Ceres::ItemList.Partials.LoadingAnimation" %}
         {% endif %}
 
         <ul class="product-list row grid">
-            <category-item v-for="itemData in itemList.documents" :item-data="itemData.data"
-                           decimal-count="{{ decimalCount }}" image-url-accessor="urlMiddle"></category-item>
+            <category-item v-for="itemData in itemList.documents"
+                    :item-data="itemData.data"
+                    decimal-count="{{ decimalCount }}"
+                    image-url-accessor="urlMiddle"></category-item>
 
         </ul>
     </div>

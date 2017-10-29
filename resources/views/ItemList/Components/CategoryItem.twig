@@ -20,7 +20,11 @@
 
         <article class="cmp cmp-product-thumb cmp-product-thumb--grid">
             <div class="thumb-inner">
-                <add-to-basket template="#vue-add-to-basket" :item="itemData" :show-quantity="false" :use-large-scale="true" :item-url="itemData | itemURL"></add-to-basket>
+                <add-to-basket template="#vue-add-to-basket"
+                        :item="itemData"
+                        :show-quantity="false"
+                        :use-large-scale="true"
+                        :item-url="itemData | itemURL"></add-to-basket>
 
                 <div class="thumb-background"></div>
 
@@ -28,12 +32,12 @@
                     <div class="square-container">
                         <div class="square-inner main-image">
                             <category-image-carousel template="#vue-category-image-carousel"
-                                                     :image-urls="itemData.images | itemImages imageUrlAccessor"
-                                                     :alt-text="texts | itemName {{ configItemName }}"
-                                                     :item-url="itemData | itemURL"
-                                                     :show-dots="{{ config("Ceres.item.category_show_dots") | json_encode() }}"
-                                                     :show-nav="{{ config("Ceres.item.category_show_nav") | json_encode() }}"
-                                                     :enable-carousel="{{ enableCarousel }}">
+                                    :image-urls="itemData.images | itemImages imageUrlAccessor"
+                                    :alt-text="texts | itemName {{ configItemName }}"
+                                    :item-url="itemData | itemURL"
+                                    :show-dots="{{ config("Ceres.item.category_show_dots") | json_encode() }}"
+                                    :show-nav="{{ config("Ceres.item.category_show_nav") | json_encode() }}"
+                                    :enable-carousel="{{ enableCarousel }}">
                             </category-image-carousel>
                         </div>
                     </div>
@@ -41,17 +45,40 @@
 
                 <!-- STORE SPECIALS -->
                 <item-store-special v-if="storeSpecial" :store-special="storeSpecial"
-                                    :recommended-retail-price="recommendedRetailPrice"
-                                    :variation-retail-price="variationRetailPrice"
-                                    :decimal-count="decimalCount"></item-store-special>
+                        :recommended-retail-price="recommendedRetailPrice"
+                        :variation-retail-price="variationRetailPrice"
+                        :decimal-count="decimalCount"></item-store-special>
                 <!-- ./STORE SPECIALS -->
 
                 <!-- ITEM DETAILS -->
                 <div class="thumb-content">
-                    <a href="${ itemData | itemURL }" class="thumb-title small">
-                        ${ texts | itemName {{ configItemName }} }
-                    </a>
+                    <div class="cat-item-titel-ao">
+                        <p class="thumb-title">${ item.data.texts | itemName(1) }</p>
+                        <p class="thumb-title small">${ item.data.texts | itemName(2) }</p>
+                    </div>
+
+                    {#<a href="${ itemData | itemURL }" class="thumb-title small">#}
+                    {#${ texts | itemName {{ configItemName }} }#}
+                    {#</a>#}
                     <div class="thumb-meta">
+
+                        <div class="prices">
+                            <span class="m-x-2">
+                                <h5>{{ trans("CeresSchaffrath::Template.buyNow") }}
+                                    <span class="m-l-5"><i class="fa fa-check text-success"
+                                                aria-hidden="true"></i></span></h5>
+                            </span>
+
+                            <a href="${ itemData | itemURL }">
+
+                            <span class="price">
+                                ${ variationRetailPrice | currency itemData.calculatedPrices.default.currency } <sup>*</sup>
+                            </span>
+                            </a>
+
+                        </div>
+
+                        {#old#}
                         <div class="prices">
 
                             <a href="${ itemData | itemURL }" v-if="recommendedRetailPrice > 0" class="price-view-port">
@@ -62,20 +89,22 @@
 
                             <a href="${ itemData | itemURL }">
                                 <div class="price">
-                                    ${ variationRetailPrice | currency itemData.calculatedPrices.default.currency } *
+                                    ${ variationRetailPrice | currency itemData.calculatedPrices.default.currency } <sup>*</sup>
                                 </div>
                             </a>
                         </div>
 
-                        <div class="category-unit-price" v-if="!(itemData.unit.unitOfMeasurement === 'C62' && itemData.unit.content === 1)">
+                        <div class="category-unit-price"
+                                v-if="!(itemData.unit.unitOfMeasurement === 'C62' && itemData.unit.content === 1)">
                             <span>${ itemData.unit.content }</span>
                             <span>${ itemData.unit.names.name }</span> |
-                            ${ itemData.calculatedPrices.formatted.basePrice }
+                                                                       ${ itemData.calculatedPrices.formatted.basePrice }
                         </div>
                     </div>
-                    <add-to-basket template="#vue-add-to-basket" :item="itemData" :show-quantity="false" :item-url="itemData | itemURL"></add-to-basket>
-                    <span class="vat small text-muted">
-                                * {{ trans("Ceres::Template.itemInclVAT") }} {{ trans("Ceres::Template.itemExclusive") }}
+
+                    {#fuss#}
+                    <span class="vat-porto-info small text-muted">
+                        <sup>*</sup> {{ trans("Ceres::Template.itemInclVAT") }} {{ trans("Ceres::Template.itemExclusive") }}
                         <a {% if shippingCat is not empty %} data-toggle="modal" href="#shippingscosts"{% endif %} title="{{ trans("Ceres::Template.itemShippingCosts") }}">{{ trans("Ceres::Template.itemShippingCosts") }}</a>
                     </span>
                 </div>
