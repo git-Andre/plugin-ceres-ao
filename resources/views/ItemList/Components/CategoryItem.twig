@@ -53,8 +53,8 @@
                 <!-- ITEM DETAILS -->
                 <div class="thumb-content">
                     <div class="cat-item-titel-ao">
-                        <p class="thumb-title">${ texts | itemName(1) }</p>
-                        <p class="thumb-title small">${ texts | itemName(2) }</p>
+                        <p class="thumb-title"><a href="${ itemData | itemURL }">${ texts.name2 }</a></p>
+                        <p class="thumb-title small">${ texts.name3 }</p>
                     </div>
 
                     {#<a href="${ itemData | itemURL }" class="thumb-title small">#}
