@@ -1,0 +1,29 @@
+{% set decimalCount = config("Ceres.item.storeSpecial") %}
+{% set variationShowType    = config("Ceres.item.variation_show_type") %}
+{% set configItemName = config("Ceres.item.name") %}
+{% set loadingAnimationType = config("Ceres.item.loading_animation_type") %}
+
+{{ component( "Ceres::Basket.Components.AddToBasket" ) }}
+{{ component( "Ceres::ItemList.Components.CategoryItem" ) }}
+{{ component( "Ceres::ItemList.Components.CategoryImageCarousel" ) }}
+{{ component( "Ceres::ItemList.Components.ItemLazyImg" ) }}
+{{ component( "Ceres::ItemList.Components.ItemStoreSpecial" ) }}
+
+<resource name="isLoading" :data="false"></resource>
+
+<script type="x/template" id="vue-item-list">
+    <div id="vue-rendered-item-list"
+         class="item-list-frame{% if loadingAnimationType == "blur" %} blur-effect{% endif %}"
+         v-bind:class="{ 'loading': isLoading, 'is-loaded': !isLoading }">
+
+        {% if loadingAnimationType != "blur" %}
+            {% include "Ceres::ItemList.Partials.LoadingAnimation" %}
+        {% endif %}
+
+        <ul class="product-list row grid">
+            <category-item v-for="itemData in itemList.documents" :item-data="itemData.data"
+                           decimal-count="{{ decimalCount }}" image-url-accessor="urlMiddle"></category-item>
+
+        </ul>
+    </div>
+</script>
