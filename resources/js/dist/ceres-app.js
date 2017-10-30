@@ -14651,6 +14651,7 @@ Vue.component("change-payment-method", {
 
                 _this3.updateOrderHistory(response);
                 _this3.updateAllowedPaymentMethods(_this3.getPaymentId(response.order.properties));
+                location.reload();
             }).fail(function () {
                 // TODO add error msg
             });
