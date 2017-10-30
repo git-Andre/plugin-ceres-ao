@@ -114,6 +114,7 @@ Vue.component("change-payment-method", {
 
                     this.updateOrderHistory(response);
                     this.updateAllowedPaymentMethods(this.getPaymentId(response.order.properties));
+                    location.reload();
                 })
                 .fail(() =>
                 {
