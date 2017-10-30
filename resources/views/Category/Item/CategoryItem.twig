@@ -49,7 +49,6 @@
     <resource name="facetParams" :data="[]"></resource>
     <resource name="facets" :data="{{ paginatedResult.facets | json_encode }} || []"></resource>
     <resource name="itemList" :data="{ total: {{  paginatedResult.total | json_encode() }} }"></resource>
-    <resource name="auctionList" :data="{itemIds: 46987}"></resource>
 
     {% if showCategoryImage %}
         {% include "Ceres::Category.Item.Partials.CategoryParallaxImage" with { 'category': category } %}

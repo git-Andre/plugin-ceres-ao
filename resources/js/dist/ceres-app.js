@@ -13748,8 +13748,6 @@ Vue.component("item-list", {
         ResourceService.bind("itemList", this);
         ResourceService.bind("isLoading", this);
         ResourceService.bind("auctionList", this);
-
-        console.dir(auctionList);
     }
 });
 
