@@ -13678,6 +13678,18 @@ Vue.component("category-item", {
          */
         texts: function texts() {
             return this.itemData.texts;
+        },
+        isAuction: function isAuction() {
+            // return true if Auktion in property (Facets)
+            if (this.itemData.properties.length > 0) {
+                for (var i = this.itemData.properties.length; --i >= 0;) {
+                    // todo: config prop-names
+                    if (this.itemData.properties[i].property.names.name == "Auktion" || this.itemData.properties[i].property.names.name == "auction") {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 });

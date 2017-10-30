@@ -12,6 +12,7 @@ Vue.component("item-list", {
     {
         return {
             itemList: {},
+            auctionList: {},
             isLoading: false,
             filterListState: false
         };
@@ -28,5 +29,8 @@ Vue.component("item-list", {
     {
         ResourceService.bind("itemList", this);
         ResourceService.bind("isLoading", this);
+        ResourceService.bind("auctionList", this);
+
+        console.dir(auctionList);
     }
 });

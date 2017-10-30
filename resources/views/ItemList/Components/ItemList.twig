@@ -23,6 +23,7 @@
         <ul class="product-list row grid">
             <category-item v-for="itemData in itemList.documents"
                     :item-data="itemData.data"
+                    :auction-list="auctionList"
                     decimal-count="{{ decimalCount }}"
                     image-url-accessor="urlMiddle"></category-item>
 
