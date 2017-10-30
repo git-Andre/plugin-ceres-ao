@@ -13651,18 +13651,22 @@ Vue.component("category-item", {
 
     template: "#vue-category-item",
 
-    props: ["decimalCount", "itemData", "imageUrlAccessor"],
+    props: ["decimalCount", "itemData", "imageUrlAccessor", "auctionList"],
 
     data: function data() {
         return {
-            recommendedRetailPrice: 0,
-            variationRetailPrice: 0
+            // recommendedRetailPrice: 0,
+            variationRetailPrice: 0,
+            auctionCurrentPrice: 0
         };
     },
 
     created: function created() {
-        this.recommendedRetailPrice = this.itemData.calculatedPrices.rrp.price;
+        // verbinden mit itemList (itemId) wenn isAuction... ???!!?
+
+        // this.recommendedRetailPrice = this.itemData.calculatedPrices.rrp.price;
         this.variationRetailPrice = this.itemData.calculatedPrices.default.price;
+        this.auctionCurrentPrice = this.auction.currentPrice;
     },
 
     computed: {
@@ -13673,9 +13677,6 @@ Vue.component("category-item", {
             return this.itemData.item.storeSpecial;
         },
 
-        /**
-         * returns itemData.texts[0]
-         */
         texts: function texts() {
             return this.itemData.texts;
         },
@@ -13685,12 +13686,16 @@ Vue.component("category-item", {
                 for (var i = this.itemData.properties.length; --i >= 0;) {
                     // todo: config prop-names
                     if (this.itemData.properties[i].property.names.name == "Auktion" || this.itemData.properties[i].property.names.name == "auction") {
+
                         return true;
                     }
                 }
             }
             return false;
         }
+        // auctionList: function () {
+        //     // verbinden mit itemList (itemId) wenn isAuction... ???!!?
+        // }
     }
 });
 
@@ -13727,6 +13732,7 @@ Vue.component("item-list", {
     data: function data() {
         return {
             itemList: {},
+            auctionList: {},
             isLoading: false,
             filterListState: false
         };
@@ -13741,6 +13747,9 @@ Vue.component("item-list", {
     ready: function ready() {
         ResourceService.bind("itemList", this);
         ResourceService.bind("isLoading", this);
+        ResourceService.bind("auctionList", this);
+
+        console.dir(auctionList);
     }
 });
 
@@ -16737,10 +16746,34 @@ module.exports = function ($) {
             _setIsLoading(true);
 
             ApiService.get(url, searchParams).done(function (response) {
-                _setIsLoading(false);
 
                 ResourceService.getResource("itemList").set(response);
                 ResourceService.getResource("facets").set(response.facets);
+
+                // compute Array of ItemIds von itemList
+                var itemIds = [];
+                if (response.documents.length > 0) {
+                    for (var i = response.documents.length; --i >= 0;) {
+                        itemIds.push(response.documents[i].data.item.id);
+                    }
+                }
+                console.log('itemIds: ' + itemIds);
+
+                // ApiService.get(url, itemIds) -- getAuctionParamsListForCategoryItem (itemIds)  - AuctionService
+                ApiService.post("/api/auction-param-list", { 'itemIds': parseJSON(itemIds) }).done(function (auctionList) {
+
+                    console.log('auctionList: ' + auctionList);
+
+                    _setIsLoading(false);
+
+                    // (lastBidPrice if Gebote > 0 sonst Startprice,
+                    //  also: itemId, currentPrice, tense(berechnet)
+
+                    ResourceService.getResource("auctionList").set(auctionList);
+                }).fail(function () {
+                    NotificationService.error("Error while searching").close;
+                    alert('Upps - ein Fehler bei  ??!!');
+                });
             }).fail(function (response) {
                 _setIsLoading(false);
 

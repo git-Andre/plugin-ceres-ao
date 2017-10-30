@@ -60,6 +60,8 @@ module.exports = (function ($) {
                     ApiService.post( "/api/auction-param-list", {'itemIds': parseJSON(itemIds) } )
                         .done( auctionList => {
 
+                            console.log( 'auctionList: ' + auctionList );
+
                             _setIsLoading( false );
 
                             // (lastBidPrice if Gebote > 0 sonst Startprice,
