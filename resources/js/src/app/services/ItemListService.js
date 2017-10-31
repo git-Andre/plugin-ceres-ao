@@ -63,15 +63,12 @@ module.exports = (function ($) {
 
                             _setIsLoading( false );
 
-                            // (lastBidPrice if Gebote > 0 sonst Startprice,
-                            //  also: itemId, currentPrice, tense(berechnet)
-
                             ResourceService.getResource( "auctionList" ).set( auctionList );
 
                         } )
                         .fail( () => {
                                    NotificationService.error( "Error while searching" ).close;
-                                   alert( 'Upps - ein Fehler bei  ??!!' );
+                                   alert( 'Upps - ein Fehler in /api/auction-param-list  ??!!' );
                                }
                         )
                 } )
