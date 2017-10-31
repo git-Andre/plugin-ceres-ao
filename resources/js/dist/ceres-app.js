@@ -13666,7 +13666,7 @@ Vue.component("category-item", {
 
         // this.recommendedRetailPrice = this.itemData.calculatedPrices.rrp.price;
         this.variationRetailPrice = this.itemData.calculatedPrices.default.price;
-        this.auctionCurrentPrice = this.auction.currentPrice;
+        // this.auctionCurrentPrice   = this.auction.currentPrice;
     },
 
     computed: {
@@ -13686,7 +13686,7 @@ Vue.component("category-item", {
                 for (var i = this.itemData.properties.length; --i >= 0;) {
                     // todo: config prop-names
                     if (this.itemData.properties[i].property.names.name == "Auktion" || this.itemData.properties[i].property.names.name == "auction") {
-
+                        // hier gibt es die itemId für die jeweilige Auktion !!!!?!
                         return true;
                     }
                 }
@@ -16757,8 +16757,12 @@ module.exports = function ($) {
                 }
                 console.log('itemIds: ' + itemIds);
 
+                var bodyReq = { 'itemIds': itemIds };
+
+                console.dir(bodyReq);
+
                 // ApiService.get(url, itemIds) -- getAuctionParamsListForCategoryItem (itemIds)  - AuctionService
-                ApiService.post("/api/auction-param-list", { 'itemIds': parseJSON(itemIds) }).done(function (auctionList) {
+                ApiService.post("/api/auction-param-list", bodyReq).done(function (auctionList) {
 
                     console.log('auctionList: ' + auctionList);
 

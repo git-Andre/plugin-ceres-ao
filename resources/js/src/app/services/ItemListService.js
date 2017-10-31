@@ -54,10 +54,9 @@ module.exports = (function ($) {
                             itemIds.push( response.documents[i].data.item.id );
                         }
                     }
-                    console.log( 'itemIds: ' + itemIds );
 
                     // ApiService.get(url, itemIds) -- getAuctionParamsListForCategoryItem (itemIds)  - AuctionService
-                    ApiService.post( "/api/auction-param-list", {'itemIds': parseJSON(itemIds) } )
+                    ApiService.post( "/api/auction-param-list", {'itemIds': itemIds} )
                         .done( auctionList => {
 
                             console.log( 'auctionList: ' + auctionList );

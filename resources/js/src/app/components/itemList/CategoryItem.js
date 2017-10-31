@@ -22,7 +22,7 @@ Vue.component( "category-item", {
 
         // this.recommendedRetailPrice = this.itemData.calculatedPrices.rrp.price;
         this.variationRetailPrice   = this.itemData.calculatedPrices.default.price;
-        this.auctionCurrentPrice   = this.auction.currentPrice;
+        // this.auctionCurrentPrice   = this.auction.currentPrice;
     },
 
     computed:
@@ -44,13 +44,13 @@ Vue.component( "category-item", {
                         // todo: config prop-names
                         if ( this.itemData.properties[i].property.names.name == "Auktion" ||
                             this.itemData.properties[i].property.names.name == "auction" ) {
-
+                            // hier gibt es die itemId für die jeweilige Auktion !!!!?!
                             return true;
                         }
                     }
                 }
                 return false;
-            },
+            }
             // auctionList: function () {
             //     // verbinden mit itemList (itemId) wenn isAuction... ???!!?
             // }
