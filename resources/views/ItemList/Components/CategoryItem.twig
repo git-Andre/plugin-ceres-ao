@@ -21,6 +21,8 @@
         <article class="cmp cmp-product-thumb cmp-product-thumb--grid">
             <div class="thumb-inner">
 
+                <p style="display:none">${ isAuction }</p>
+
                 <add-to-basket template="#vue-add-to-basket"
                         v-if="!isAuction"
                         :item="itemData"
@@ -55,6 +57,9 @@
                 </div>
 
                 <!-- STORE SPECIALS -->
+                <p class="thumb-title alarm">${ storeSpecial | json }</p>
+                <p class="thumb-title alarm">${ storeSpecial }</p>
+
                 <item-store-special
                         v-if="storeSpecial"
                         :store-special="storeSpecial"
@@ -84,11 +89,9 @@
                     {#Text#}
                     <div class="cat-item-titel-ao">
                         <p class="thumb-title"><a href="${ itemData | itemURL }">${ texts.name2 }</a></p>
-                        <p class="thumb-title small">${ texts.name3 }</p>
+                        <p class="thumb-title small">${ texts.name3 } <span class="thumb-title-small small text-right">${ auctionParams.itemId }</span></p>
 
-                        <p class="thumb-title small">${ auctionParams | json_encode() }</p>
-                        <p class="thumb-title small">${ auctionParams.itemId }</p>
-                        <p class="thumb-title alarm">${ isAuction }</p>
+                        <p class="thumb-title small">${ auctionParams }</p>
 
 
                     </div>
