@@ -52,8 +52,7 @@ Vue.component( "category-item", {
                 else {
                     this.isAuction = false;
                 }
-                console.log( 'return false' );
-                return false;
+                // return false;
             }
         }
 } );
