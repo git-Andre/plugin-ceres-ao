@@ -61,10 +61,10 @@ module.exports = (function ($) {
 
                             console.dir( auctionList );
 
-                            _setIsLoading( false );
 
                             ResourceService.getResource( "auctionList" ).set( auctionList );
 
+                            _setIsLoading( false );
                         } )
                         .fail( () => {
                                    NotificationService.error( "Error while searching" ).close;

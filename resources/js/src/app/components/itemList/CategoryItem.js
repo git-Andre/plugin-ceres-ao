@@ -19,8 +19,30 @@ Vue.component( "category-item", {
 
     created: function () {
         this.variationRetailPrice = this.itemData.calculatedPrices.default.price;
+        this.auctionParams();
     },
+    method: {
+        auctionParams () {
 
+            if ( this.auctionList.length > 0 ) {
+
+                for (var i = this.auctionList.length; --i >= 0;) {
+
+                    if ( this.auctionList[i].itemId == this.itemData.item.id ) {
+
+                        this.isAuction = true;
+
+                        return this.auctionList[i];
+                    }
+                }
+            }
+            else {
+                this.isAuction = false;
+            }
+            return false;
+        }
+
+    },
     computed:
         {
             /**
@@ -34,24 +56,5 @@ Vue.component( "category-item", {
                 return this.itemData.texts;
             },
 
-            auctionParams: function () {
-
-                if ( this.auctionList.length > 0 ) {
-
-                    for (var i = this.auctionList.length; --i >= 0;) {
-
-                        if ( this.auctionList[i].itemId == this.itemData.item.id ) {
-
-                            this.isAuction = true;
-
-                            return this.auctionList[i];
-                        }
-                    }
-                }
-                else {
-                    this.isAuction = false;
-                }
-                return false;
-            }
         }
 } );

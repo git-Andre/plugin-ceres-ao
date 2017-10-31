@@ -13662,25 +13662,10 @@ Vue.component("category-item", {
     },
 
     created: function created() {
-        // verbinden mit itemList (itemId) wenn isAuction... ???!!?
-
-        // this.recommendedRetailPrice = this.itemData.calculatedPrices.rrp.price;
         this.variationRetailPrice = this.itemData.calculatedPrices.default.price;
-        // this.auctionCurrentPrice   = this.auction.currentPrice;
+        this.auctionParams();
     },
-
-    computed: {
-        /**
-         * returns itemData.item.storeSpecial
-         */
-        storeSpecial: function storeSpecial() {
-            return this.itemData.item.storeSpecial;
-        },
-
-        texts: function texts() {
-            return this.itemData.texts;
-        },
-
+    method: {
         auctionParams: function auctionParams() {
 
             if (this.auctionList.length > 0) {
@@ -13699,6 +13684,19 @@ Vue.component("category-item", {
             }
             return false;
         }
+    },
+    computed: {
+        /**
+         * returns itemData.item.storeSpecial
+         */
+        storeSpecial: function storeSpecial() {
+            return this.itemData.item.storeSpecial;
+        },
+
+        texts: function texts() {
+            return this.itemData.texts;
+        }
+
     }
 });
 
@@ -16764,9 +16762,9 @@ module.exports = function ($) {
 
                     console.dir(auctionList);
 
-                    _setIsLoading(false);
-
                     ResourceService.getResource("auctionList").set(auctionList);
+
+                    _setIsLoading(false);
                 }).fail(function () {
                     NotificationService.error("Error while searching").close;
                     alert('Upps - ein Fehler in /api/auction-param-list  ??!!');
