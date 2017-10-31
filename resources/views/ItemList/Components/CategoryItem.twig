@@ -62,20 +62,20 @@
                         :decimal-count="decimalCount"></item-store-special>
                 <!-- ./STORE SPECIALS -->
                 <!-- Banner custom  Auktionen -->
-                    <div class="auction-category-item-special"
-                            v-if="isAuction">
-                            <h1 class="auction-special-tag"
-                                    v-if="auctionParams.tense === 'future'"
-                            >{{ trans("CeresSchaffrath::Template.auctionFuture") }}</h1>
+                <div class="auction-category-item-special"
+                        v-if="isAuction">
+                    <h1 class="auction-special-tag"
+                            v-if="auctionParams.tense === 'future'"
+                    >{{ trans("CeresSchaffrath::Template.auctionFuture") }}</h1>
 
-                            <h1 class="auction-special-tag"
-                                    v-if="auctionParams.tense === 'present'"
-                            >{{ trans("CeresSchaffrath::Template.auctionPresent") }}</h1>
+                    <h1 class="auction-special-tag"
+                            v-if="auctionParams.tense === 'present'"
+                    >{{ trans("CeresSchaffrath::Template.auctionPresent") }}</h1>
 
-                            <h1 class="auction-special-tag"
-                                    v-if="auctionParams.tense === 'past' || auctionParams.tense === 'past_perfect'"
-                            >{{ trans("CeresSchaffrath::Template.auctionPast") }}</h1>
-                    </div>
+                    <h1 class="auction-special-tag"
+                            v-if="auctionParams.tense === 'past' || auctionParams.tense === 'past_perfect'"
+                    >{{ trans("CeresSchaffrath::Template.auctionPast") }}</h1>
+                </div>
 
 
                 <!-- ITEM DETAILS -->
@@ -91,29 +91,81 @@
 
                     <div class="thumb-meta">
 
-                        <div class="prices">
+                        {#Sofortkaufen#}
+                        <div v-if="!isAuction"
+                                class="prices">
                             <span class="m-x-2">
                                 <h5>{{ trans("CeresSchaffrath::Template.buyNow") }}
                                     <span class="m-l-5"><i class="fa fa-check text-success"
                                                 aria-hidden="true"></i></span></h5>
                             </span>
+                            {#PREIS#}
+                            {#<a href="${ itemData | itemURL }">#}
+                            <span class="price"
+                                    v-if="!isAuction">
+                                    ${ variationRetailPrice | currency itemData.calculatedPrices.default.currency } <sup>*</sup>
+                                </span>
+                            {#</a>#}
+                        </div>
 
-                            <a href="${ itemData | itemURL }">
-
-                            <span class="price">
-                                ${ auctionParams.currentPrice | currency itemData.calculatedPrices.default.currency } <sup>*</sup>
+                        {#Auktion#}
+                        <div v-if="isAuction" class="prices">
+                            {% if auction.tense == 'future' %}
+                                <div v-if="auctionParams.tense === 'future'">
+                                    <span class="m-x-2"
+                                            v-if="auctionParams.tense === 'future'"
+                                    >
+                                        <h5>{{ trans("CeresSchaffrath::Template.startPrice") }}
+                                            <span class="m-l-5"><i class="fa fa-pencil-square-o text-warning"
+                                                        aria-hidden="true"></i></span></h5>
+                                    </span>
+                                    <span class="price">
+                                        {{ auction.startPrice | formatMonetary('EUR') }} <sup>*</sup>
+                                    </span>
+                                </div>
+                            {% elseif auction.tense == 'present' %}
+                                <span class="m-x-2">
+                            <h5>{{ trans("CeresSchaffrath::Template.highestBid") }}
+                                <span class="m-l-5"><i class="fa fa-gavel text-danger"
+                                            aria-hidden="true"></i></span></h5>
+                           </span>
+                                <span class="price">
+                                {% if bidderListLength > 1 %}
+                                    {{ bidderListLast.bidPrice | formatMonetary('EUR') }} <sup>*</sup>
+                                {% else %}
+                                    {{ auction.startPrice | formatMonetary('EUR') }} <sup>*</sup>
+                                {% endif %}
                             </span>
-                            </a>
+                            {% else %}
+                                <span class="m-x-2">
+                            <h5>{{ trans("CeresSchaffrath::Template.closedPrice") }}<span class="m-l-5"><i class="fa fa-lock"
+                                            aria-hidden="true"></i></span></h5>
+                           </span>
+                                <span class="price">
+                                {{ bidderListLast.bidPrice | formatMonetary('EUR') }} <sup>*</sup>
+                            </span>
+                            {% endif %}
 
+                            {#Price#}
+                            <a href="${ itemData | itemURL }">
+                                <span class="price">
+                                    ${ auctionParams.currentPrice | currency itemData.calculatedPrices.default.currency } <sup>*</sup>
+                                </span>
+                            </a>
                         </div>
 
                     </div>
 
                     {#fuss#}
-                    <span class="vat-porto-info small text-muted">
+                    <span v-if="!isAuction" class="vat-porto-info small text-muted">
                         <sup>*</sup> {{ trans("Ceres::Template.itemInclVAT") }} {{ trans("Ceres::Template.itemExclusive") }}
                         <a {% if shippingCat is not empty %} data-toggle="modal" href="#shippingscosts"{% endif %} title="{{ trans("Ceres::Template.itemShippingCosts") }}">{{ trans("Ceres::Template.itemShippingCosts") }}</a>
                     </span>
+                    <span v-if="isAuction" class="vat-porto-info small text-muted">
+                        <sup>*</sup> {{ trans("Ceres::Template.itemExclusive") }} {{ trans("CeresSchaffrath::Template.surcharge") }}
+                        | {{ trans("Ceres::Template.itemInclVAT") }}
+                    </span>
+
                 </div>
                 <!-- ./ITEM DETAILS  -->
             </div>
