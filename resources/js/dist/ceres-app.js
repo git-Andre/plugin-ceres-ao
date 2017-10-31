@@ -13694,7 +13694,7 @@ Vue.component("category-item", {
             } else {
                 this.isAuction = false;
             }
-            // return false;
+            return false;
         }
     }
 });
