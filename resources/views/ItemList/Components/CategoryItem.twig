@@ -22,7 +22,6 @@
             <div class="thumb-inner">
 
                 <p style="display:none">${ isAuction }</p>
-                <p>${ isAuction }</p>
 
                 <add-to-basket template="#vue-add-to-basket"
                         v-if="!isAuction"
@@ -58,9 +57,6 @@
                 </div>
 
                 <!-- STORE SPECIALS -->
-                <p class="thumb-title alarm">${ storeSpecial | json }</p>
-                <p class="thumb-title alarm">${ storeSpecial }</p>
-
                 <item-store-special
                         v-if="storeSpecial"
                         :store-special="storeSpecial"
@@ -92,9 +88,9 @@
                         <p class="thumb-title"><a href="${ itemData | itemURL }">${ texts.name2 }</a></p>
                         <p class="thumb-title small">${ texts.name3 } <span class="thumb-title-small small text-right">${ auctionParams.itemId }</span></p>
 
-                        <p class="thumb-title small">${ auctionParams }</p>
+                        {#<p class="thumb-title small">${ auctionParams }</p>#}
 
-                        <p style="display:none">${ isAuction }</p>
+                        {#<p style="display:none">${ isAuction }</p>#}
 
                     </div>
 
