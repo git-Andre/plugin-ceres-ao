@@ -13657,7 +13657,7 @@ Vue.component("category-item", {
         return {
             // recommendedRetailPrice: 0,
             variationRetailPrice: 0,
-            isAuction: true
+            isAuction: false
         };
     },
 
@@ -13681,14 +13681,18 @@ Vue.component("category-item", {
 
             if (this.auctionList.length > 0) {
 
-                console.log('this.auctionList.length > 0');
+                var auctionParameter = [];
+
                 for (var i = this.auctionList.length; --i >= 0;) {
 
                     if (this.auctionList[i].itemId == this.itemData.item.id) {
 
                         this.isAuction = true;
+                        auctionParameter = this.auctionList[i];
 
-                        return this.auctionList[i];
+                        this.auctionList = [];
+
+                        return auctionParameter;
                     }
                 }
             } else {

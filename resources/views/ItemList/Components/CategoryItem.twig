@@ -63,6 +63,7 @@
                         :variation-retail-price="variationRetailPrice"
                         :decimal-count="decimalCount"></item-store-special>
                 <!-- ./STORE SPECIALS -->
+
                 <!-- Banner custom  Auktionen -->
                 <div class="auction-category-item-special"
                         v-if="isAuction">
@@ -75,7 +76,7 @@
                     >{{ trans("CeresSchaffrath::Template.auctionPresent") }}</h1>
 
                     <h1 class="auction-special-tag"
-                            v-if="auctionParams.tense === 'past' || auctionParams.tense === 'past_perfect'"
+                            v-if="auctionParams.tense === 'past' || auctionParams.tense === 'past-perfect'"
                     >{{ trans("CeresSchaffrath::Template.auctionPast") }}</h1>
                 </div>
 
@@ -88,6 +89,7 @@
                         <p class="thumb-title"><a href="${ itemData | itemURL }">${ texts.name2 }</a></p>
                         <p class="thumb-title small">${ texts.name3 }</p>
 
+                        {#magic helper... ??? :) todo: begreifen... :)#}
                         <p v-show="false" class="thumb-title small">${ auctionParams.itemId }</p>
 
                         {#<p style="display:none">${ isAuction }</p>#}
