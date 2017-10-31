@@ -13657,19 +13657,31 @@ Vue.component("category-item", {
         return {
             // recommendedRetailPrice: 0,
             variationRetailPrice: 0,
-            isAuction: false
+            isAuction: true
         };
     },
 
     created: function created() {
         this.variationRetailPrice = this.itemData.calculatedPrices.default.price;
-        this.auctionParams();
     },
-    method: {
+
+    computed: {
+        /**
+         * returns itemData.item.storeSpecial
+         */
+        storeSpecial: function storeSpecial() {
+            return this.itemData.item.storeSpecial;
+        },
+
+        texts: function texts() {
+            return this.itemData.texts;
+        },
+
         auctionParams: function auctionParams() {
 
             if (this.auctionList.length > 0) {
 
+                console.log('this.auctionList.length > 0');
                 for (var i = this.auctionList.length; --i >= 0;) {
 
                     if (this.auctionList[i].itemId == this.itemData.item.id) {
@@ -13682,21 +13694,9 @@ Vue.component("category-item", {
             } else {
                 this.isAuction = false;
             }
+            console.log('return false');
             return false;
         }
-    },
-    computed: {
-        /**
-         * returns itemData.item.storeSpecial
-         */
-        storeSpecial: function storeSpecial() {
-            return this.itemData.item.storeSpecial;
-        },
-
-        texts: function texts() {
-            return this.itemData.texts;
-        }
-
     }
 });
 

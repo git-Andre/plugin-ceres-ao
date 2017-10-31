@@ -86,7 +86,10 @@
                         <p class="thumb-title"><a href="${ itemData | itemURL }">${ texts.name2 }</a></p>
                         <p class="thumb-title small">${ texts.name3 }</p>
 
-                        {#<p class="thumb-title small">${ auctionParams.itemId }</p>#}
+                        <p class="thumb-title small">${ auctionParams | json_encode() }</p>
+                        <p class="thumb-title small">${ auctionParams.itemId }</p>
+                        <p class="thumb-title alarm">${ isAuction }</p>
+
 
                     </div>
 
