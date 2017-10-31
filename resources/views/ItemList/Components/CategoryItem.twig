@@ -110,49 +110,44 @@
 
                         {#Auktion#}
                         <div v-if="isAuction" class="prices">
-                            {% if auction.tense == 'future' %}
-                                <div v-if="auctionParams.tense === 'future'">
-                                    <span class="m-x-2"
-                                            v-if="auctionParams.tense === 'future'"
-                                    >
+                            {#{% if auction.tense == 'future' %}#}
+                            {#<div v-if="auctionParams.tense === 'future'">#}
+                            <span class="m-x-2"
+                                    v-if="auctionParams.tense === 'future'"
+                            >
                                         <h5>{{ trans("CeresSchaffrath::Template.startPrice") }}
                                             <span class="m-l-5"><i class="fa fa-pencil-square-o text-warning"
                                                         aria-hidden="true"></i></span></h5>
                                     </span>
-                                    <span class="price">
-                                        {{ auction.startPrice | formatMonetary('EUR') }} <sup>*</sup>
-                                    </span>
-                                </div>
-                            {% elseif auction.tense == 'present' %}
-                                <span class="m-x-2">
-                            <h5>{{ trans("CeresSchaffrath::Template.highestBid") }}
-                                <span class="m-l-5"><i class="fa fa-gavel text-danger"
-                                            aria-hidden="true"></i></span></h5>
-                           </span>
-                                <span class="price">
-                                {% if bidderListLength > 1 %}
-                                    {{ bidderListLast.bidPrice | formatMonetary('EUR') }} <sup>*</sup>
-                                {% else %}
-                                    {{ auction.startPrice | formatMonetary('EUR') }} <sup>*</sup>
-                                {% endif %}
-                            </span>
-                            {% else %}
-                                <span class="m-x-2">
-                            <h5>{{ trans("CeresSchaffrath::Template.closedPrice") }}<span class="m-l-5"><i class="fa fa-lock"
-                                            aria-hidden="true"></i></span></h5>
-                           </span>
-                                <span class="price">
-                                {{ bidderListLast.bidPrice | formatMonetary('EUR') }} <sup>*</sup>
-                            </span>
-                            {% endif %}
+                            {#</div>#}
+                            {#{% elseif auction.tense == 'present' %}#}
+                            {#<div v-if="auctionParams.tense === 'present'">#}
 
-                            {#Price#}
-                            <a href="${ itemData | itemURL }">
-                                <span class="price">
-                                    ${ auctionParams.currentPrice | currency itemData.calculatedPrices.default.currency } <sup>*</sup>
-                                </span>
-                            </a>
-                        </div>
+                            <span class="m-x-2"
+                                    v-if="auctionParams.tense === 'present'"
+                            >
+                                        <h5>{{ trans("CeresSchaffrath::Template.highestBid") }}
+                                            <span class="m-l-5"><i class="fa fa-gavel text-danger"
+                                                        aria-hidden="true"></i></span></h5>
+                                   </span>
+                            {#</div>#}
+                            {#{% else %}#}
+
+                            <span class="m-x-2"
+                                    v-if="auctionParams.tense === 'past' || auctionParams.tense === 'past_perfect'"
+
+                            >
+                                    <h5>{{ trans("CeresSchaffrath::Template.closedPrice") }}<span class="m-l-5"><i class="fa fa-lock"
+                                                    aria-hidden="true"></i></span></h5>
+                                {#{% endif %}#}
+
+                                {#Price#}
+                                {#<a href="${ itemData | itemURL }">#}
+                            <span class="price">
+                                ${ auctionParams.currentPrice | currency itemData.calculatedPrices.default.currency } <sup>*</sup>
+                            </span>
+                                {#</a>#}
+                        {#</div>#}
 
                     </div>
 
