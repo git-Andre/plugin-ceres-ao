@@ -18,11 +18,7 @@ Vue.component( "category-item", {
     },
 
     created: function () {
-        // verbinden mit itemList (itemId) wenn isAuction... ???!!?
-
-        // this.recommendedRetailPrice = this.itemData.calculatedPrices.rrp.price;
         this.variationRetailPrice = this.itemData.calculatedPrices.default.price;
-        // this.auctionCurrentPrice   = this.auction.currentPrice;
     },
 
     computed:
