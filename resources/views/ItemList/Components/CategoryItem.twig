@@ -55,11 +55,28 @@
                 </div>
 
                 <!-- STORE SPECIALS -->
-                <item-store-special v-if="storeSpecial" :store-special="storeSpecial"
-                        {#:recommended-retail-price="recommendedRetailPrice"#}
+                <item-store-special
+                        v-if="storeSpecial && !isAuction"
+                        :store-special="storeSpecial"
                         :variation-retail-price="variationRetailPrice"
                         :decimal-count="decimalCount"></item-store-special>
                 <!-- ./STORE SPECIALS -->
+                <!-- Banner custom  Auktionen -->
+                    <div class="auction-category-item-special"
+                            v-if="isAuction">
+                            <h1 class="auction-special-tag"
+                                    v-if="auctionParams.tense === 'future'"
+                            >{{ trans("CeresSchaffrath::Template.auctionFuture") }}</h1>
+
+                            <h1 class="auction-special-tag"
+                                    v-if="auctionParams.tense === 'present'"
+                            >{{ trans("CeresSchaffrath::Template.auctionPresent") }}</h1>
+
+                            <h1 class="auction-special-tag"
+                                    v-if="auctionParams.tense === 'past' || auctionParams.tense === 'past_perfect'"
+                            >{{ trans("CeresSchaffrath::Template.auctionPast") }}</h1>
+                    </div>
+
 
                 <!-- ITEM DETAILS -->
                 <div class="thumb-content">
@@ -67,9 +84,7 @@
                         <p class="thumb-title"><a href="${ itemData | itemURL }">${ texts.name2 }</a></p>
                         <p class="thumb-title small">${ texts.name3 }</p>
 
-                        <p class="thumb-title">${ isAuction }</p>
-                        <p class="thumb-title small">${ auctionParams.itemId }</p>
-                        <p class="thumb-title small">${ auctionParams.currentPrice }</p>
+                        {#<p class="thumb-title small">${ auctionParams.itemId }</p>#}
                         <p class="thumb-title small">${ auctionParams.tense }</p>
 
                     </div>
@@ -86,7 +101,7 @@
                             <a href="${ itemData | itemURL }">
 
                             <span class="price">
-                                ${ variationRetailPrice | currency itemData.calculatedPrices.default.currency } <sup>*</sup>
+                                ${ auctionParams.currentPrice | currency itemData.calculatedPrices.default.currency } <sup>*</sup>
                             </span>
                             </a>
 
