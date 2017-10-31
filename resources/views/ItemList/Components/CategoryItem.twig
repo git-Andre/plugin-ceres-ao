@@ -80,15 +80,17 @@
 
                 <!-- ITEM DETAILS -->
                 <div class="thumb-content">
+
+                    {#Text#}
                     <div class="cat-item-titel-ao">
                         <p class="thumb-title"><a href="${ itemData | itemURL }">${ texts.name2 }</a></p>
                         <p class="thumb-title small">${ texts.name3 }</p>
 
                         {#<p class="thumb-title small">${ auctionParams.itemId }</p>#}
-                        <p class="thumb-title small">${ auctionParams.tense }</p>
 
                     </div>
 
+                    {#Preis und info  #}
                     <div class="thumb-meta">
 
                         {#Sofortkaufen#}
@@ -137,30 +139,34 @@
                                     v-if="auctionParams.tense === 'past' || auctionParams.tense === 'past_perfect'"
 
                             >
-                                    <h5>{{ trans("CeresSchaffrath::Template.closedPrice") }}<span class="m-l-5"><i class="fa fa-lock"
-                                                    aria-hidden="true"></i></span></h5>
+                                    <h5>{{ trans("CeresSchaffrath::Template.closedPrice") }}
+                                        <span class="m-l-5"><i class="fa fa-lock" aria-hidden="true"></i></span></h5>
                                 {#{% endif %}#}
+                                </span>
 
-                                {#Price#}
-                                {#<a href="${ itemData | itemURL }">#}
+                            {#Price#}
+                            {#<a href="${ itemData | itemURL }">#}
                             <span class="price">
-                                ${ auctionParams.currentPrice | currency itemData.calculatedPrices.default.currency } <sup>*</sup>
+                                    ${ auctionParams.currentPrice | currency itemData.calculatedPrices.default.currency } <sup>*</sup>
+                                </span>
+                            {#</a>#}
+                            {#</div>#}
+
+                        </div>
+                        <div>
+                            {#fuss#}
+                            <span v-if="!isAuction" class="vat-porto-info small text-muted">
+                            <sup>*</sup> {{ trans("Ceres::Template.itemInclVAT") }} {{ trans("Ceres::Template.itemExclusive") }}
+                                <a {% if shippingCat is not empty %} data-toggle="modal" href="#shippingscosts"{% endif %} title="{{ trans("Ceres::Template.itemShippingCosts") }}">{{ trans("Ceres::Template.itemShippingCosts") }}</a>
                             </span>
-                                {#</a>#}
-                        {#</div>#}
+                            <span v-if="isAuction" class="vat-porto-info small text-muted">
+                                <sup>*</sup> {{ trans("Ceres::Template.itemExclusive") }} {{ trans("CeresSchaffrath::Template.surcharge") }}
+                                | {{ trans("Ceres::Template.itemInclVAT") }}
+                            </span>
+
+                        </div>
 
                     </div>
-
-                    {#fuss#}
-                    <span v-if="!isAuction" class="vat-porto-info small text-muted">
-                        <sup>*</sup> {{ trans("Ceres::Template.itemInclVAT") }} {{ trans("Ceres::Template.itemExclusive") }}
-                        <a {% if shippingCat is not empty %} data-toggle="modal" href="#shippingscosts"{% endif %} title="{{ trans("Ceres::Template.itemShippingCosts") }}">{{ trans("Ceres::Template.itemShippingCosts") }}</a>
-                    </span>
-                    <span v-if="isAuction" class="vat-porto-info small text-muted">
-                        <sup>*</sup> {{ trans("Ceres::Template.itemExclusive") }} {{ trans("CeresSchaffrath::Template.surcharge") }}
-                        | {{ trans("Ceres::Template.itemInclVAT") }}
-                    </span>
-
                 </div>
                 <!-- ./ITEM DETAILS  -->
             </div>
