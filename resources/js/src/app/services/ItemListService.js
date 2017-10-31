@@ -56,17 +56,17 @@ module.exports = (function ($) {
                     }
 
                     // ApiService.get(url, itemIds) -- getAuctionParamsListForCategoryItem (itemIds)  - AuctionService
-                    ApiService.post( "/api/auction-param-list", {'itemIds': itemIds} )
+                    ApiService.post( "/api/auction-param-list", { 'itemIds': itemIds } )
                         .done( auctionList => {
 
-                            console.log( 'auctionList: ' + auctionList );
+                            console.dir( auctionList );
 
                             _setIsLoading( false );
 
                             // (lastBidPrice if Gebote > 0 sonst Startprice,
                             //  also: itemId, currentPrice, tense(berechnet)
 
-                            ResourceService.getResource("auctionList").set(auctionList);
+                            ResourceService.getResource( "auctionList" ).set( auctionList );
 
                         } )
                         .fail( () => {

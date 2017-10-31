@@ -12,7 +12,7 @@ Vue.component("item-list", {
     {
         return {
             itemList: {},
-            auctionList: {},
+            auctionList: [],
             isLoading: false,
             filterListState: false
         };

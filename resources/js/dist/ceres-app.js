@@ -16755,14 +16755,9 @@ module.exports = function ($) {
                         itemIds.push(response.documents[i].data.item.id);
                     }
                 }
-                console.log('itemIds: ' + itemIds);
-
-                var bodyReq = { 'itemIds': itemIds };
-
-                console.dir(bodyReq);
 
                 // ApiService.get(url, itemIds) -- getAuctionParamsListForCategoryItem (itemIds)  - AuctionService
-                ApiService.post("/api/auction-param-list", bodyReq).done(function (auctionList) {
+                ApiService.post("/api/auction-param-list", { 'itemIds': itemIds }).done(function (auctionList) {
 
                     console.log('auctionList: ' + auctionList);
 
