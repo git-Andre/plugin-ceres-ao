@@ -29,22 +29,9 @@
             <category-item v-for="itemData in itemList.documents"
 
 
-        {# ao Var-Dump #}
-        {% include "CeresSchaffrath::VarDump" with { 'testDescription': 'itemData.item.itemId', 'dumpData': itemData.item.itemId } %}
-
-
-                    {% set auction = auctions.auction.getAuctionForItemId(itemData.item.itemId) %}
-
-                    {% if auction != null %}
-                        {% set auctionData = auctions.auction.getAuctionParamsListForCategoryItem([auction.itemId]) %}
-                        {# ao Var-Dump #}
-                        {% include "CeresSchaffrath::VarDump" with { 'testDescription': 'auctionData', 'dumpData': auctionData } %}
-
-                    {% endif %}
-
                     :item-data="itemData.data"
                     :auction-list="auctionList"
-                    :auctionData="auctionData"
+                    :auctionData="{{auctions.auction.getAuctionParamsListForCategoryItem([itemData.item.id])}}"
                     decimal-count="{{ decimalCount }}"
                     image-url-accessor="urlMiddle"></category-item>
 
