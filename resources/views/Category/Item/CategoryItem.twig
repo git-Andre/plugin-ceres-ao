@@ -115,6 +115,11 @@
 
                             {% set auction = auctions.auction.getAuctionForItemId(item.data.variation.itemId) %}
 
+                            {# ao Var-Dump #}
+                            {% include "CeresSchaffrath::VarDump" with { 'testDescription': 'auction', 'dumpData': auction } %}
+
+
+
                             <li class="col-xs-12 col-sm-6 col-md-4 col-lg-{% if showHeaderNavBar == "side" or showHeaderNavBar == "both" %}4{% else %}3{% endif %}">
                                 {% if not auction %}
                                     {% include "CeresSchaffrath::Category.Item.Partials.CategoryListItem" with { 'item': item } %}
