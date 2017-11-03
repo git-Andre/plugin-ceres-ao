@@ -1,3 +1,7 @@
+var ApiService = require( "services/ApiService" );
+var ResourceService     = require( "services/ResourceService" );
+var NotificationService = require( "services/NotificationService" );
+
 Vue.component( "category-item", {
 
     template: "#vue-category-item",
@@ -6,7 +10,8 @@ Vue.component( "category-item", {
         "decimalCount",
         "itemData",
         "imageUrlAccessor",
-        "auctionList"
+        "auctionList",
+        "auction"
     ],
 
     data: function () {
@@ -27,7 +32,8 @@ Vue.component( "category-item", {
              * returns itemData.item.storeSpecial
              */
             storeSpecial: function () {
-                return this.itemData.item.storeSpecial;€
+                return this.itemData.item.storeSpecial;
+                €
             },
 
             texts: function () {
@@ -36,10 +42,10 @@ Vue.component( "category-item", {
 
             auctionParams: function () {
 
-                if ( this.auctionList.length > 0 ) {
-                    console.dir(this.auctionList);
+                var auctionParameter = [];
 
-                    var auctionParameter = [];
+                if ( this.auctionList.length > 0 ) {
+                    console.dir( this.auctionList );
 
                     for (var i = this.auctionList.length; --i >= 0;) {
 
@@ -54,6 +60,26 @@ Vue.component( "category-item", {
                             return auctionParameter;
                         }
                     }
+                }
+                else if ( auction ) {
+                    // ApiService.get(url, itemIds) -- getAuctionParamsListForCategoryItem (itemIds)  - AuctionService
+                    ApiService.post( "/api/auction-param-list", { 'itemIds': [auction.itemId] } )
+                        .done( auctionList => {
+
+                            if ( auctionList != null && Array.isArray(auctionList) && auctionList.length > 0 ) {
+
+                                ResourceService.getResource( "auctionList" ).set( auctionList );
+
+                                NotificationService.info( "Test: Auktionen enthalten... :)" ).closeAfter(3000);
+                            }
+                            _setIsLoading( false );
+                        } )
+                        .fail( () => {
+                                   NotificationService.error( "Error while searching" ).close;
+                                   alert( 'Upps - ein Fehler in /api/auction-param-list  ??!!' );
+                               }
+                        )
+
                 }
                 else {
                     this.isAuction = false;

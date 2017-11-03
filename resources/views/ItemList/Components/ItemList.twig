@@ -25,9 +25,11 @@
 
         <ul class="product-list row grid">
             <category-item v-for="itemData in itemList.documents"
+                    {% set auction = auctions.auction.getAuctionForItemId(itemData.item.itemId) %}
 
                     :item-data="itemData.data"
                     :auction-list="auctionList"
+                    :auction="auction"
                     decimal-count="{{ decimalCount }}"
                     image-url-accessor="urlMiddle"></category-item>
 
