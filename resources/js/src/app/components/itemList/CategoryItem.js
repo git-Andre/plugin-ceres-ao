@@ -59,7 +59,7 @@ Vue.component( "category-item", {
                         }
                     }
                 }
-                else if ( auctionData ) {
+                else if ( this.auctionData ) {
 
                     auctionParameter = this.auctionData;
 

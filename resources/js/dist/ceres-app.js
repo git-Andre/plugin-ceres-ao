@@ -13701,7 +13701,7 @@ Vue.component("category-item", {
                         return auctionParameter;
                     }
                 }
-            } else if (auctionData) {
+            } else if (this.auctionData) {
 
                 auctionParameter = this.auctionData;
 
