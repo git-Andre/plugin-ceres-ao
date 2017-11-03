@@ -54,16 +54,16 @@ module.exports = (function ($) {
                             itemIds.push( response.documents[i].data.item.id );
                         }
                     }
-
                     // ApiService.get(url, itemIds) -- getAuctionParamsListForCategoryItem (itemIds)  - AuctionService
                     ApiService.post( "/api/auction-param-list", { 'itemIds': itemIds } )
                         .done( auctionList => {
 
-                            console.dir( auctionList );
+                            if ( auctionList != null && Array.isArray(auctionList) && auctionList.length > 0 ) {
 
+                                ResourceService.getResource( "auctionList" ).set( auctionList );
 
-                            ResourceService.getResource( "auctionList" ).set( auctionList );
-
+                                   NotificationService.info( "Test: Auktionen enthalten... :)" ).closeAfter(3000);
+                            }
                             _setIsLoading( false );
                         } )
                         .fail( () => {
@@ -71,6 +71,7 @@ module.exports = (function ($) {
                                    alert( 'Upps - ein Fehler in /api/auction-param-list  ??!!' );
                                }
                         )
+
                 } )
                 .fail( function (response) {
                     _setIsLoading( false );

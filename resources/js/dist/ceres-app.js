@@ -13688,6 +13688,7 @@ Vue.component("category-item", {
                     if (this.auctionList[i].itemId == this.itemData.item.id) {
 
                         this.isAuction = true;
+
                         auctionParameter = this.auctionList[i];
 
                         this.auctionList = [];
@@ -16759,14 +16760,15 @@ module.exports = function ($) {
                         itemIds.push(response.documents[i].data.item.id);
                     }
                 }
-
                 // ApiService.get(url, itemIds) -- getAuctionParamsListForCategoryItem (itemIds)  - AuctionService
                 ApiService.post("/api/auction-param-list", { 'itemIds': itemIds }).done(function (auctionList) {
 
-                    console.dir(auctionList);
+                    if (auctionList != null && Array.isArray(auctionList) && auctionList.length > 0) {
 
-                    ResourceService.getResource("auctionList").set(auctionList);
+                        console.dir(auctionList);
 
+                        ResourceService.getResource("auctionList").set(auctionList);
+                    }
                     _setIsLoading(false);
                 }).fail(function () {
                     NotificationService.error("Error while searching").close;
