@@ -10,8 +10,8 @@
 {{ component( "Ceres::ItemList.Components.ItemStoreSpecial" ) }}
 
 <resource name="isLoading" :data="false"></resource>
-{#<resource name="auctionList" :data="{}"></resource>#}
-<resource name="auctionList" :data="{{ auctions.auction.getAuctionParamsListForCategoryItem([46987]) }}"></resource>
+<resource name="auctionList" :data="{}"></resource>
+{#<resource name="auctionList" :data="{{ auctions.auction.getAuctionParamsListForCategoryItem([46987]) }}"></resource>#}
 
 
 <script type="x/template" id="vue-item-list">
@@ -23,13 +23,21 @@
             {% include "Ceres::ItemList.Partials.LoadingAnimation" %}
         {% endif %}
 
+
         <ul class="product-list row grid">
             <category-item v-for="itemData in itemList.documents"
                     {% set auction = auctions.auction.getAuctionForItemId(itemData.item.itemId) %}
 
+        {% if auction != null %}
+            {% set auctionData = auctions.auction.getAuctionParamsListForCategoryItem([auction.itemId])  %}
+        {# ao Var-Dump #}
+        {% include "CeresSchaffrath::VarDump" with { 'testDescription': 'auctionData', 'dumpData': auctionData } %}
+
+        {% endif %}
+
                     :item-data="itemData.data"
                     :auction-list="auctionList"
-                    :auction="auction"
+                    :auctionData="auctionData"
                     decimal-count="{{ decimalCount }}"
                     image-url-accessor="urlMiddle"></category-item>
 

@@ -66,20 +66,36 @@ Vue.component( "category-item", {
                     ApiService.post( "/api/auction-param-list", { 'itemIds': [auction.itemId] } )
                         .done( auctionList => {
 
-                            if ( auctionList != null && Array.isArray(auctionList) && auctionList.length > 0 ) {
+                            if ( auctionList != null && Array.isArray(auctionList) && auctionList.length = 1 ) {
 
-                                ResourceService.getResource( "auctionList" ).set( auctionList );
+                                auctionParameter = this.auctionList[0];
 
-                                NotificationService.info( "Test: Auktionen enthalten... :)" ).closeAfter(3000);
+                                return auctionParameter;
                             }
-                            _setIsLoading( false );
                         } )
                         .fail( () => {
                                    NotificationService.error( "Error while searching" ).close;
-                                   alert( 'Upps - ein Fehler in /api/auction-param-list  ??!!' );
+                                   alert( 'Upps - ein Fehler in /api/auction-param-list  ??!! AUCTION' );
                                }
                         )
 
+                    // // ApiService.get(url, itemIds) -- getAuctionParamsListForCategoryItem (itemIds)  - AuctionService
+                    // ApiService.post( "/api/auction-param-list", { 'itemIds': [auction.itemId] } )
+                    //     .done( auctionList => {
+                    //
+                    //         if ( auctionList != null && Array.isArray(auctionList) && auctionList.length = 1 ) {
+                    //
+                    //             auctionParameter = this.auctionList[0];
+                    //
+                    //             return auctionParameter;
+                    //         }
+                    //     } )
+                    //     .fail( () => {
+                    //                NotificationService.error( "Error while searching" ).close;
+                    //                alert( 'Upps - ein Fehler in /api/auction-param-list  ??!! AUCTION' );
+                    //            }
+                    //     )
+                    //
                 }
                 else {
                     this.isAuction = false;
