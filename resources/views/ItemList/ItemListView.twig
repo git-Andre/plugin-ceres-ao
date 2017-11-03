@@ -36,7 +36,15 @@
     <resource name="itemList" :data="{{ paginatedResult | json_encode }} || {}"></resource>
     <resource name="facets" :data="{{ paginatedResult.facets | json_encode }} || []"></resource>
     <resource name="facetParams" :data="[]"></resource>
-    {#<resource name="auctionList" :data="[]"></resource>#}
+
+
+    {# ao Var-Dump #}
+    {% include "CeresSchaffrath::VarDump" with { 'testDescription': 'paginatedResult', 'dumpData': paginatedResult } %}
+
+    <resource name="auctionList" :data="{{ auctions.auction.getAuctionParamsListForCategoryItem([46987]) }}"></resource>
+
+
+
 
     <div class="categoriegrid page-content container-max">
         <div class="row m-t-1">

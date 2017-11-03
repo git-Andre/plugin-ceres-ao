@@ -27,7 +27,7 @@ Vue.component( "category-item", {
              * returns itemData.item.storeSpecial
              */
             storeSpecial: function () {
-                return this.itemData.item.storeSpecial;
+                return this.itemData.item.storeSpecial;€
             },
 
             texts: function () {
