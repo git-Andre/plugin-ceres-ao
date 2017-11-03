@@ -1,4 +1,4 @@
-var ApiService = require( "services/ApiService" );
+var ApiService          = require( "services/ApiService" );
 var ResourceService     = require( "services/ResourceService" );
 var NotificationService = require( "services/NotificationService" );
 
@@ -7,11 +7,11 @@ Vue.component( "category-item", {
     template: "#vue-category-item",
 
     props: [
-        "decimalCount",
-        "itemData",
-        "imageUrlAccessor",
+        "auctionData",
         "auctionList",
-        "auction"
+        "decimalCount",
+        "imageUrlAccessor",
+        "itemData"
     ],
 
     data: function () {
@@ -26,14 +26,12 @@ Vue.component( "category-item", {
         this.variationRetailPrice = this.itemData.calculatedPrices.default.price;
     },
 
-    computed:
-        {
+    computed: {
             /**
              * returns itemData.item.storeSpecial
              */
             storeSpecial: function () {
                 return this.itemData.item.storeSpecial;
-                €
             },
 
             texts: function () {
@@ -61,24 +59,11 @@ Vue.component( "category-item", {
                         }
                     }
                 }
-                else if ( auction ) {
-                    // ApiService.get(url, itemIds) -- getAuctionParamsListForCategoryItem (itemIds)  - AuctionService
-                    ApiService.post( "/api/auction-param-list", { 'itemIds': [auction.itemId] } )
-                        .done( auctionList => {
+                else if ( auctionData ) {
 
-                            if ( auctionList != null && Array.isArray(auctionList) && auctionList.length = 1 ) {
+                    auctionParameter = this.auctionData;
 
-                                auctionParameter = this.auctionList[0];
-
-                                return auctionParameter;
-                            }
-                        } )
-                        .fail( () => {
-                                   NotificationService.error( "Error while searching" ).close;
-                                   alert( 'Upps - ein Fehler in /api/auction-param-list  ??!! AUCTION' );
-                               }
-                        )
-
+                    return auctionParameter;
                     // // ApiService.get(url, itemIds) -- getAuctionParamsListForCategoryItem (itemIds)  - AuctionService
                     // ApiService.post( "/api/auction-param-list", { 'itemIds': [auction.itemId] } )
                     //     .done( auctionList => {

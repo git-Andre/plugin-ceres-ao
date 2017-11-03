@@ -13647,11 +13647,15 @@ Vue.component("category-image-carousel", {
 },{}],40:[function(require,module,exports){
 "use strict";
 
+var ApiService = require("services/ApiService");
+var ResourceService = require("services/ResourceService");
+var NotificationService = require("services/NotificationService");
+
 Vue.component("category-item", {
 
     template: "#vue-category-item",
 
-    props: ["decimalCount", "itemData", "imageUrlAccessor", "auctionList"],
+    props: ["auctionData", "auctionList", "decimalCount", "imageUrlAccessor", "itemData"],
 
     data: function data() {
         return {
@@ -13679,9 +13683,10 @@ Vue.component("category-item", {
 
         auctionParams: function auctionParams() {
 
-            if (this.auctionList.length > 0) {
+            var auctionParameter = [];
 
-                var auctionParameter = [];
+            if (this.auctionList.length > 0) {
+                console.dir(this.auctionList);
 
                 for (var i = this.auctionList.length; --i >= 0;) {
 
@@ -13696,6 +13701,28 @@ Vue.component("category-item", {
                         return auctionParameter;
                     }
                 }
+            } else if (auctionData) {
+
+                auctionParameter = this.auctionData;
+
+                return auctionParameter;
+                // // ApiService.get(url, itemIds) -- getAuctionParamsListForCategoryItem (itemIds)  - AuctionService
+                // ApiService.post( "/api/auction-param-list", { 'itemIds': [auction.itemId] } )
+                //     .done( auctionList => {
+                //
+                //         if ( auctionList != null && Array.isArray(auctionList) && auctionList.length = 1 ) {
+                //
+                //             auctionParameter = this.auctionList[0];
+                //
+                //             return auctionParameter;
+                //         }
+                //     } )
+                //     .fail( () => {
+                //                NotificationService.error( "Error while searching" ).close;
+                //                alert( 'Upps - ein Fehler in /api/auction-param-list  ??!! AUCTION' );
+                //            }
+                //     )
+                //
             } else {
                 this.isAuction = false;
             }
@@ -13704,7 +13731,7 @@ Vue.component("category-item", {
     }
 });
 
-},{}],41:[function(require,module,exports){
+},{"services/ApiService":95,"services/NotificationService":101,"services/ResourceService":102}],41:[function(require,module,exports){
 "use strict";
 
 Vue.component("item-lazy-img", {
@@ -16765,9 +16792,9 @@ module.exports = function ($) {
 
                     if (auctionList != null && Array.isArray(auctionList) && auctionList.length > 0) {
 
-                        console.dir(auctionList);
-
                         ResourceService.getResource("auctionList").set(auctionList);
+
+                        NotificationService.info("Test: Auktionen enthalten... :)").closeAfter(3000);
                     }
                     _setIsLoading(false);
                 }).fail(function () {
