@@ -23,6 +23,7 @@ Vue.component( "category-item", {
     },
 
     created: function () {
+        this.auctionData = JSON.parse(this.auctionData);
         this.variationRetailPrice = this.itemData.calculatedPrices.default.price;
     },
 
@@ -61,7 +62,7 @@ Vue.component( "category-item", {
                 }
                 else if ( this.auctionData ) {
 
-                    auctionParameter = this.auctionData;
+                    auctionParameter = this.auctionData[0];
 
                     return auctionParameter;
                     // // ApiService.get(url, itemIds) -- getAuctionParamsListForCategoryItem (itemIds)  - AuctionService
