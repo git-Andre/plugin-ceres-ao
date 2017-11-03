@@ -37,6 +37,7 @@ Vue.component( "category-item", {
             auctionParams: function () {
 
                 if ( this.auctionList.length > 0 ) {
+                    console.dir(this.auctionList);
 
                     var auctionParameter = [];
 

@@ -10,8 +10,8 @@
 {{ component( "Ceres::ItemList.Components.ItemStoreSpecial" ) }}
 
 <resource name="isLoading" :data="false"></resource>
-<resource name="auctionList" :data="{}"></resource>
-{#<resource name="auctionList" :data="{itemIds: 46987}"></resource>#}
+{#<resource name="auctionList" :data="{}"></resource>#}
+<resource name="auctionList" :data="{{ auctionList = auctions.auction.getAuctionParamsListForCategoryItem([46987]) }}"></resource>
 
 
 <script type="x/template" id="vue-item-list">
@@ -25,6 +25,7 @@
 
         <ul class="product-list row grid">
             <category-item v-for="itemData in itemList.documents"
+
                     :item-data="itemData.data"
                     :auction-list="auctionList"
                     decimal-count="{{ decimalCount }}"
