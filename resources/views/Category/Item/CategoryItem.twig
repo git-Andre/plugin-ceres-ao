@@ -117,9 +117,9 @@
 
                             <li class="col-xs-12 col-sm-6 col-md-4 col-lg-{% if showHeaderNavBar == "side" or showHeaderNavBar == "both" %}4{% else %}3{% endif %}">
                                 {% if not auction %}
-                                    {% include "CeresSchaffrath::Category.Item.Partials.CategoryListItem" with { 'item': item } %}
+                                    {% include "Ceres::Category.Item.Partials.CategoryListItem" with { 'item': item } %}
                                 {% elseif  auction.id > 0 %}
-                                    {% include "CeresSchaffrath::Category.Item.Partials.CategoryListItemWithAuction" with { 'item': item, 'auction': auction } %}
+                                    {% include "Ceres::Category.Item.Partials.CategoryListItemWithAuction" with { 'item': item, 'auction': auction } %}
                                 {% endif %}
                             </li>
                         {% endfor %}
@@ -148,7 +148,12 @@
 {% endblock %}
 
 {% block PartialHead %}
-    <script type="application/ld+json"> {"@context": "http://schema.org","@type": "WebSite","url": "{{ services.webstoreConfig.getWebstoreConfig().domainSsl }} ","potentialAction":{"@type": "SearchAction","target": "{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}/search?query={search_term}","query-input": "required name=search_term"}}</script>
+    <script type="application/ld+json">
+        {"@context": "http://schema.org","@type": "WebSite","url": "{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}
+        ","potentialAction":{"@type": "SearchAction","target": "{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}
+        /search?query={search_term}","query-input": "required name=search_term"}}
+
+    </script>
 
     {% if page-1 > 0 %}
         <link rel=“prev“

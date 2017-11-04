@@ -1,0 +1,128 @@
+{{ component( "Ceres::Basket.Components.AddToBasket" ) }}
+
+{% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
+
+{% set image = item.data.images.all | first %}
+{% set configItemName = config("Ceres.item.name") %}
+{% set itemUrl =  item.data | itemURL %}
+
+{% if enableCarousel is not defined %}
+    {% if config("Ceres.item.enable_image_carousel") == "true" %}
+        {% set enableCarousel = "true" %}
+    {% else %}
+        {% set enableCarousel = "false" %}
+    {% endif %}
+{% endif %}
+
+<!-- Auction CategoryListItemWithAuctionSmall -->
+{% set bidderListLast = auction.bidderList | last %}
+{% set bidderListLength = auction.bidderList | length %}
+
+<article class="cmp cmp-product-thumb cmp-product-thumb--grid">
+    <div class="thumb-inner">
+
+        {#Auktion#}
+        {#<div class="add-to-basket-lg-container hidden-md-down auction-basket-corner-small"#}
+        {#v-tooltip data-toggle="tooltip"#}
+        {#data-placement="top"#}
+        {#title="{{ trans("CeresSchaffrath::Template.goToAuction") }}">#}
+        {#<i class="fa fa-gavel fa-lg mobile-icon-right"></i>#}
+        {#</div>#}
+
+        <div class="thumb-background"></div>
+
+        <div class="thumb-image">
+            <div class="square-container">
+                <div class="square-inner main-image">
+
+                    <category-image-carousel template="#vue-category-image-carousel"
+                            :image-urls="{{ item.data.images | json_encode() }} | itemImages 'urlMiddle'"
+                            alt-text="{{ item.data.texts | itemName(configItemName) }}"
+                            item-url="{{ itemUrl }}"
+                            :show-dots="{{ config("Ceres.item.category_show_dots") | json_encode() }}"
+                            :show-nav="{{ config("Ceres.item.category_show_nav") | json_encode() }}"
+                            :enable-carousel="{{ enableCarousel }}">
+                    </category-image-carousel>
+
+                    <noscript>
+                        <a href="{{ itemUrl }}">
+                            <img class="img-fluid" src="{{ image.urlMiddle }}">
+                        </a>
+                    </noscript>
+                </div>
+            </div>
+        </div>
+
+        <!-- STORE SPECIALS -->
+        <!-- ./STORE SPECIALS -->
+        <!-- Auction Banner -->
+        <div class="special-tags">
+            {% if auction.tense == 'future' %}
+                <span class="tag bg-danger">{{ trans("CeresSchaffrath::Template.auctionFuture") }}</span>
+            {% elseif auction.tense == 'present' %}
+                <span class="tag bg-danger">{{ trans("CeresSchaffrath::Template.auctionPresent") }}</span>
+            {% else %}
+                <span class="tag bg-danger">{{ trans("CeresSchaffrath::Template.auctionPastSmall") }}</span>
+            {% endif %}
+        </div>
+        <!-- ./Auction Banner -->
+
+        <!-- ITEM DETAILS CeresSchaffrath -->
+
+        {#Auktion ########################################### #}
+        {#{% if auction.id > 0 %}#}
+
+            <div class="thumb-content">
+                <div class="cat-item-titel-ao">
+                    <p class="thumb-title"><a href="{{ itemUrl }}">{{ item.data.texts | itemName(1) }}</a></p>
+
+                    {#<p class="thumb-title-small">{{ item.data.texts | itemName(1) }}</p>#}{# todo: config...#}
+                    {#<p class="thumb-title small">{{ item.data.texts | itemName(2) }}</p>#}
+                </div>
+
+                <div class="thumb-meta">
+
+                    <div class="prices">
+                        {% if auction.tense == 'future' %}
+                            <span>
+                             <h4 class="m-r-1"><i class="fa fa-lg fa-pencil-square-o text-warning" aria-hidden="true"></i></h4>
+                           </span>
+                            <span class="price">
+                                {{ auction.startPrice | formatMonetary('EUR') }} <sup>*</sup>
+                            </span>
+                        {% elseif auction.tense == 'present' %}
+                            <span>
+                            <h4 class="m-r-1"><i class="fa fa-lg fa-gavel text-danger"
+                                        aria-hidden="true"></i></h4>
+                           </span>
+                            <span class="price">
+                                {% if bidderListLength > 1 %}
+                                    {{ bidderListLast.bidPrice | formatMonetary('EUR') }} <sup>*</sup>
+                                {% else %}
+                                    {{ auction.startPrice | formatMonetary('EUR') }} <sup>*</sup>
+                                {% endif %}
+                            </span>
+                        {% else %}
+                            <span>
+                            <h4 class="m-r-1"><i class="fa fa-lock"
+                                        aria-hidden="true"></i></h4>
+                           </span>
+                            <span class="price">
+                                {{ bidderListLast.bidPrice | formatMonetary('EUR') }} <sup>*</sup>
+                            </span>
+                        {% endif %}
+
+                    </div>
+                </div>
+
+                <div class="thumb-legal vat-porto-info small text-muted tiny">
+                    <sup>*</sup> {{ trans("Ceres::Template.itemInclVAT") }}
+                    <br>
+                    <span class="m-l-5">{{ trans("Ceres::Template.itemExclusive") }}
+                        {{ trans("CeresSchaffrath::Template.surcharge") }}</span>
+                </div>
+            </div>
+        {#{% endif %}#}
+        <!-- ./ITEM DETAILS  -->
+    </div>
+</article>
