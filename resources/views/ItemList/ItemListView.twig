@@ -51,7 +51,7 @@
     <resource name="facets" :data="{{ paginatedResult.facets | json_encode }} || []"></resource>
     <resource name="facetParams" :data="[]"></resource>
 
-    <resource name="auctionList" :data="{{ test }}"></resource>
+    <resource name="auctionList" :data="{{ test | json_encode }}"></resource>
 
 
     {# ao Var-Dump #}
