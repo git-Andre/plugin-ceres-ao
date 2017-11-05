@@ -13759,6 +13759,8 @@ Vue.component("item-lazy-img", {
 
 var ResourceService = require("services/ResourceService");
 var ItemListService = require("services/ItemListService");
+var ApiService = require("services/ApiService");
+var NotificationService = require("services/NotificationService");
 
 Vue.component("item-list", {
 
@@ -13780,13 +13782,42 @@ Vue.component("item-list", {
     },
 
     ready: function ready() {
+        var _this = this;
+
         ResourceService.bind("itemList", this);
         ResourceService.bind("isLoading", this);
         ResourceService.bind("auctionList", this);
+
+        if (this.auctionList.length === 0 && this.itemList.documents != undefined) {
+
+            // compute Array of ItemIds von itemList
+            var itemIds = [];
+            if (this.itemList.documents.length > 0) {
+                for (var i = this.itemList.documents.length; --i >= 0;) {
+                    itemIds.push(this.itemList.documents[i].data.item.id);
+                }
+            }
+            console.log('itemIds: ' + itemIds);
+
+            // ApiService.get(url, itemIds) -- getAuctionParamsListForCategoryItem (itemIds)  - AuctionService
+            ApiService.post("/api/auction-param-list", { 'itemIds': itemIds }).done(function (auctionList) {
+
+                if (auctionList != null && Array.isArray(auctionList) && auctionList.length > 0) {
+
+                    // ResourceService.getResource( "auctionList" ).set( auctionList );
+                    _this.auctionList = auctionList;
+
+                    NotificationService.info("Test: Auktionen für SEARCH enthalten... :)").closeAfter(5000);
+                }
+            }).fail(function () {
+                NotificationService.error("Error while searching").close;
+                alert('Upps - ein Fehler in /api/auction-param-list  ??!!');
+            });
+        } else {}
     }
 });
 
-},{"services/ItemListService":99,"services/ResourceService":102}],43:[function(require,module,exports){
+},{"services/ApiService":95,"services/ItemListService":99,"services/NotificationService":101,"services/ResourceService":102}],43:[function(require,module,exports){
 "use strict";
 
 var _UrlService = require("services/UrlService");
