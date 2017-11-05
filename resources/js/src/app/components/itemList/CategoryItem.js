@@ -41,7 +41,6 @@ Vue.component( "category-item", {
 
                 var auctionParameter = [];
 
-
                 if ( this.auctionList.length > 0 ) {
 
                     for (var i = this.auctionList.length; --i >= 0;) {
