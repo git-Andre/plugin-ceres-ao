@@ -13686,7 +13686,6 @@ Vue.component("category-item", {
             var auctionParameter = [];
 
             if (this.auctionList.length > 0) {
-                console.dir(this.auctionList);
 
                 for (var i = this.auctionList.length; --i >= 0;) {
 
@@ -13778,9 +13777,6 @@ Vue.component("item-list", {
         this.$options.template = this.template;
 
         ItemListService.setCategoryId(this.categoryId);
-
-        console.dir(this.itemList);
-        console.dir(this.auctionList);
     },
 
     ready: function ready() {

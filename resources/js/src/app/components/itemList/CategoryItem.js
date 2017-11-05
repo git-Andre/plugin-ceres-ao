@@ -43,7 +43,6 @@ Vue.component( "category-item", {
 
 
                 if ( this.auctionList.length > 0 ) {
-                    console.dir( this.auctionList );
 
                     for (var i = this.auctionList.length; --i >= 0;) {
 
