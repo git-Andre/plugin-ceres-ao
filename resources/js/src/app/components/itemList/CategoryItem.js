@@ -7,7 +7,6 @@ Vue.component( "category-item", {
     template: "#vue-category-item",
 
     props: [
-        "auctionData",
         "auctionList",
         "decimalCount",
         "imageUrlAccessor",
@@ -23,7 +22,6 @@ Vue.component( "category-item", {
     },
 
     created: function () {
-        this.auctionData = JSON.parse(this.auctionData);
         this.variationRetailPrice = this.itemData.calculatedPrices.default.price;
     },
 
@@ -43,6 +41,9 @@ Vue.component( "category-item", {
 
                 var auctionParameter = [];
 
+
+                console.dir(this.itemData);
+
                 if ( this.auctionList.length > 0 ) {
                     console.dir( this.auctionList );
 
@@ -60,29 +61,29 @@ Vue.component( "category-item", {
                         }
                     }
                 }
-                else if ( this.auctionData ) {
-
-                    auctionParameter = this.auctionData[0];
-
-                    return auctionParameter;
-                    // // ApiService.get(url, itemIds) -- getAuctionParamsListForCategoryItem (itemIds)  - AuctionService
-                    // ApiService.post( "/api/auction-param-list", { 'itemIds': [auction.itemId] } )
-                    //     .done( auctionList => {
-                    //
-                    //         if ( auctionList != null && Array.isArray(auctionList) && auctionList.length = 1 ) {
-                    //
-                    //             auctionParameter = this.auctionList[0];
-                    //
-                    //             return auctionParameter;
-                    //         }
-                    //     } )
-                    //     .fail( () => {
-                    //                NotificationService.error( "Error while searching" ).close;
-                    //                alert( 'Upps - ein Fehler in /api/auction-param-list  ??!! AUCTION' );
-                    //            }
-                    //     )
-                    //
-                }
+                // else if ( this.auctionData ) {
+                //
+                //     auctionParameter = this.auctionData[0];
+                //
+                //     return auctionParameter;
+                //     // // ApiService.get(url, itemIds) -- getAuctionParamsListForCategoryItem (itemIds)  - AuctionService
+                //     // ApiService.post( "/api/auction-param-list", { 'itemIds': [auction.itemId] } )
+                //     //     .done( auctionList => {
+                //     //
+                //     //         if ( auctionList != null && Array.isArray(auctionList) && auctionList.length = 1 ) {
+                //     //
+                //     //             auctionParameter = this.auctionList[0];
+                //     //
+                //     //             return auctionParameter;
+                //     //         }
+                //     //     } )
+                //     //     .fail( () => {
+                //     //                NotificationService.error( "Error while searching" ).close;
+                //     //                alert( 'Upps - ein Fehler in /api/auction-param-list  ??!! AUCTION' );
+                //     //            }
+                //     //     )
+                //     //
+                // }
                 else {
                     this.isAuction = false;
                 }
