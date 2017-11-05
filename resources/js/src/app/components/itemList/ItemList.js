@@ -23,6 +23,7 @@ Vue.component("item-list", {
         this.$options.template = this.template;
 
         ItemListService.setCategoryId(this.categoryId);
+
     },
 
     ready: function()
