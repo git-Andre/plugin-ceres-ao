@@ -24,7 +24,7 @@
 {% endif %}
 
 {% set paginatedResult = services.itemLoader.loadForTemplate('Ceres::ItemList.ItemListView', itemLoaderPresets.search, {'query': request.get("query"), 'page': page, 'items': itemsPerPage, 'sorting':  sorting, 'variationShowType': config("Ceres.item.variation_show_type")}) %}
-{% set test = auctions.auction.getAuctionParamsForPaginatedResults(paginatedResult) %}
+{% set test = auctions.auction.getAuctionParamsForPaginatedResults("paginatedResult") %}
 {#{% set test = auctions.auction.getAuctionParamsForPaginatedResults([paginatedResult.documents[0].data.item.id]) %}#}
 
 {% block PageBody %}
@@ -39,11 +39,6 @@
     <resource name="itemList" :data="{{ paginatedResult | json_encode }} || {}"></resource>
     <resource name="facets" :data="{{ paginatedResult.facets | json_encode }} || []"></resource>
     <resource name="facetParams" :data="[]"></resource>
-
-    {# ao Var-Dump #}
-    {% include "CeresSchaffrath::VarDump" with { 'testDescription': 'test', 'dumpData': test } %}
-
-
 
     <resource name="auctionList" :data="{{ test | json_encode }} || []"></resource>
 
