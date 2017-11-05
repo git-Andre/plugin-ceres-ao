@@ -57,31 +57,6 @@ Vue.component( "category-item", {
                         }
                     }
                 }
-                // else if ( this.itemData ) {
-                //
-                //     // ApiService.get(url, itemIds) -- getAuctionParamsListForCategoryItem (itemIds)  - AuctionService
-                //     ApiService.post( "/api/auction-param-list", { 'itemIds': [this.itemData.item.id] } )
-                //         .done( auctionList => {
-                //
-                //             if ( auctionList != null && Array.isArray(auctionList) ) {
-                //
-                //
-                //                 auctionParameter = this.auctionList[0];
-                //                 this.isAuction = true;
-                //
-                //
-                //                 NotificationService.info( "Test: YES  enthalten... :)" ).closeAfter(3000);
-                //                 return auctionParameter;
-                //
-                //             }
-                //         } )
-                //         .fail( () => {
-                //                    NotificationService.error( "Error while searching CI" ).close;
-                //                    alert( 'CategoryItem  ??!!' );
-                //                }
-                //         )
-                //
-                // }
                 else {
                     this.isAuction = false;
                 }

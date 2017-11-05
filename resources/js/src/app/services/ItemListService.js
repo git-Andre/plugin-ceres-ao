@@ -58,11 +58,11 @@ module.exports = (function ($) {
                     ApiService.post( "/api/auction-param-list", { 'itemIds': itemIds } )
                         .done( auctionList => {
 
-                            if ( auctionList != null && Array.isArray(auctionList) && auctionList.length > 0 ) {
+                            if ( auctionList != null && Array.isArray( auctionList ) && auctionList.length > 0 ) {
 
                                 ResourceService.getResource( "auctionList" ).set( auctionList );
 
-                                   NotificationService.info( "Test: Auktionen enthalten... :)" ).closeAfter(3000);
+                                // NotificationService.info( "Auktionen enthalten..." ).closeAfter( 2000 );
                             }
                             _setIsLoading( false );
                         } )

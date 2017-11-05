@@ -13700,35 +13700,9 @@ Vue.component("category-item", {
                         return auctionParameter;
                     }
                 }
+            } else {
+                this.isAuction = false;
             }
-            // else if ( this.itemData ) {
-            //
-            //     // ApiService.get(url, itemIds) -- getAuctionParamsListForCategoryItem (itemIds)  - AuctionService
-            //     ApiService.post( "/api/auction-param-list", { 'itemIds': [this.itemData.item.id] } )
-            //         .done( auctionList => {
-            //
-            //             if ( auctionList != null && Array.isArray(auctionList) ) {
-            //
-            //
-            //                 auctionParameter = this.auctionList[0];
-            //                 this.isAuction = true;
-            //
-            //
-            //                 NotificationService.info( "Test: YES  enthalten... :)" ).closeAfter(3000);
-            //                 return auctionParameter;
-            //
-            //             }
-            //         } )
-            //         .fail( () => {
-            //                    NotificationService.error( "Error while searching CI" ).close;
-            //                    alert( 'CategoryItem  ??!!' );
-            //                }
-            //         )
-            //
-            // }
-            else {
-                    this.isAuction = false;
-                }
             return false;
         }
     }
@@ -13807,7 +13781,7 @@ Vue.component("item-list", {
                     // ResourceService.getResource( "auctionList" ).set( auctionList );
                     _this.auctionList = auctionList;
 
-                    NotificationService.info("Test: Auktionen für SEARCH enthalten... :)").closeAfter(5000);
+                    // NotificationService.info( "Auktionen gefunden..." ).closeAfter( 2000 );
                 }
             }).fail(function () {
                 NotificationService.error("Error while searching").close;
@@ -16828,7 +16802,7 @@ module.exports = function ($) {
 
                         ResourceService.getResource("auctionList").set(auctionList);
 
-                        NotificationService.info("Test: Auktionen enthalten... :)").closeAfter(3000);
+                        // NotificationService.info( "Auktionen enthalten..." ).closeAfter( 2000 );
                     }
                     _setIsLoading(false);
                 }).fail(function () {

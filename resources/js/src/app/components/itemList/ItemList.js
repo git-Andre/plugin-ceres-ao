@@ -51,7 +51,7 @@ Vue.component( "item-list", {
                         // ResourceService.getResource( "auctionList" ).set( auctionList );
                         this.auctionList = auctionList;
 
-                        NotificationService.info( "Test: Auktionen für SEARCH enthalten... :)" ).closeAfter( 5000 );
+                        // NotificationService.info( "Auktionen gefunden..." ).closeAfter( 2000 );
                     }
                 } )
                 .fail( () => {

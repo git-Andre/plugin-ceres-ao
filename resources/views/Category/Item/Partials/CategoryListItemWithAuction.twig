@@ -26,12 +26,15 @@
     <div class="thumb-inner">
 
         {#Auktion#}
-        <div class="add-to-basket-lg-container hidden-md-down auction-basket-corner"
-                v-tooltip data-toggle="tooltip"
-                data-placement="top"
-                title="{{ trans("CeresSchaffrath::Template.goToAuction") }}">
-            <i class="fa fa-gavel fa-lg mobile-icon-right"></i>
-        </div>
+        <a href="{{ itemUrl }}">
+            <div class="add-to-basket-lg-container hidden-md-down auction-basket-corner"
+                    v-tooltip data-toggle="tooltip"
+                    data-placement="top"
+                    title="{{ trans("CeresSchaffrath::Template.goToAuction") }}">
+
+                <i class="fa fa-gavel fa-lg mobile-icon-right"></i>
+            </div>
+        </a>
 
         <div class="thumb-background"></div>
 
@@ -155,7 +158,8 @@
                 </div>
 
                 <span class="vat-porto-info small text-muted">
-                    <sup>*</sup> {{ trans("Ceres::Template.itemExclusive") }} {{ trans("CeresSchaffrath::Template.surcharge") }} | {{ trans("Ceres::Template.itemInclVAT") }}
+                    <sup>*</sup> {{ trans("Ceres::Template.itemExclusive") }} {{ trans("CeresSchaffrath::Template.surcharge") }}
+                    | {{ trans("Ceres::Template.itemInclVAT") }}
                 </span>
 
             </div>
