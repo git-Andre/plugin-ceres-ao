@@ -31,7 +31,7 @@
 
                     :item-data="itemData.data"
                     :auction-list="auctionList"
-                    auction-data="{{auctions.auction.getAuctionParamsListForCategoryItem([itemData.data.item.id]) | json_encode }}"
+                    auction-data="{{auctions.auction.getAuctionParamsListForCategoryItem(["itemData.data.item.id"]) | json_encode }}"
                     {#auction-data="{{auctions.auction.getAuctionParamsListForCategoryItem([itemData.item.id]) | json_encode }}"#}
                     {#auction-data="{{auctions.auction.getAuctionParamsListForCategoryItem([46987]) | json_encode }}"#}
                     decimal-count="{{ decimalCount }}"
