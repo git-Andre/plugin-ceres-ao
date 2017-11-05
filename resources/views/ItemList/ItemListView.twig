@@ -42,6 +42,12 @@
     <resource name="facets" :data="{{ paginatedResult.facets | json_encode }} || []"></resource>
     <resource name="facetParams" :data="[]"></resource>
 
+
+    {# ao Var-Dump #}
+    {% include "CeresSchaffrath::VarDump" with { 'testDescription': 'paginatedResult', 'dumpData': paginatedResult } %}
+
+
+
     <resource name="auctionList" :data="{{ test | json_encode }} || []"></resource>
 
     <div class="categoriegrid page-content container-max">
