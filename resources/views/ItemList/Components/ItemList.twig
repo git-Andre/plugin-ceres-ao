@@ -24,14 +24,13 @@
         {% endif %}
 
 
-
         <ul class="product-list row grid">
             <category-item v-for="itemData in itemList.documents"
-
+                    {% set itemId = itemData.data.item.id %}
 
                     :item-data="itemData.data"
                     :auction-list="auctionList"
-                    auction-data="{{auctions.auction.getAuctionParamsListForCategoryItem(["itemData.data.item.id"]) | json_encode }}"
+                    auction-data="{{ auctions.auction.getAuctionParamsListForCategoryItem([itemId]) | json_encode }}"
                     {#auction-data="{{auctions.auction.getAuctionParamsListForCategoryItem([itemData.item.id]) | json_encode }}"#}
                     {#auction-data="{{auctions.auction.getAuctionParamsListForCategoryItem([46987]) | json_encode }}"#}
                     decimal-count="{{ decimalCount }}"
