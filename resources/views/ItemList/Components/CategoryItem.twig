@@ -30,13 +30,24 @@
 
                 <div class="thumb-background"></div>
 
-                <div v-if="isAuction"
-                        class="add-to-basket-lg-container hidden-md-down auction-basket-corner"
-                        v-tooltip data-toggle="tooltip"
-                        data-placement="top"
-                        title="{{ trans("CeresSchaffrath::Template.goToAuction") }}">
-                    <i class="fa fa-gavel fa-lg mobile-icon-right"></i>
-                </div>
+                {#Auktion Ecke #}
+                <a v-if="isAuction" href="{{ itemUrl }}">
+                    <div class="add-to-basket-lg-container hidden-md-down auction-basket-corner"
+                            v-tooltip data-toggle="tooltip"
+                            data-placement="top"
+                            title="{{ trans("CeresSchaffrath::Template.goToAuction") }}">
+
+                        <i class="fa fa-gavel fa-lg mobile-icon-right"></i>
+                    </div>
+                </a>
+
+                {#<div v-if="isAuction"#}
+                        {#class="add-to-basket-lg-container hidden-md-down auction-basket-corner"#}
+                        {#v-tooltip data-toggle="tooltip"#}
+                        {#data-placement="top"#}
+                        {#title="{{ trans("CeresSchaffrath::Template.goToAuction") }}">#}
+                    {#<i class="fa fa-gavel fa-lg mobile-icon-right"></i>#}
+                {#</div>#}
 
 
                 <div class="thumb-image">
