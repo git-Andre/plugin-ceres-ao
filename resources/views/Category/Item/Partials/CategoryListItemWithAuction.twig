@@ -124,7 +124,7 @@
                 <div class="thumb-meta">
                     <div class="prices">
                         {% if auction.tense == 'future' %}
-                            <span class="m-x-2">
+                            <span class="price-info-ao">
                             <h5>{{ trans("CeresSchaffrath::Template.startPrice") }}
                                 <span class="m-l-5"><i class="fa fa-pencil-square-o text-warning"
                                             aria-hidden="true"></i></span></h5>
@@ -133,7 +133,7 @@
                                 {{ auction.startPrice | formatMonetary('EUR') }} <sup>*</sup>
                             </span>
                         {% elseif auction.tense == 'present' %}
-                            <span class="m-x-2">
+                            <span class="price-info-ao">
                             <h5>{{ trans("CeresSchaffrath::Template.highestBid") }}
                                 <span class="m-l-5"><i class="fa fa-gavel text-danger"
                                             aria-hidden="true"></i></span></h5>
@@ -146,7 +146,7 @@
                                 {% endif %}
                             </span>
                         {% else %}
-                            <span class="m-x-2">
+                            <span class="price-info-ao">
                             <h5>{{ trans("CeresSchaffrath::Template.closedPrice") }}<span class="m-l-5"><i class="fa fa-lock"
                                             aria-hidden="true"></i></span></h5>
                            </span>

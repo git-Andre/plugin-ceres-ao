@@ -77,14 +77,14 @@
                     <div class="prices">
                         {% if auction.tense == 'future' %}
                             <span>
-                             <h4 class="m-r-1"><i class="fa fa-lg fa-pencil-square-o text-warning" aria-hidden="true"></i></h4>
+                             <h4 class="m-r-5"><i class="fa fa-lg fa-pencil-square-o text-warning" aria-hidden="true"></i></h4>
                            </span>
                             <span class="price">
                                 {{ auction.startPrice | formatMonetary('EUR') }} <sup>*</sup>
                             </span>
                         {% elseif auction.tense == 'present' %}
                             <span>
-                            <h4 class="m-r-1"><i class="fa fa-lg fa-gavel text-danger"
+                            <h4 class="m-r-5"><i class="fa fa-lg fa-gavel text-danger"
                                         aria-hidden="true"></i></h4>
                            </span>
                             <span class="price">
@@ -96,7 +96,7 @@
                             </span>
                         {% else %}
                             <span>
-                            <h4 class="m-r-1"><i class="fa fa-lock"
+                            <h4 class="m-r-5"><i class="fa fa-lock"
                                         aria-hidden="true"></i></h4>
                            </span>
                             <span class="price">
