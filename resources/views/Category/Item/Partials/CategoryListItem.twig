@@ -97,9 +97,6 @@
                 <p class="thumb-title"><a href="{{ itemUrl }}">{{ item.data.texts | itemName(1) }}</a></p>
                 
                 <p class="thumb-title small">{{ item.data.texts | itemName(2) }}</p>
-                
-                <p class="thumb-title small">mit json:{{ services.item.getVariationIsSalable(item.data.variation.id) | json_encode() }}</p>
-                <p class="thumb-title small">2: {{ services.item.getVariationIsSalable(item.data.variation.id) }}</p>
 
             </div>
             
