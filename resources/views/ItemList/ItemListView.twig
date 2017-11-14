@@ -24,10 +24,6 @@
 {% endif %}
 
 {% set paginatedResult = services.itemLoader.loadForTemplate('Ceres::ItemList.ItemListView', itemLoaderPresets.search, {'query': request.get("query"), 'page': page, 'items': itemsPerPage, 'sorting':  sorting, 'variationShowType': config("Ceres.item.variation_show_type")}) %}
-{#{% set test = auctions.auction.getAuctionParamsForPaginatedResults(paginatedResult.documents | json_encode) %}#}
-{#{% set test = auctions.auction.getAuctionParamsForPaginatedResults([paginatedResult.documents[0].data.item.id]) %}#}
-{#{% set test = auctions.auction.getAuctionParamsListForCategoryItem([paginatedResult.documents[0].data.item.id]) | json_encode %}#}
-
 
 {% block PageBody %}
     

@@ -37,7 +37,7 @@
 {% set showCategoryDescription = config('Ceres.item.show_category_description') == "true" %}
 
 {% block PageBody %}
-
+    
     {{ component( "Ceres::ItemList.Components.Filter.ItemFilterList") }}
     {{ component( "Ceres::ItemList.Components.Filter.ItemFilterTagList") }}
     {{ component( "Ceres::ItemList.Components.ItemList") }}
@@ -45,21 +45,15 @@
     {{ component( "Ceres::ItemList.Components.ItemListSorting") }}
     {{ component( "Ceres::ItemList.Components.ItemsPerPage") }}
     {{ component( "Ceres::ItemList.Components.Pagination") }}
-
+    
     <resource name="facetParams" :data="[]"></resource>
     <resource name="facets" :data="{{ paginatedResult.facets | json_encode }} || []"></resource>
     <resource name="itemList" :data="{ total: {{ paginatedResult.total | json_encode() }} }"></resource>
     
-    
-    
-    {# ao Var-Dump #}
-    {% include "CeresSchaffrath::VarDump" with { 'testDescription': '{{ paginatedResult | json_encode }}', 'dumpData': paginatedResult } %}
-    
-    
     {% if showCategoryImage %}
         {% include "Ceres::Category.Item.Partials.CategoryParallaxImage" with { 'category': category } %}
     {% endif %}
-
+    
     <div class="categoriegrid page-content container-max">
         {% if not showCategoryImage %}
             <div class="row m-t-1">
@@ -72,7 +66,7 @@
                 </div>
             </div>
         {% endif %}
-
+        
         <div class="list-controls m-b-3">
             <div class="list-controls-inner">
                 <div class="row">
@@ -89,64 +83,70 @@
                     </div>
                 </div>
             </div>
-
+            
             {# TAGS  CeresSchaffrath #}
             <item-filter-tag-list></item-filter-tag-list>
         </div>
-
+        
         <div class="row">
-
+            
             {% if showHeaderNavBar == "side" or showHeaderNavBar == "both" %}
                 <div class="col-xs-3 hidden-md-down">
                     <div class="sidebar-categories">
                         <div class="category-title">{{ trans("Ceres::Template.generalCategories") }}</div>
                         {{ includeCached('Ceres::PageDesign.Partials.Header.SideNavigation.twig') }}
                     </div>
-
+                    
                     {{ LayoutContainer.show("Ceres::CategoryItem.SideNavBarBottom") }}
                 </div>
-
+            
             {% endif %}
-
+            
             <div class="col-xs-12 col-lg-{% if showHeaderNavBar == "side" or showHeaderNavBar == "both" %}9{% else %}12{% endif %}">
-
-                <div id="twig-rendered-item-list" class="item-list-frame{% if loadingAnimationType == "blur" %} blur-effect{% endif %}">
-
+                
+                <div id="twig-rendered-item-list"
+                        class="item-list-frame{% if loadingAnimationType == "blur" %} blur-effect{% endif %}">
+                    
                     {% if loadingAnimationType != "blur" %}
                         {% include "Ceres::ItemList.Partials.LoadingAnimation" %}
                     {% endif %}
-
+                    
                     <ul class="product-list row grid" v-is-loading-watcher>
                         {% for item in itemList %}
-
-                            {% set auction = auctions.auction.getAuctionForItemId(item.data.variation.itemId) %}
-
-                            <li class="col-xs-12 col-sm-6 col-md-4 col-lg-{% if showHeaderNavBar == "side" or showHeaderNavBar == "both" %}4{% else %}3{% endif %}">
-                                {% if not auction %}
-                                    {% include "Ceres::Category.Item.Partials.CategoryListItem" with { 'item': item } %}
-                                {% elseif  auction.id > 0 %}
-                                    {% include "Ceres::Category.Item.Partials.CategoryListItemWithAuction" with { 'item': item, 'auction': auction } %}
-                                {% endif %}
-                            </li>
+                            
+                            {% if item.data.filter.isSalable != false %}
+                            
+                                {% set auction = auctions.auction.getAuctionForItemId(item.data.variation.itemId) %}
+                                
+                                <li class="col-xs-12 col-sm-6 col-md-4 col-lg-{% if showHeaderNavBar == "side" or showHeaderNavBar == "both" %}4{% else %}3{% endif %}">
+                                    {% if not auction %}
+                                        {% include "Ceres::Category.Item.Partials.CategoryListItem" with { 'item': item } %}
+                                    {% elseif  auction.id > 0 %}
+                                        {% include "Ceres::Category.Item.Partials.CategoryListItemWithAuction" with { 'item': item, 'auction': auction } %}
+                                    {% endif %}
+                                </li>
+                                
+                            {% endif %}
+                            
                         {% endfor %}
                     </ul>
                 </div>
-
+                
                 <div id="vue-rendered-item-list" style="display:none">
                     <item-list template="#vue-item-list"
                             :category-id="{{ category.id }}"></item-list>
                 </div>
-
+            
             </div>
         </div>
         <div class="list-controls m-b-3 row">
             <div class="col-xs-12">
                 <pagination template="#vue-pagination"></pagination>
-
+                
                 <noscript>
                     {% include "Ceres::Category.Item.Partials.Pagination" %}
                 </noscript>
-
+            
             </div>
         </div>
     </div>
@@ -154,25 +154,29 @@
 {% endblock %}
 
 {% block PartialHead %}
-    <script type="application/ld+json"> {"@context": "http://schema.org","@type": "WebSite","url": "{{ services.webstoreConfig.getWebstoreConfig().domainSsl }} ","potentialAction":{"@type": "SearchAction","target": "{{ services.webstoreConfig.getWebstoreConfig().domainSsl }} /search?query={search_term}","query-input": "required name=search_term"}}</script>
-
+    <script type="application/ld+json">
+         {"@context": "http://schema.org","@type": "WebSite","url": "{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}
+         ","potentialAction":{"@type": "SearchAction","target": "{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}
+         /search?query={search_term}","query-input": "required name=search_term"}}
+    </script>
+    
     {% if page-1 > 0 %}
         <link rel=“prev“
                 href=“{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}?{{ query | merge({'page' : page-1 }) | url_encode }}“/>
     {% endif %}
-
+    
     {% if page+1 <= pageMax %}
         <link rel=“next“
                 href=“{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}?{{ query | merge({'page' : page+1 }) | url_encode }}“/>
     {% endif %}
-
+    
     <title>{{ category.details.first.name }} | {{ config("Ceres.header.company_name") }}</title>
-
+    
     <meta name="description" content="{{ category.details[0].metaDescription | json_encode }}">
     <meta name="keywords" content="{{ category.details[0].metaKeywords | json_encode }}">
-
+    
     {% set metaRobots = category.details[0].metaRobots | json_encode %}
     {% set formattedMetaRobots = metaRobots|replace({'_': ', '}) %}
-
+    
     <meta name="robots" content="{{ formattedMetaRobots }}">
 {% endblock %}
