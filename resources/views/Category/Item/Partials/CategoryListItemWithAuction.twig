@@ -119,13 +119,17 @@
                     <p class="thumb-title"><a href="{{ itemUrl }}">{{ item.data.texts | itemName(1) }}</a></p>
 
                     <p class="thumb-title small">{{ item.data.texts | itemName(2) }}</p>
+                    
+                    <p class="thumb-title small">1: {{ services.item.getVariationIsSalable(item.data.variation.id) | json_encode() }}</p>
+                    <p class="thumb-title small">2: {{ services.item.getVariationIsSalable(item.data.variation.id) }}</p>
+                    
                 </div>
 
                 <div class="thumb-meta">
                     <div class="prices">
                         {% if auction.tense == 'future' %}
                             <span class="price-info-ao">
-                            <h5>{{ trans("CeresSchaffrath::Template.startPrice") }}
+                            <h5>{{ trans("PluginAuctions::Template.startPrice") }}
                                 <span class="m-l-5"><i class="fa fa-pencil-square-o text-warning"
                                             aria-hidden="true"></i></span></h5>
                            </span>
