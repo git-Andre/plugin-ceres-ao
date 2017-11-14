@@ -101,15 +101,18 @@
                         </del>
                     </div>
                 {% endif %}
-
-                <span class="price h1" >
+    
+    
+                <span class="price h1">
                     <span v-item-total-price content="{{ item.documents[0].data.calculatedPrices.default.price }}">
                         {{ item.documents[0].data.calculatedPrices.formatted.defaultPrice }}
                     </span>
                     <sup>*</sup>
                     <span content="{{ item.documents[0].data.calculatedPrices.default.currency }}"></span>
                 </span>
-
+    
+    
+                
                 <div class="base-price text-muted m-y-1" v-resource-if:currentVariation="!(documents[0].data.unit.unitOfMeasurement === 'C62' && documents[0].data.unit.content === 1)">
                     <div>
                         {{ trans("Ceres::Template.itemContent") }}

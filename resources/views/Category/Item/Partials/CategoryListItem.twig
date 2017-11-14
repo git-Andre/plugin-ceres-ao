@@ -114,7 +114,24 @@
                         <sup>*</sup>
                     </span>
                 </div>
-                
+                 
+                 {#mit Ceres 1.7 aktualisiert ???#}
+                    {#<div class="prices">#}
+                        {#{% if item.data.calculatedPrices.rrp.price != '0' %}#}
+                            {#<a href="{{ itemUrl }}" class="price-view-port">#}
+                                {#<del class="crossprice">#}
+                                    {#{{ item.data.calculatedPrices.formatted.rrpUnitPrice }}#}
+                                {#</del>#}
+                            {#</a>#}
+                    
+                        {#{% endif %}#}
+                        {#<a href="{{ itemUrl }}">#}
+                            {#<div class="price">#}
+                                {#{{ item.data.calculatedPrices.formatted.defaultUnitPrice }} *#}
+                            {#</div>#}
+                        {#</a>#}
+                    {#</div>#}
+    
                 {{ LayoutContainer.show("Ceres::CategoryItem.AfterPrices", item.data) }}
             
             </div>
