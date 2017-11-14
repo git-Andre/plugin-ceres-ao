@@ -53,7 +53,7 @@
     
     
     {# ao Var-Dump #}
-    {% include "CeresSchaffrath::VarDump" with { 'testDescription': '{{ paginatedResult | json_encode }}', 'dumpData': paginatedResult | json_encode } %}
+    {% include "CeresSchaffrath::VarDump" with { 'testDescription': '{{ paginatedResult | json_encode }}', 'dumpData': paginatedResult } %}
     
     
     {% if showCategoryImage %}
