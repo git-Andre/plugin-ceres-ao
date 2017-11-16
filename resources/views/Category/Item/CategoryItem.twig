@@ -52,11 +52,6 @@
     <resource name="facets" :data="{{ paginatedResult.facets | json_encode }} || []"></resource>
     <resource name="itemList" :data="{ total: {{ paginatedResult.total | json_encode() }} }"></resource>
     
-    
-    {# ao Var-Dump #}
-    {% include "CeresSchaffrath::VarDump" with { 'testDescription': 'isCategoryAuction', 'dumpData': isCategoryAuction } %}
-    
-    
     {% if showCategoryImage %}
         {% include "Ceres::Category.Item.Partials.CategoryParallaxImage" with { 'category': category } %}
     {% endif %}
