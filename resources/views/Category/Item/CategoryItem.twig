@@ -119,23 +119,39 @@
                     {% endif %}
                     
                     <ul class="product-list row grid" v-is-loading-watcher>
-                        {% for item in itemList %}
+                        {% if isCategoryAuction %}
                             
-                            {% if item.data.filter.isSalable != false %}
-                            
-                                {% set auction = auctions.auction.getAuctionForItemId(item.data.variation.itemId) %}
+                            {% for item in itemList %}
                                 
-                                <li class="col-xs-12 col-sm-6 col-md-4 col-lg-{% if showHeaderNavBar == "side" or showHeaderNavBar == "both" %}4{% else %}3{% endif %}">
-                                    {% if not auction %}
-                                        {% include "Ceres::Category.Item.Partials.CategoryListItem" with { 'item': item } %}
-                                    {% elseif  auction.id > 0 %}
-                                        {% include "Ceres::Category.Item.Partials.CategoryListItemWithAuction" with { 'item': item, 'auction': auction } %}
-                                    {% endif %}
-                                </li>
+                                {% if item.data.filter.isSalable != false %}
+                                    
+                                    <li class="col-xs-12">
+                                        {% include "Ceres::Category.Item.Partials.CategoryListItemWithAuctionAsList" with { 'item': item, 'auction': auction } %}
+                                    </li>
                                 
-                            {% endif %}
+                                {% endif %}
                             
-                        {% endfor %}
+                            {% endfor %}
+                        
+                        {% else %}
+                            {% for item in itemList %}
+                                
+                                {% if item.data.filter.isSalable != false %}
+                                    
+                                    {% set auction = auctions.auction.getAuctionForItemId(item.data.variation.itemId) %}
+                                    
+                                    <li class="col-xs-12 col-sm-6 col-md-4 col-lg-{% if showHeaderNavBar == "side" or showHeaderNavBar == "both" %}4{% else %}3{% endif %}">
+                                        {% if not auction %}
+                                            {% include "Ceres::Category.Item.Partials.CategoryListItem" with { 'item': item } %}
+                                        {% elseif  auction.id > 0 %}
+                                            {% include "Ceres::Category.Item.Partials.CategoryListItemWithAuction" with { 'item': item, 'auction': auction } %}
+                                        {% endif %}
+                                    </li>
+                                
+                                {% endif %}
+                            
+                            {% endfor %}
+                        {% endif %}
                     </ul>
                 </div>
                 
@@ -165,6 +181,10 @@
          {"@context": "http://schema.org","@type": "WebSite","url": "{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}
          ","potentialAction":{"@type": "SearchAction","target": "{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}
          /search?query={search_term}","query-input": "required name=search_term"}}
+    
+    
+    
+    
     </script>
     
     {% if page-1 > 0 %}
