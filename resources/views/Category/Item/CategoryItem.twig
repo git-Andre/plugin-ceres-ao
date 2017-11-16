@@ -126,7 +126,6 @@
                                 {% if item.data.filter.isSalable != false %}
                                     
                                     {% set auction = auctions.auction.getAuctionForItemId(item.data.variation.itemId) %}
-                                    
                                     <li class="col-xs-12">
                                         {% include "Ceres::Category.Item.Partials.CategoryListItemWithAuctionAsList" with { 'item': item, 'auction': auction } %}
                                     </li>
@@ -183,7 +182,6 @@
          {"@context": "http://schema.org","@type": "WebSite","url": "{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}
          ","potentialAction":{"@type": "SearchAction","target": "{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}
          /search?query={search_term}","query-input": "required name=search_term"}}
-    
     </script>
     
     {% if page-1 > 0 %}
