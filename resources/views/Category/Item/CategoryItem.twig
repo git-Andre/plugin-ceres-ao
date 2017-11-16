@@ -36,11 +36,14 @@
 {% set showCategoryImage = config('Ceres.item.show_category_image') == "true" %}
 {% set showCategoryDescription = config('Ceres.item.show_category_description') == "true" %}
 
+{% set currentCategory = services.category.getCurrentCategory() %}
+
 {% block PageBody %}
     
     
     {# ao Var-Dump #}
-    {% include "CeresSchaffrath::VarDump" with { 'testDescription': 'categories', 'dumpData': categories } %}
+    {% include "CeresSchaffrath::VarDump" with { 'testDescription': 'currentCategory', 'dumpData': currentCategory } %}
+    {% include "CeresSchaffrath::VarDump" with { 'testDescription': 'category', 'dumpData': category } %}
     
     
     
