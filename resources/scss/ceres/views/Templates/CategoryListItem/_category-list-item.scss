@@ -197,19 +197,6 @@
     }
   }
 
-  // auction list
-  .auction-list-article {
-    width: 66%;
-  }
-
-  .auction-list-thumb {
-    max-height: 100%;
-  }
-
-  .action-list-image {
-    max-height: 100%;
-  }
-
   @include media-breakpoint-down(xs) {
     .btn-group {
       width: 52%;
