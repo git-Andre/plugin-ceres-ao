@@ -55,7 +55,7 @@ module.exports = (function ($) {
                         }
                     }
                     // ApiService.get(url, itemIds) -- getAuctionParamsListForCategoryItem (itemIds)  - AuctionService
-                    ApiService.post( "/api/auction-param-list", { 'itemIds': itemIds } )
+                    ApiService.post( "/auctions/paramlist", { 'itemIds': itemIds } )
                         .done( auctionList => {
 
                             if ( auctionList != null && Array.isArray( auctionList ) && auctionList.length > 0 ) {
@@ -68,7 +68,7 @@ module.exports = (function ($) {
                         } )
                         .fail( () => {
                                    NotificationService.error( "Error while searching" ).close;
-                                   alert( 'Upps - ein Fehler in /api/auction-param-list  ??!!' );
+                                   alert( 'Upps - ein Fehler in /auctions/paramlist  ??!!' );
                                }
                         )
 

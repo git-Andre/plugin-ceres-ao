@@ -13774,7 +13774,7 @@ Vue.component("item-list", {
             console.log('itemIds: ' + itemIds);
 
             // ApiService.get(url, itemIds) -- getAuctionParamsListForCategoryItem (itemIds)  - AuctionService
-            ApiService.post("/api/auction-param-list", { 'itemIds': itemIds }).done(function (auctionList) {
+            ApiService.post("/auctions/paramlist", { 'itemIds': itemIds }).done(function (auctionList) {
 
                 if (auctionList != null && Array.isArray(auctionList) && auctionList.length > 0) {
 
@@ -13785,7 +13785,7 @@ Vue.component("item-list", {
                 }
             }).fail(function () {
                 NotificationService.error("Error while searching").close;
-                alert('Upps - ein Fehler in /api/auction-param-list  ??!!');
+                alert('Upps - ein Fehler in /auctions/paramlist  ??!!');
             });
         } else {}
     }
@@ -14889,7 +14889,7 @@ Vue.component("order-return-history", {
             }
         },
         toggleNaming: function toggleNaming(element) {
-            if (document.getElementById(element).innerText == Translations.Template.myAccountReturnShowMore) {
+            if (document.getElementById(element).innerText === Translations.Template.myAccountReturnShowMore) {
                 document.getElementById(element).innerText = Translations.Template.myAccountReturnShowLess;
             } else {
                 document.getElementById(element).innerText = Translations.Template.myAccountReturnShowMore;
@@ -16796,7 +16796,7 @@ module.exports = function ($) {
                     }
                 }
                 // ApiService.get(url, itemIds) -- getAuctionParamsListForCategoryItem (itemIds)  - AuctionService
-                ApiService.post("/api/auction-param-list", { 'itemIds': itemIds }).done(function (auctionList) {
+                ApiService.post("/auctions/paramlist", { 'itemIds': itemIds }).done(function (auctionList) {
 
                     if (auctionList != null && Array.isArray(auctionList) && auctionList.length > 0) {
 
@@ -16807,7 +16807,7 @@ module.exports = function ($) {
                     _setIsLoading(false);
                 }).fail(function () {
                     NotificationService.error("Error while searching").close;
-                    alert('Upps - ein Fehler in /api/auction-param-list  ??!!');
+                    alert('Upps - ein Fehler in /auctions/paramlist  ??!!');
                 });
             }).fail(function (response) {
                 _setIsLoading(false);
