@@ -85,11 +85,11 @@
         <!-- Auction Banner -->
         <div class="auction-category-item-special auction-list-special">
             {% if auction.tense == 'future' %}
-                <h1 class="auction-special-tag auction-list-special-tag">{{ trans("CeresSchaffrath::Template.auctionFuture") }}</h1>
+                <h1 class="auction-list-special-tag">{{ trans("CeresSchaffrath::Template.auctionFuture") }}</h1>
             {% elseif auction.tense == 'present' %}
-                <h1 class="auction-special-tag auction-list-special-tag">{{ trans("CeresSchaffrath::Template.auctionPresent") }}</h1>
+                <h1 class="auction-list-special-tag">{{ trans("CeresSchaffrath::Template.auctionPresent") }}</h1>
             {% else %}
-                <h1 class="auction-special-tag auction-list-special-tag">{{ trans("CeresSchaffrath::Template.auctionPast") }}</h1>
+                <h1 class="auction-list-special-tag">{{ trans("CeresSchaffrath::Template.auctionPast") }}</h1>
             {% endif %}
         </div>
         <!-- ./Auction Banner -->
@@ -117,11 +117,11 @@
                             {{ auction.startPrice | formatMonetary('EUR') }} <sup>*</sup>
                         </div>
                     {% elseif auction.tense == 'present' %}
-                        <span class="price-info-ao">
-                            <h5>{{ trans("CeresSchaffrath::Template.highestBid") }}
-                                <span class="m-l-1"><i class="fa fa-gavel fa-lg text-danger"
-                                            aria-hidden="true"></i></span></h5>
-                           </span>
+                        <div class="price-info-ao">
+                            <h4>{{ trans("CeresSchaffrath::Template.highestBid") }}
+                                <span class="m-l-1 auction-list-gavel"><i class="fa fa-gavel fa-stack-2x text-danger"
+                                            aria-hidden="true"></i></span></h4>
+                        </div>
                         <div class="price auction-list-price">
                             {% if bidderListLength > 1 %}
                                 {{ bidderListLast.bidPrice | formatMonetary('EUR') }} <sup>*</sup>
