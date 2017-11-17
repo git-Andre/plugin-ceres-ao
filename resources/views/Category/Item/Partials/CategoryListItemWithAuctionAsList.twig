@@ -17,6 +17,7 @@
 
 <!-- Auction CategoryListItemWithAuction -->
 {#{% set auction = auctions.auction.getAuctionForItemId(item.data.variation.itemId) %}#}
+{% set numberOfVisitors = auctions.visitorCounter.getNumberOfVisitors(auction.itemId) %}
 
 {% set bidderListLast = auction.bidderList | last %}
 {% set bidderListLength = auction.bidderList | length %}
@@ -48,40 +49,7 @@
             </div>
         </div>
         
-        {#<!-- STORE SPECIALS -->#}
-        {#{% if item.data.item.storeSpecial.id > 0 %}#}
-        
-        {#{% set storeSpecial = item.data.item.storeSpecial.names.name %}#}
-        
-        {#<div class="auction-list-special special-tags">#}
-        {#{% if  item.data.item.storeSpecial.id == 11111 %}#}
-        
-        {#{% set storeSpecialColor = 'danger' %}#}
-        {#{% set percent = (1 - item.data.calculatedPrices.default.price / item.data.calculatedPrices.rrp.price) * -100 %}#}
-        
-        {#{% if percent <= 0 %}#}
-        {#{% set dezimalcount = config('Ceres.item.storeSpecial') %}#}
-        {#{% set percent = percent | number_format(dezimalcount, ',', '.') %}#}
-        {#{% set storeSpecial = percent ~"%" %}#}
-        {#{% endif %}#}
-        
-        {#{% elseif  item.data.item.storeSpecial.id == 2 %}#}
-        
-        {#{% set storeSpecialColor = 'primary' %}#}
-        
-        {#{% elseif  item.data.item.storeSpecial.id == 3 %}#}
-        
-        {#{% set storeSpecialColor = 'success' %}#}
-        
-        {#{% endif %}#}
-        
-        {#<span class="tag bg-{{ storeSpecialColor }}">#}
-        {#{{ storeSpecial }}#}
-        {#</span>#}
-        
-        {#</div>#}
-        {#{% endif %}#}
-        <!-- ./STORE SPECIALS -->
+
         <!-- Auction Banner -->
         <div class="auction-category-item-special auction-list-special">
             {% if auction.tense == 'future' %}
@@ -96,15 +64,27 @@
         
         <!-- ITEM DETAILS CeresSchaffrath -->
         
-        {#Auktion ########################################### #}
-        
         <div class="col-xs-6 col-sm-8 auction-list-content">
             <div class="col-sm-7 auction-list-title-block">
                 
                 <p class="thumb-title auction-list-thumb-title"><a href="{{ itemUrl }}">{{ item.data.texts | itemName(1) }}</a></p>
                 
                 <p class="thumb-title auction-list-thumb-title-small">{{ item.data.texts | itemName(2) }}</p>
-            
+                
+                <dl class="auction-list-bidderinfos">
+                    {# Anzahl Gebote #}
+                    <dt class="auction-list-bidderinfos-dt">{{ trans("PluginAuctions::Template.countOffers") }}</dt>
+                    <dd class="auction-list-bidderinfos-dd">{{ bidderListLength - 1 }}</dd>
+        
+                    {# Anzahl Besucher #}
+                    <dt class="auction-list-bidderinfos-dt">{{ trans("PluginAuctions::Template.countVisitors") }}</dt>
+                    <dd class="auction-list-bidderinfos-dd">{{ numberOfVisitors }}</dd>
+        
+                    {# Restzeit #}
+                    <dt class="auction-list-bidderinfos-dt">{{ trans("PluginAuctions::Template.countVisitors") }}</dt>
+                    <dd class="auction-list-bidderinfos-dd">"2T 13Std (Montag, 10:11)"</dd>
+                </dl>
+
             </div>
             
             <div class="col-sm-5 thumb-meta auction-list-bid-block text-right">
