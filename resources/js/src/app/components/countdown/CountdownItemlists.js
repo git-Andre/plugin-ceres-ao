@@ -3,7 +3,7 @@ Vue.component( "auction-countdown-itemlists", {
         "template",
         "now",
         // "diff",
-        "endDate"
+        "enddate"
     ],
     data() {
         return {
@@ -21,7 +21,7 @@ Vue.component( "auction-countdown-itemlists", {
         // this.timer = window.setInterval( () => {
         //     this.Timer();
         // }, 1000 );
-        this.leftTime = this.endDate - this.now;
+        this.leftTime = this.enddate - this.now;
     },
     methods: {
         // Timer() {
