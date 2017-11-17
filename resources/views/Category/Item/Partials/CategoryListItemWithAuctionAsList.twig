@@ -69,7 +69,8 @@
                 
                 <p class="thumb-title auction-list-thumb-title"><a href="{{ itemUrl }}">{{ item.data.texts | itemName(1) }}</a></p>
                 
-                <p class="thumb-title auction-list-thumb-title-small">{{ item.data.texts | itemName(2) }}</p>
+                {#<p class="thumb-title auction-list-thumb-title-small">{{ item.data.texts | itemName(2) }}</p>#}
+                <hr class="m-t-5 m-b-1">
                 
                 <dl class="auction-list-bidderinfos">
                      <!-- Anzahl Gebote -->
@@ -82,7 +83,7 @@
         
                      <!-- Restzeit -->
                     <dt class="auction-list-bidderinfos-dt">{{ trans("PluginAuctions::Template.timeLeft") }}</dt>
-                    <dd class="auction-list-bidderinfos-dd">2T 13Std (13.15.2017)"</dd>
+                    <dd class="auction-list-bidderinfos-dd">2T 13Std (13.15.2017)</dd>
                 </dl>
 
             </div>
