@@ -17,7 +17,7 @@
 
 <!-- Auction CategoryListItemWithAuction -->
 {#{% set auction = auctions.auction.getAuctionForItemId(item.data.variation.itemId) %}#}
-{% set numberOfVisitors = auctions.visitorCounter.getNumberOfVisitors(auction.itemId) %}
+{% set numberOfVisitors = auctions.visitorCounter.getNumberOfVisitorsForLists(auction.itemId) %}
 
 {% set bidderListLast = auction.bidderList | last %}
 {% set bidderListLength = auction.bidderList | length %}
@@ -71,19 +71,19 @@
                 
                 <p class="thumb-title auction-list-thumb-title-small">{{ item.data.texts | itemName(2) }}</p>
                 
-                <dl class="auction-list-bidderinfos">
+                {#<dl class="auction-list-bidderinfos">#}
                     {# Anzahl Gebote #}
-                    <dt class="auction-list-bidderinfos-dt">{{ trans("PluginAuctions::Template.countOffers") }}</dt>
-                    <dd class="auction-list-bidderinfos-dd">{{ bidderListLength - 1 }}</dd>
-        
+                    {#<dt class="auction-list-bidderinfos-dt">{{ trans("PluginAuctions::Template.countOffers") }}</dt>#}
+                    {#<dd class="auction-list-bidderinfos-dd">{{ bidderListLength - 1 }}</dd>#}
+        {##}
                     {# Anzahl Besucher #}
-                    <dt class="auction-list-bidderinfos-dt">{{ trans("PluginAuctions::Template.countVisitors") }}</dt>
-                    <dd class="auction-list-bidderinfos-dd">{{ numberOfVisitors }}</dd>
-        
+                    {#<dt class="auction-list-bidderinfos-dt">{{ trans("PluginAuctions::Template.countVisitors") }}</dt>#}
+                    {#<dd class="auction-list-bidderinfos-dd">{{ numberOfVisitors }}</dd>#}
+        {##}
                     {# Restzeit #}
-                    <dt class="auction-list-bidderinfos-dt">{{ trans("PluginAuctions::Template.countVisitors") }}</dt>
-                    <dd class="auction-list-bidderinfos-dd">"2T 13Std (Montag, 10:11)"</dd>
-                </dl>
+                    {#<dt class="auction-list-bidderinfos-dt">{{ trans("PluginAuctions::Template.timeLeft") }}</dt>#}
+                    {#<dd class="auction-list-bidderinfos-dd">2T 13Std (13.15.2017)"</dd>#}
+                {#</dl>#}
 
             </div>
             
