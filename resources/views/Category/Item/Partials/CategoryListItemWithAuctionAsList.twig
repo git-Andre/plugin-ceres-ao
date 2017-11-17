@@ -1,4 +1,5 @@
 {{ component( "Ceres::Basket.Components.AddToBasket" ) }}
+{{ component( "Ceres::ItemList.Components.CountdownItemLists" ) }}
 
 {% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
 
@@ -83,7 +84,12 @@
         
                      <!-- Restzeit -->
                     <dt class="auction-list-bidderinfos-dt">{{ trans("PluginAuctions::Template.timeLeft") }}</dt>
-                    <dd class="auction-list-bidderinfos-dd">2T 13Std (13.15.2017)</dd>
+                    <dd class="auction-list-bidderinfos-dd">
+                        <auction-countdown-itemlists>
+                        
+                        </auction-countdown-itemlists>
+                    </dd>
+                    {#<dd class="auction-list-bidderinfos-dd">2T 13Std (13.15.2017)</dd>#}
                 </dl>
 
             </div>
@@ -131,7 +137,7 @@
                 {% endif %}
                 
                 <div class="vat-porto-info small text-muted text-right auction-list-porto">
-                    <sup>*</sup> {{ trans("Ceres::Template.itemExclusive") }} {{ trans("CeresSchaffrath::Template.surcharge") }}
+                    * {{ trans("Ceres::Template.itemExclusive") }} {{ trans("CeresSchaffrath::Template.surcharge") }}
                     | {{ trans("Ceres::Template.itemInclVAT") }}
                 </div>
             </div>
