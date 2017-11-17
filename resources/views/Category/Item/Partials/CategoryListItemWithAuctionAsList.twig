@@ -107,49 +107,46 @@
             
             </div>
             
-            <div class="col-sm-5 thumb-meta">
-                <div class="auction-list-bid">
-                    {% if auction.tense == 'future' %}
-                        <div class="auction-list-bid-text">
-                            <h4 class="price-info-ao">{{ trans("PluginAuctions::Template.startPrice") }}
-                                <span class="m-l-1 auction-list-gavel"><i class="fa fa-pencil-square-o fa-lg text-warning"
-                                            aria-hidden="true"></i></span></h4>
-                        </div>
-                        
-                        <div class="prices price auction-list-price">
-                            {{ auction.startPrice | formatMonetary('EUR') }} <sup>*</sup>
-                        </div>
-                    {% elseif auction.tense == 'present' %}
-                        <div class="auction-list-bid-text">
-                            <h4>{{ trans("CeresSchaffrath::Template.highestBid") }}
-                                <span class="m-l-1 auction-list-gavel"><i class="fa fa-gavel fa-lg text-danger"
-                                            aria-hidden="true"></i></span></h4>
-                        </div>
-                        <div class="prices price auction-list-price">
-                            {% if bidderListLength > 1 %}
-                                {{ bidderListLast.bidPrice | formatMonetary('EUR') }} <sup>*</sup>
-                            {% else %}
-                                {{ auction.startPrice | formatMonetary('EUR') }} <sup>*</sup>
-                            {% endif %}
-                        </div>
-                    {% else %}
-                        <div class="auction-list-bid-text">
-                            <h4>{{ trans("CeresSchaffrath::Template.closedPrice") }}
-                                <span class="m-l-1 auction-list-gavel"><i class="fa fa-lock fa-lg"
-                                            aria-hidden="true"></i></span></h4>
-                        </div>
-                        <div class="prices price auction-list-price">
-                            {{ bidderListLast.bidPrice | formatMonetary('EUR') }} <sup>*</sup>
-                        </div>
-                    {% endif %}
-                </div>
-                
-                <div class="vat-porto-info small text-muted text-right auction-list-porto">
-                    <sup>*</sup> {{ trans("Ceres::Template.itemExclusive") }} {{ trans("CeresSchaffrath::Template.surcharge") }}
-                    | {{ trans("Ceres::Template.itemInclVAT") }}
-                </div>
+            <div class="col-sm-5 thumb-meta auction-list-bid">
+                {% if auction.tense == 'future' %}
+                    <div class="auction-list-bid-text">
+                        <h4 class="price-info-ao">{{ trans("PluginAuctions::Template.startPrice") }}
+                            <span class="m-l-1 auction-list-gavel"><i class="fa fa-pencil-square-o fa-lg text-warning"
+                                        aria-hidden="true"></i></span></h4>
+                    </div>
+                    
+                    <div class="prices price auction-list-price">
+                        {{ auction.startPrice | formatMonetary('EUR') }} <span class="auction-list-price-star">*</span>
+                    </div>
+                {% elseif auction.tense == 'present' %}
+                    <div class="auction-list-bid-text">
+                        <h4>{{ trans("CeresSchaffrath::Template.highestBid") }}
+                            <span class="m-l-1 auction-list-gavel"><i class="fa fa-gavel fa-lg text-danger"
+                                        aria-hidden="true"></i></span></h4>
+                    </div>
+                    <div class="prices price auction-list-price">
+                        {% if bidderListLength > 1 %}
+                            {{ bidderListLast.bidPrice | formatMonetary('EUR') }} <span class="auction-list-price-star">*</span>
+                        {% else %}
+                            {{ auction.startPrice | formatMonetary('EUR') }} <span class="auction-list-price-star">*</span>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <div class="auction-list-bid-text">
+                        <h4>{{ trans("CeresSchaffrath::Template.closedPrice") }}
+                            <span class="m-l-1 auction-list-gavel"><i class="fa fa-lock fa-lg"
+                                        aria-hidden="true"></i></span></h4>
+                    </div>
+                    <div class="prices price auction-list-price">
+                        {{ bidderListLast.bidPrice | formatMonetary('EUR') }} <span class="auction-list-price-star">*</span>
+                    </div>
+                {% endif %}
             </div>
-        
+            
+            <div class="vat-porto-info small text-muted text-right auction-list-porto">
+                <sup>*</sup> {{ trans("Ceres::Template.itemExclusive") }} {{ trans("CeresSchaffrath::Template.surcharge") }}
+                | {{ trans("Ceres::Template.itemInclVAT") }}
+            </div>
         </div>
         <!--  end ITEM DETAILS  -->
     </div>
