@@ -120,9 +120,16 @@
                     </div>
                 {% elseif auction.tense == 'present' %}
                     <div class="auction-list-bid-text">
-                        <h4>{{ trans("CeresSchaffrath::Template.highestBid") }}
-                            <span class="auction-list-gavel"><i class="fa fa-gavel fa-lg text-danger"
-                                        aria-hidden="true"></i></span></h4>
+                        {% if bidderListLength > 1 %}
+                            <h4>{{ trans("CeresSchaffrath::Template.highestBid") }}
+                                <span class="auction-list-gavel"><i class="fa fa-gavel fa-lg text-danger"
+                                            aria-hidden="true"></i></span></h4>
+                        {% else %}
+                            <h4>{{ trans("CeresSchaffrath::Template.currentBid") }}
+                                <span class="auction-list-gavel"><i class="fa fa-gavel fa-lg text-danger"
+                                            aria-hidden="true"></i></span></h4>
+                        {% endif %}
+                    
                     </div>
                     <div class="prices price auction-list-price">
                         {% if bidderListLength > 1 %}
