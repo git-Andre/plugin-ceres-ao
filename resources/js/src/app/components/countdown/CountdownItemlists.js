@@ -6,7 +6,7 @@ Vue.component( "auction-countdown-itemlists", {
     ],
     data() {
         return {
-            deadline: this.enddate
+            deadline: 0
         };
     },
     created() {
@@ -16,6 +16,7 @@ Vue.component( "auction-countdown-itemlists", {
 
     },
     ready() {
+            this.deadline = this.enddate;
     },
     methods: {
         twoDigits(value) {

@@ -11260,7 +11260,7 @@ Vue.component("auction-countdown-itemlists", {
     props: ["template", "now", "enddate"],
     data: function data() {
         return {
-            enddate: this.enddate
+            deadline: 0
         };
     },
     created: function created() {
@@ -11268,7 +11268,9 @@ Vue.component("auction-countdown-itemlists", {
         this.enddate = parseInt(this.enddate);
         this.now = Math.trunc(new Date().getTime() / 1000);
     },
-    ready: function ready() {},
+    ready: function ready() {
+        this.deadline = this.enddate;
+    },
 
     methods: {
         twoDigits: function twoDigits(value) {
