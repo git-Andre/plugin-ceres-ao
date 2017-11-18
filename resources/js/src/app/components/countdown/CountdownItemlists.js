@@ -6,7 +6,7 @@ Vue.component( "auction-countdown-itemlists", {
     ],
     data() {
         return {
-            deadline: 0
+            deadLine: 0
         };
     },
     created() {
@@ -16,15 +16,15 @@ Vue.component( "auction-countdown-itemlists", {
 
     },
     ready() {
-            this.deadline = this.enddate;
+            this.deadLine = this.enddate;
     },
     methods: {
-        twoDigits(value) {
-            if ( value.toString().length <= 1 ) {
-                return "0" + value.toString();
-            }
-            return value.toString();
-        }
+        // twoDigits(value) {
+        //     if ( value.toString().length <= 1 ) {
+        //         return "0" + value.toString();
+        //     }
+        //     return value.toString();
+        // }
     },
     computed: {
         // seconds() {
