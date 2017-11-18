@@ -1,10 +1,10 @@
 <script type="x/template" id="vue-auction-countdown-itemlists">
     
     
-    <span>
-        {#{{ trans("PluginAuctions::Template.bidAtLeastEnd") }}#}
-        ${ leftTime }
-        
+    <span class="vue-countdown">
+        ${ days } <span class="text">{{ trans("PluginAuctions::Template.counterDays") }}</span>
+        ${ hours } <span class="text">{{ trans("PluginAuctions::Template.counterHrs") }} </span>
+        ( ${ enddate } )
     </span>
 
     {#<div id="countdown-itemlist">#}
@@ -39,11 +39,11 @@
 
 
 <style>
-    /*.vue-countdown {*/
+    .vue-countdown {
         /*columns: #555;*/
-        /*padding: 0;*/
+        padding: 0;
         /*margin: -8px 0 0 0;*/
-    /*}*/
+    }
 
     /*.vue-countdown li {*/
         /*display: inline-block;*/
@@ -87,9 +87,9 @@
         /*color: #c50000*/
     /*}*/
 
-    /*.vue-countdown .text {*/
-        /*text-transform: uppercase;*/
-        /*margin-bottom: 0;*/
-        /*font-size: 10px;*/
-    /*}*/
+    .vue-countdown .text {
+        text-transform: uppercase;
+        margin-bottom: 0;
+        font-size: 10px;
+    }
 </style>
