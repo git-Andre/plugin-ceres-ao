@@ -11296,7 +11296,7 @@ Vue.component("auction-countdown-itemlists", {
             // return this.twoDigits( Math.trunc( (this.enddate - this.now) / 60 / 60 / 24 ) );
         },
         deadLine: function deadLine() {
-            return this.enddate;
+            return this.enddate * 1000;
         }
     },
     watch: {
