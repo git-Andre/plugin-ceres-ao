@@ -11257,31 +11257,20 @@ Vue.component("shipping-profile-select", {
 "use strict";
 
 Vue.component("auction-countdown-itemlists", {
-    props: ["template", "now",
-    // "diff",
-    "enddate"],
+    props: ["template", "now", "enddate"],
     data: function data() {
         return {
-            // leftTime: ""
+            enddate: this.enddate
         };
     },
     created: function created() {
         this.$options.template = this.template;
         this.enddate = parseInt(this.enddate);
         this.now = Math.trunc(new Date().getTime() / 1000);
-        // this.diff              = 0;
     },
-    ready: function ready() {
-        // this.timer = window.setInterval( () => {
-        //     this.Timer();
-        // }, 1000 );
-        // this.leftTime = this.enddate - this.now;
-    },
+    ready: function ready() {},
 
     methods: {
-        // Timer() {
-        //     this.now = Math.trunc( (new Date()).getTime() / 1000 );
-        // },
         twoDigits: function twoDigits(value) {
             if (value.toString().length <= 1) {
                 return "0" + value.toString();
@@ -11297,10 +11286,12 @@ Vue.component("auction-countdown-itemlists", {
         //     return this.twoDigits( Math.trunc( (this.deadline - this.now) / 60 ) % 60 );
         // },
         hours: function hours() {
-            return this.twoDigits(Math.trunc((this.enddate - this.now) / 60 / 60) % 24);
+            return Math.trunc((this.enddate - this.now) / 60 / 60) % 24;
+            // return this.twoDigits( Math.trunc( (this.enddate - this.now) / 60 / 60 ) % 24 );
         },
         days: function days() {
-            return this.twoDigits(Math.trunc((this.enddate - this.now) / 60 / 60 / 24));
+            return Math.trunc((this.enddate - this.now) / 60 / 60 / 24);
+            // return this.twoDigits( Math.trunc( (this.enddate - this.now) / 60 / 60 / 24 ) );
         }
     },
     watch: {

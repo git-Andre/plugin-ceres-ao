@@ -6,6 +6,7 @@ Vue.component( "auction-countdown-itemlists", {
     ],
     data() {
         return {
+            deadline: this.enddate
         };
     },
     created() {
@@ -32,10 +33,12 @@ Vue.component( "auction-countdown-itemlists", {
         //     return this.twoDigits( Math.trunc( (this.deadline - this.now) / 60 ) % 60 );
         // },
         hours() {
-            return this.twoDigits( Math.trunc( (this.enddate - this.now) / 60 / 60 ) % 24 );
+            return Math.trunc( (this.enddate - this.now) / 60 / 60 ) % 24 ;
+            // return this.twoDigits( Math.trunc( (this.enddate - this.now) / 60 / 60 ) % 24 );
         },
         days() {
-            return this.twoDigits( Math.trunc( (this.enddate - this.now) / 60 / 60 / 24 ) );
+            return Math.trunc( (this.enddate - this.now) / 60 / 60 / 24 ) ;
+            // return this.twoDigits( Math.trunc( (this.enddate - this.now) / 60 / 60 / 24 ) );
         }
     },
     watch: {
