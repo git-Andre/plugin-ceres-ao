@@ -2,31 +2,21 @@ Vue.component( "auction-countdown-itemlists", {
     props: [
         "template",
         "now",
-        // "diff",
         "enddate"
     ],
     data() {
         return {
-            // leftTime: ""
         };
     },
     created() {
         this.$options.template = this.template;
         this.enddate          = parseInt(this.enddate);
         this.now               = Math.trunc( (new Date()).getTime() / 1000 );
-        // this.diff              = 0;
 
     },
     ready() {
-        // this.timer = window.setInterval( () => {
-        //     this.Timer();
-        // }, 1000 );
-        // this.leftTime = this.enddate - this.now;
     },
     methods: {
-        // Timer() {
-        //     this.now = Math.trunc( (new Date()).getTime() / 1000 );
-        // },
         twoDigits(value) {
             if ( value.toString().length <= 1 ) {
                 return "0" + value.toString();
