@@ -4,7 +4,8 @@
     <span class="vue-countdown">
         ${ days } <span class="text">{{ trans("PluginAuctions::Template.counterDays") }}</span>
         ${ hours } <span class="text">{{ trans("PluginAuctions::Template.counterHrs") }} </span>
-        ( ${ enddate } )
+        <span class="p-l-5"><i class="fa fa-clock-o text-info" aria-hidden="true"></i></span>
+        ${ enddate | date ("dd DD.MMM.YYYY HH:mm:ss") }
     </span>
 
     {#<div id="countdown-itemlist">#}

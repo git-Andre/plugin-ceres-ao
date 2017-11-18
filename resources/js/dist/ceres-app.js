@@ -11262,20 +11262,20 @@ Vue.component("auction-countdown-itemlists", {
     "enddate"],
     data: function data() {
         return {
-            leftTime: ""
+            // leftTime: ""
         };
     },
     created: function created() {
         this.$options.template = this.template;
-        // this.deadline          = parseInt(this.deadline);
+        this.enddate = parseInt(this.enddate);
         this.now = Math.trunc(new Date().getTime() / 1000);
-        this.diff = 0;
+        // this.diff              = 0;
     },
     ready: function ready() {
         // this.timer = window.setInterval( () => {
         //     this.Timer();
         // }, 1000 );
-        this.leftTime = this.enddate - this.now;
+        // this.leftTime = this.enddate - this.now;
     },
 
     methods: {
@@ -11296,12 +11296,12 @@ Vue.component("auction-countdown-itemlists", {
         // minutes() {
         //     return this.twoDigits( Math.trunc( (this.deadline - this.now) / 60 ) % 60 );
         // },
-        // hours() {
-        //     return this.twoDigits( Math.trunc( (this.deadline - this.now) / 60 / 60 ) % 24 );
-        // },
-        // days() {
-        //     return this.twoDigits( Math.trunc( (this.deadline - this.now) / 60 / 60 / 24 ) );
-        // }
+        hours: function hours() {
+            return this.twoDigits(Math.trunc((this.enddate - this.now) / 60 / 60) % 24);
+        },
+        days: function days() {
+            return this.twoDigits(Math.trunc((this.enddate - this.now) / 60 / 60 / 24));
+        }
     },
     watch: {
         // now(value) {
