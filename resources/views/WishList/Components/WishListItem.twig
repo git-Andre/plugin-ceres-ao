@@ -1,8 +1,11 @@
 {{ component( "Ceres::Item.Components.QuantityInput" ) }}
 
 <article transition="wish-list-item-transition" v-for="wishListItem in wishListItems" class="wish-list-item" id="article_${ $index }">
-
-    <div class="row">
+    
+    {# ao Var-Dump #}
+    {% include "CeresSchaffrath::VarDump" with { 'testDescription': 'wishListItems', 'dumpData': wishListItems } %}
+    
+        <div class="row">
         <div class="col-xs-3 col-sm-2 wish-list-container">
             <div class="wish-list-image-container">
                 <a :href="wishListItem.data | itemURL">

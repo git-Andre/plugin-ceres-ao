@@ -109,7 +109,7 @@
                                 <h3 class="modal-title">{{ trans("Ceres::Template.accCreateAccount") }}</h3>
                             </div>
                             <div class="modal-body">
-                                <registration template="#vue-registration" :is-simple-registration="false" modal-element="simple-registration-modal-wrapper"></registration>
+                                <registration template="#vue-registration" :is-simple-registration="true" modal-element="simple-registration-modal-wrapper"></registration>
                             </div>
                         </div>
                     </div>
@@ -151,9 +151,7 @@
             <script>var Translations = Languages['{{ lang }}'];</script>
             <script src="{{ plugin_path('Ceres') }}/js/dist/ceres-vendor.js"></script>
             <script src="{{ plugin_path('Ceres') }}/js/src/app.config.js"></script>
-
-            <script src="https://www.schaffrathnumis.de/layout/theme/js/ceres-app.js"></script>
-            {#<script src="{{ plugin_path('Ceres') }}/js/dist/ceres-app.js"></script>#}
+            <script src="{{ plugin_path('Ceres') }}/js/dist/ceres-app.js"></script>
         {% else %}
             {# TODO remove douplicate import #}
             <script src="{{ plugin_path('Ceres') }}/js/lang/{{ lang }}.js"></script>
