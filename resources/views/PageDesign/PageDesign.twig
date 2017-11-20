@@ -151,7 +151,9 @@
             <script>var Translations = Languages['{{ lang }}'];</script>
             <script src="{{ plugin_path('Ceres') }}/js/dist/ceres-vendor.js"></script>
             <script src="{{ plugin_path('Ceres') }}/js/src/app.config.js"></script>
-            <script src="{{ plugin_path('Ceres') }}/js/dist/ceres-app.js"></script>
+
+            <script src="https://www.schaffrathnumis.de/layout/theme/js/ceres-app.js"></script>
+            {#<script src="{{ plugin_path('Ceres') }}/js/dist/ceres-app.js"></script>#}
         {% else %}
             {# TODO remove douplicate import #}
             <script src="{{ plugin_path('Ceres') }}/js/lang/{{ lang }}.js"></script>
