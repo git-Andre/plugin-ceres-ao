@@ -22,7 +22,13 @@
         {% if loadingAnimationType != "blur" %}
             {% include "Ceres::ItemList.Partials.LoadingAnimation" %}
         {% endif %}
-
+    
+        <h2>test1: ${ categoryId }</h2>
+        <h2>test2: ${ filterListState }</h2>
+        <h3>test3: {{ category.id }}</h3>
+        <h4>test4: {{ services.category.getCurrentCategory() }}</h4>
+    
+    
         <ul class="product-list row grid">
             <category-item v-for="itemData in itemList.documents"
 
