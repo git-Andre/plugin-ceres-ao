@@ -69,10 +69,9 @@
         
         <div class="row">
             <div class="col-xs-12">
-                <h1>cat: {{ services.category.id }}</h1>
                 <div id="vue-rendered-item-list" class="item-list-frame">
                     <item-list template="#vue-item-list"
-                            {#auction-list="auctionList"#}
+                    
                     ></item-list>
                 </div>
             
@@ -92,7 +91,7 @@
 
 {% block PartialHead %}
     <script type="application/ld+json"> {"@context": "http://schema.org","@type": "WebSite",
-        "url": "{{ services.webstoreConfig.getWebstoreConfig().domainSsl }} ",
+        "url": "{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}",
         "potentialAction":{"@type": "SearchAction",
         "target": "{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}/search?query={search_term}",
         "query-input": "required name=search_term"}}
