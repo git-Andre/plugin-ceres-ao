@@ -13823,6 +13823,7 @@ Vue.component("item-list", {
         ResourceService.bind("auctionList", this);
 
         if (this.auctionList.length === 0 && this.itemList.documents != undefined) {
+            console.log('drin');
 
             // compute Array of ItemIds von itemList
             var itemIds = [];
@@ -13845,7 +13846,8 @@ Vue.component("item-list", {
                 NotificationService.error("Error while searching in /auctions/paramlist").close;
             });
         } else {
-            auctionList = [];
+            console.log('ELSE');
+            this.auctionList = [];
         }
     }
 });
