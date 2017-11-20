@@ -25,6 +25,11 @@
 
 {% set paginatedResult = services.itemLoader.loadForTemplate('Ceres::ItemList.ItemListView', itemLoaderPresets.search, {'query': request.get("query"), 'page': page, 'items': itemsPerPage, 'sorting':  sorting, 'variationShowType': config("Ceres.item.variation_show_type")}) %}
 
+
+{% set test = services.category.id %}
+{% set isCategoryAuction = ( category.id == config("PluginAuctions.global.liveAuctionCategoryId")) %}
+
+
 {% block PageBody %}
     
     {{ component( "Ceres::ItemList.Components.ItemList" ) }}
@@ -38,7 +43,8 @@
     <resource name="facets" :data="{{ paginatedResult.facets | json_encode }} || []"></resource>
     <resource name="facetParams" :data="[]"></resource>
     
-    {#<resource name="auctionList" :data="{{ test | json_encode }} || []"></resource>#}
+    <h2>{{ test }}</h2>
+    <h3>isCategoryAuction</h3>
     
     <div class="categoriegrid page-content container-max">
         <div class="row m-t-1">
@@ -70,9 +76,11 @@
         <div class="row">
             <div class="col-xs-12">
                 <div id="vue-rendered-item-list" class="item-list-frame">
+                    
                     <item-list template="#vue-item-list"
                     
                     ></item-list>
+                    
                 </div>
             
             </div>
