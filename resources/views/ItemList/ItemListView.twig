@@ -50,8 +50,9 @@
             </div>
         </div>
         
-        <h2>{{ test }}</h2>
-        <h3>{{isCategoryAuction}}</h3>
+        <h2>searchString: {{ searchString }}</h2>
+        
+        {% if searchString == "Auktionen" %} <h3>YES Sir</h3>  {% endif %}
     
         <div class="list-controls m-b-3">
             <div class="list-controls-inner">
