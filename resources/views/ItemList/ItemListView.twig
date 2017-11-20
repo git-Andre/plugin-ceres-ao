@@ -43,9 +43,6 @@
     <resource name="facets" :data="{{ paginatedResult.facets | json_encode }} || []"></resource>
     <resource name="facetParams" :data="[]"></resource>
     
-    <h2>{{ test }}</h2>
-    <h3>isCategoryAuction</h3>
-    
     <div class="categoriegrid page-content container-max">
         <div class="row m-t-1">
             <div class="col-xs-12">
@@ -53,6 +50,9 @@
             </div>
         </div>
         
+        <h2>{{ test }}</h2>
+        <h3>{{isCategoryAuction}}</h3>
+    
         <div class="list-controls m-b-3">
             <div class="list-controls-inner">
                 <div class="row">
