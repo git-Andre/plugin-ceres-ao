@@ -13831,8 +13831,6 @@ Vue.component("item-list", {
                     itemIds.push(this.itemList.documents[i].data.item.id);
                 }
             }
-            console.log('itemIds: ' + itemIds);
-
             // ApiService.get(url, itemIds) -- getAuctionParamsListForCategoryItem (itemIds)  - AuctionService
             ApiService.post("/auctions/paramlist", { 'itemIds': itemIds }).done(function (auctionList) {
 
@@ -13844,10 +13842,11 @@ Vue.component("item-list", {
                     // NotificationService.info( "Auktionen gefunden..." ).closeAfter( 2000 );
                 }
             }).fail(function () {
-                NotificationService.error("Error while searching").close;
-                alert('Upps - ein Fehler in /auctions/paramlist  ??!!');
+                NotificationService.error("Error while searching in /auctions/paramlist").close;
             });
-        } else {}
+        } else {
+            auctionList = [];
+        }
     }
 });
 
