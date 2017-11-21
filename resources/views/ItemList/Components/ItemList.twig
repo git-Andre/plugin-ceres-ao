@@ -23,11 +23,14 @@
             {% include "Ceres::ItemList.Partials.LoadingAnimation" %}
         {% endif %}
         
-        {#<h3 if="auctionList">test1: ${ auctionList.length }</h3>#}
-        {#<h2 if="itemList">test1: ${ itemList.documents.length }</h2>#}
-        <h4>sind hier nur Auktionen?${onlyAuctionsInList}</h4>
+        <h3 if="auctionList">auctionList: ${ auctionList.length }</h3>
+        <h2 if="itemList">itemList: ${ itemList.documents.length }</h2>
+       
+        <h4>sind hier nur Auktionen?: ${areOnlyAuctionsInList}</h4>
         
-        <ul v-if="!onlyAuctionsInList" class="product-list row grid">
+        <h3 if="auctionList and itemList"></h3>
+        
+        <ul v-if="!areOnlyAuctionsInList" class="product-list row grid">
             <category-item v-for="itemData in itemList.documents"
                     
                     :item-data="itemData.data"
@@ -37,7 +40,7 @@
         
         </ul>
         
-        <ul v-if="onlyAuctionsInList" class="product-list row grid">
+        <ul v-if="areOnlyAuctionsInList" class="product-list row grid">
             <p v-for="itemData in itemList.documents">
                 ${itemData.id}
             </p>

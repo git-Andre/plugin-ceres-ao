@@ -7,6 +7,7 @@ Vue.component( "item-list", {
 
     props: [
         "categoryId",
+        // "areOnlyAuctionsInList",
         "template"
     ],
 
@@ -15,7 +16,8 @@ Vue.component( "item-list", {
             itemList: {},
             auctionList: [],
             isLoading: false,
-            filterListState: false
+            filterListState: false,
+            areOnlyAuctionsInList: false
         };
     },
 
@@ -23,7 +25,9 @@ Vue.component( "item-list", {
         this.$options.template = this.template;
 
         ItemListService.setCategoryId( this.categoryId );
+        this.auctionList = [];
 
+        areOnlyAuctionsInList = false;
     },
 
     ready: function () {
@@ -46,7 +50,7 @@ Vue.component( "item-list", {
                     if ( auctionList != null && Array.isArray( auctionList ) && auctionList.length > 0 ) {
 
                         ResourceService.getResource( "auctionList" ).set( auctionList );
-                        // this.auctionList = auctionList;
+                        this.auctionList = auctionList;
 
                         // NotificationService.info( "Auktionen gefunden..." ).closeAfter( 2000 );
                     }
@@ -61,21 +65,21 @@ Vue.component( "item-list", {
                 )
         }
         else {
-            console.log( 'rotz' );
+            console.log( 'test' );
         }
     },
-    computed: {
-        onlyAuctionsInList: () => {
-            // if ( this.auctionList.length != 0 && this.itemList.documents != undefined ) {
-            //
-            //     if ( this.itemList.documents.length == this.auctionList.length ) {
-            //         return true;
-            //     }
+    watch: {
+        areOnlyAuctionsInList: function () {
+            // if ( this.auctionList != undefined && this.itemList.documents != undefined ) {
+
+            if ( this.itemList.documents.length == this.auctionList.length ) {
+                this.areOnlyAuctionsInList = true;
+            }
             // }
-            // else {
-            //     return false;
-            // }
-            return true;
+            else {
+                this.areOnlyAuctionsInList = false;
+            }
+            // return true;
         }
     }
 } );
