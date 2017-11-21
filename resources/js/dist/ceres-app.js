@@ -13798,14 +13798,17 @@ var NotificationService = require("services/NotificationService");
 
 Vue.component("item-list", {
 
-    props: ["categoryId", "onlyAuctionsInList", "template"],
+    props: ["categoryId",
+    // "areOnlyAuctionsInList",
+    "template"],
 
     data: function data() {
         return {
             itemList: {},
             auctionList: [],
             isLoading: false,
-            filterListState: false
+            filterListState: false,
+            areOnlyAuctionsInList: false
         };
     },
 
@@ -13814,6 +13817,8 @@ Vue.component("item-list", {
 
         ItemListService.setCategoryId(this.categoryId);
         this.auctionList = [];
+
+        areOnlyAuctionsInList = false;
     },
 
     ready: function ready() {
@@ -13848,19 +13853,19 @@ Vue.component("item-list", {
                 NotificationService.error("Error while searching in /auctions/paramlist").close;
             });
         } else {
-            console.log('rotz');
+            console.log('test');
         }
     },
     watch: {
-        onlyAuctionsInList: function onlyAuctionsInList() {
+        areOnlyAuctionsInList: function areOnlyAuctionsInList() {
             // if ( this.auctionList != undefined && this.itemList.documents != undefined ) {
 
             if (this.itemList.documents.length == this.auctionList.length) {
-                return true;
+                this.areOnlyAuctionsInList = true;
             }
             // }
             else {
-                    return false;
+                    this.areOnlyAuctionsInList = false;
                 }
             // return true;
         }

@@ -71,8 +71,9 @@ Vue.component( "item-list", {
     watch: {
         areOnlyAuctionsInList: function () {
             // if ( this.auctionList != undefined && this.itemList.documents != undefined ) {
-
+            console.log( 'watch' );
             if ( this.itemList.documents.length == this.auctionList.length ) {
+                console.log( 'beide' );
                 this.areOnlyAuctionsInList = true;
             }
             // }
