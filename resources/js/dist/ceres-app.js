@@ -13785,12 +13785,17 @@ Vue.component("category-item-auction-list", {
         return {
             // recommendedRetailPrice: 0,
             // variationRetailPrice: 0,
-            isAuction: false
+            // isAuction: false
         };
     },
-
     created: function created() {
         // this.variationRetailPrice = this.itemData.calculatedPrices.default.price;
+
+    },
+    ready: function ready() {
+        console.dir(this.itemDataForAuctions);
+        console.log('auctionlist:');
+        console.dir(this.auctionList);
     },
 
     computed: {
@@ -13807,27 +13812,30 @@ Vue.component("category-item-auction-list", {
 
         auctionParams: function auctionParams() {
 
-            var auctionParameter = [];
+            return this.auctionList;
 
-            if (this.auctionList.length > 0) {
-
-                for (var i = this.auctionList.length; --i >= 0;) {
-
-                    if (this.auctionList[i].itemId == this.itemData.item.id) {
-
-                        this.isAuction = true;
-
-                        auctionParameter = this.auctionList[i];
-
-                        this.auctionList = [];
-
-                        return auctionParameter;
-                    }
-                }
-            } else {
-                this.isAuction = false;
-            }
-            return false;
+            // var auctionParameter = [];
+            //
+            // if ( this.auctionList.length > 0 ) {
+            //
+            //     for (var i = this.auctionList.length; --i >= 0;) {
+            //
+            //         if ( this.auctionList[i].itemId == this.itemDataForAuctions.item.id ) {
+            //
+            //             // this.isAuction = true;
+            //
+            //             auctionParameter = this.auctionList[i];
+            //
+            //             this.auctionList = [];
+            //
+            //             return auctionParameter;
+            //         }
+            //     }
+            // }
+            // else {
+            //     // this.isAuction = false;
+            // }
+            // return false;
         }
     }
 });
@@ -13908,13 +13916,15 @@ Vue.component("item-list", {
                     ResourceService.getResource("auctionList").set(auctionList);
                     _this.auctionList = auctionList;
 
-                    NotificationService.info(auctionList.length + "Auktionen gefunden...").closeAfter(2000);
+                    // NotificationService.info( "Auktionen gefunden..." ).closeAfter( 2000 );
                 } else {
                     _this.auctionList = [];
                 }
             }).fail(function () {
                 NotificationService.error("Error while searching in /auctions/paramlist").close;
             });
+        } else {
+            console.log('3');
         }
     },
     computed: {

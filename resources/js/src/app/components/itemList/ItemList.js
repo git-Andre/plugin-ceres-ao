@@ -52,7 +52,7 @@ Vue.component( "item-list", {
                         ResourceService.getResource( "auctionList" ).set( auctionList );
                         this.auctionList = auctionList;
 
-                        NotificationService.info( auctionList.length + "Auktionen gefunden..." ).closeAfter( 2000 );
+                        // NotificationService.info( "Auktionen gefunden..." ).closeAfter( 2000 );
                     }
                     else {
                         this.auctionList = [];
@@ -62,6 +62,9 @@ Vue.component( "item-list", {
                            NotificationService.error( "Error while searching in /auctions/paramlist" ).close;
                        }
                 )
+        }
+        else {
+            console.log( '3' );
         }
     },
     computed: {

@@ -38,9 +38,10 @@
         
         <ul v-if="areOnlyAuctionsInList" class="product-list row grid">
             
-            <category-item-auction-list v-for="itemDataForAuctions in itemList.documents"
+            <category-item-auction-list
+                    v-for="itemData in itemList.documents"
                     
-                    :item-data="itemDataForAuctions.data"
+                    :item-data="itemData.data"
                     :auction-list="auctionList"
                     decimal-count="{{ decimalCount }}"
                     image-url-accessor="urlMiddle"></category-item-auction-list>

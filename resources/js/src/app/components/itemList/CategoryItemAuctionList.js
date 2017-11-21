@@ -10,21 +10,27 @@ Vue.component( "category-item-auction-list", {
         "auctionList",
         "decimalCount",
         "imageUrlAccessor",
-        "itemDataForAuctions"
+        "itemData"
     ],
 
-    data: function () {
+    data() {
         return {
             // recommendedRetailPrice: 0,
             // variationRetailPrice: 0,
-            isAuction: false
+            // isAuction: false
         };
     },
 
-    created: function () {
+    created() {
         // this.variationRetailPrice = this.itemData.calculatedPrices.default.price;
-    },
 
+    },
+    ready() {
+        console.dir( this.itemData );
+        console.log( 'auctionlist:' );
+        console.dir( this.auctionList );
+
+    },
     computed: {
         /**
          * returns itemData.item.storeSpecial
@@ -34,33 +40,35 @@ Vue.component( "category-item-auction-list", {
         // },
 
         texts: function () {
-            return this.itemDataForAuctions.texts;
+            return this.itemData.texts;
         },
 
         auctionParams: function () {
 
-            var auctionParameter = [];
+            return this.auctionList;
 
-            if ( this.auctionList.length > 0 ) {
-
-                for (var i = this.auctionList.length; --i >= 0;) {
-
-                    if ( this.auctionList[i].itemId == this.itemData.item.id ) {
-
-                        this.isAuction = true;
-
-                        auctionParameter = this.auctionList[i];
-
-                        this.auctionList = [];
-
-                        return auctionParameter;
-                    }
-                }
-            }
-            else {
-                this.isAuction = false;
-            }
-            return false;
+            // var auctionParameter = [];
+            //
+            // if ( this.auctionList.length > 0 ) {
+            //
+            //     for (var i = this.auctionList.length; --i >= 0;) {
+            //
+            //         if ( this.auctionList[i].itemId == this.itemData.item.id ) {
+            //
+            //             // this.isAuction = true;
+            //
+            //             auctionParameter = this.auctionList[i];
+            //
+            //             this.auctionList = [];
+            //
+            //             return auctionParameter;
+            //         }
+            //     }
+            // }
+            // else {
+            //     // this.isAuction = false;
+            // }
+            // return false;
         }
     }
 } );
