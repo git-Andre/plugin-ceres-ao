@@ -46,7 +46,8 @@
                     <div class="square-container">
                         <div class="square-inner main-image">
                             <a href="${ itemData | itemURL }">
-                                <img class="img-fluid auction-list-thumb-fluid" :src="${itemData.images | itemImages imageUrlAccessor}">
+                                <img class="img-fluid auction-list-thumb-fluid"
+                                        :src="itemData.images | itemImages imageUrlAccessor">
                             </a>
                             
                             {#<category-image-carousel template="#vue-category-image-carousel"#}
@@ -104,32 +105,31 @@
                     <div class="col-sm-5 thumb-meta auction-list-bid-block text-right">
                         
                         
-                            <div class="auction-list-bid-text" v-if="auctionParams.tense === 'future'">
-                                
-                                <h4>{{ trans("CeresSchaffrath::Template.startPrice") }}
-                                    <span class="auction-list-gavel"><i class="fa fa-pencil fa-lg text-warning"
-                                                aria-hidden="true"></i></span></h4>
-                            </div>
-                            <div class="prices price auction-list-price">
-                                {{ auction.startPrice | formatMonetary('EUR') }} <span class="auction-list-price-star">*</span>
-                            </div>
-    
-                            <div class="auction-list-bid-text" v-if="auctionParams.tense === 'present'">
-                                        <h4>{{ trans("CeresSchaffrath::Template.highestBid") }}
-                                            <span class="auction-list-gavel"><i class="fa fa-gavel text-danger" aria-hidden="true"></i></span></h4>
-                                   </div>
+                        <div class="auction-list-bid-text" v-if="auctionParams.tense === 'future'">
                             
-                            <div class="prices price auction-list-price" v-if="auctionParams.tense === 'past' || auctionParams.tense === 'past-perfect'">
-                                    <h5>{{ trans("CeresSchaffrath::Template.closedPrice") }}
-                                        <span class="m-l-5"><i class="fa fa-lock" aria-hidden="true"></i></span></h5>
-                                </div>
-                            
-                            {#Price#}
-                            <span class="price">
+                            <h4>{{ trans("CeresSchaffrath::Template.startPrice") }}
+                                <span class="auction-list-gavel"><i class="fa fa-pencil fa-lg text-warning"
+                                            aria-hidden="true"></i></span></h4>
+                        </div>
+                        <div class="prices price auction-list-price">
+                            {{ auction.startPrice | formatMonetary('EUR') }} <span class="auction-list-price-star">*</span>
+                        </div>
+                        
+                        <div class="auction-list-bid-text" v-if="auctionParams.tense === 'present'">
+                            <h4>{{ trans("CeresSchaffrath::Template.highestBid") }}
+                                <span class="auction-list-gavel"><i class="fa fa-gavel text-danger" aria-hidden="true"></i></span></h4>
+                        </div>
+                        
+                        <div class="prices price auction-list-price"
+                                v-if="auctionParams.tense === 'past' || auctionParams.tense === 'past-perfect'">
+                            <h5>{{ trans("CeresSchaffrath::Template.closedPrice") }}
+                                <span class="m-l-5"><i class="fa fa-lock" aria-hidden="true"></i></span></h5>
+                        </div>
+                        
+                        {#Price#}
+                        <span class="price">
                                     ${ auctionParams.currentPrice | currency itemData.calculatedPrices.default.currency } <sup>*</sup>
                                 </span>
-                        
-                        </div>
                         
                         
                         {#fuss#}
@@ -139,7 +139,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- ./ITEM DETAILS  -->
+            </div>
+            <!-- ./ITEM DETAILS  -->
             </div>
         </article>
     </li>
