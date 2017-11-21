@@ -29,7 +29,7 @@
             <div class="thumb-inner auction-list-thumb">
                 
                 {#Auktion Ecke #}
-                <a href="{{ itemUrl }}">
+                <a href="${ itemData | itemURL }">
                     <div class="add-to-basket-lg-container hidden-md-down auction-basket-corner"
                             v-tooltip data-toggle="tooltip"
                             data-placement="top"
@@ -47,7 +47,8 @@
                         <div class="square-inner main-image">
                             <a href="${ itemData | itemURL }">
                                 <img class="img-fluid auction-list-thumb-fluid"
-                                        :src="itemData.images | itemImages imageUrlAccessor">
+                                        src="itemData.images.all[0].urlMiddle">
+                                        {#src="itemData.images | itemImages imageUrlAccessor">#}
                             </a>
                             
                             {#<category-image-carousel template="#vue-category-image-carousel"#}
