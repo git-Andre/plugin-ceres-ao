@@ -63,6 +63,9 @@ module.exports = (function ($) {
                                 ResourceService.getResource( "auctionList" ).set( auctionList );
 
                                 // NotificationService.info( "Auktionen enthalten..." ).closeAfter( 2000 );
+                            } else {
+
+                                ResourceService.getResource( "auctionList" ).set( [] );
                             }
                             _setIsLoading( false );
                         } )

@@ -32,8 +32,6 @@ Vue.component( "item-list", {
         ResourceService.bind( "auctionList", this );
 
         if ( this.auctionList.length === 0 && this.itemList.documents != undefined) {
-            console.log( 'drin' );
-
             // compute Array of ItemIds von itemList
             var itemIds = [];
             if ( this.itemList.documents.length > 0 ) {
@@ -47,9 +45,8 @@ Vue.component( "item-list", {
 
                     if ( auctionList != null && Array.isArray( auctionList ) && auctionList.length > 0 ) {
 
-                        // ResourceService.getResource( "auctionList" ).set( auctionList );
-                        this.auctionList = auctionList;
-                        console.log( 'auf: '  + this.auctionList.length);
+                        ResourceService.getResource( "auctionList" ).set( auctionList );
+                        // this.auctionList = auctionList;
 
                         // NotificationService.info( "Auktionen gefunden..." ).closeAfter( 2000 );
                     }
@@ -66,6 +63,5 @@ Vue.component( "item-list", {
         else {
             console.log( 'ELSE' );
         }
-
     }
 } );

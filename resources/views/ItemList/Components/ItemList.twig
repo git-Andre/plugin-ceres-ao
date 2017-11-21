@@ -23,13 +23,32 @@
             {% include "Ceres::ItemList.Partials.LoadingAnimation" %}
         {% endif %}
     
-        <ul class="product-list row grid">
+        <h3 if="auctionList">test1: ${ auctionList.length }</h3>
+        <h2 if="itemList">test1: ${ itemList.documents.length }</h2>
+        {#<h4>test4: {{ services.category.getCurrentCategory() }}</h4>#}
+    {##}
+        {#<p>auctionList: ${ auctionList }</p>#}
+        {#<p>data: ${ itemList.documents }</p>#}
+    
+        <ul v-if="auctionList.length == itemList.documents.length" class="product-list row grid">
             <category-item v-for="itemData in itemList.documents"
 
                     :item-data="itemData.data"
                     :auction-list="auctionList"
                     decimal-count="{{ decimalCount }}"
                     image-url-accessor="urlMiddle"></category-item>
+
+        </ul>
+        
+        <ul v-if="auctionList.length != itemList.documents.length" class="product-list row grid">
+            <AddToBasket v-for="itemData in itemList.documents"></AddToBasket>
+            
+            {#<category-item v-for="itemData in itemList.documents"#}
+
+                    {#:item-data="itemData.data"#}
+                    {#:auction-list="auctionList"#}
+                    {#decimal-count="{{ decimalCount }}"#}
+                    {#image-url-accessor="urlMiddle"></category-item>#}
 
         </ul>
     </div>

@@ -13823,8 +13823,6 @@ Vue.component("item-list", {
         ResourceService.bind("auctionList", this);
 
         if (this.auctionList.length === 0 && this.itemList.documents != undefined) {
-            console.log('drin');
-
             // compute Array of ItemIds von itemList
             var itemIds = [];
             if (this.itemList.documents.length > 0) {
@@ -13837,9 +13835,8 @@ Vue.component("item-list", {
 
                 if (auctionList != null && Array.isArray(auctionList) && auctionList.length > 0) {
 
-                    // ResourceService.getResource( "auctionList" ).set( auctionList );
-                    _this.auctionList = auctionList;
-                    console.log('auf: ' + _this.auctionList.length);
+                    ResourceService.getResource("auctionList").set(auctionList);
+                    // this.auctionList = auctionList;
 
                     // NotificationService.info( "Auktionen gefunden..." ).closeAfter( 2000 );
                 } else {
@@ -16867,6 +16864,9 @@ module.exports = function ($) {
                         ResourceService.getResource("auctionList").set(auctionList);
 
                         // NotificationService.info( "Auktionen enthalten..." ).closeAfter( 2000 );
+                    } else {
+
+                        ResourceService.getResource("auctionList").set([]);
                     }
                     _setIsLoading(false);
                 }).fail(function () {
