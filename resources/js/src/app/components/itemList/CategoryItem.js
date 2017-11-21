@@ -26,41 +26,41 @@ Vue.component( "category-item", {
     },
 
     computed: {
-            /**
-             * returns itemData.item.storeSpecial
-             */
-            storeSpecial: function () {
-                return this.itemData.item.storeSpecial;
-            },
+        /**
+         * returns itemData.item.storeSpecial
+         */
+        storeSpecial: function () {
+            return this.itemData.item.storeSpecial;
+        },
 
-            texts: function () {
-                return this.itemData.texts;
-            },
+        texts: function () {
+            return this.itemData.texts;
+        },
 
-            auctionParams: function () {
+        auctionParams: function () {
 
-                var auctionParameter = [];
+            var auctionParameter = [];
 
-                if ( this.auctionList.length > 0 ) {
+            if ( this.auctionList.length > 0 ) {
 
-                    for (var i = this.auctionList.length; --i >= 0;) {
+                for (var i = this.auctionList.length; --i >= 0;) {
 
-                        if ( this.auctionList[i].itemId == this.itemData.item.id ) {
+                    if ( this.auctionList[i].itemId == this.itemData.item.id ) {
 
-                            this.isAuction = true;
+                        this.isAuction = true;
 
-                            auctionParameter = this.auctionList[i];
+                        auctionParameter = this.auctionList[i];
 
-                            this.auctionList = [];
+                        this.auctionList = [];
 
-                            return auctionParameter;
-                        }
+                        return auctionParameter;
                     }
                 }
-                else {
-                    this.isAuction = false;
-                }
-                return false;
             }
+            else {
+                this.isAuction = false;
+            }
+            return false;
         }
+    }
 } );
