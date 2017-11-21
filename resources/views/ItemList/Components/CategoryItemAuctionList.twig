@@ -105,7 +105,6 @@
                         <!-- future -->
                         <div v-if="auctionParams.tense === 'future'">
                             <div class="auction-list-bid-text">
-                                
                                 <h4>{{ trans("CeresSchaffrath::Template.startPrice") }}
                                     <span class="auction-list-gavel"><i class="fa fa-pencil fa-lg text-warning"
                                                 aria-hidden="true"></i></span></h4>
@@ -123,26 +122,29 @@
                                     <span class="auction-list-gavel"><i class="fa fa-gavel text-danger" aria-hidden="true"></i></span>
                                 </h4>
                             </div>
+                            <div class="prices price auction-list-price">
+                                ${ auctionParams.currentPrice | currency itemData.calculatedPrices.default.currency }
+                                <span class="auction-list-price-star">*</span>
+                            </div>
                         </div>
                         
                         <!-- past -->
                         <div v-if="auctionParams.tense === 'past' || auctionParams.tense === 'past-perfect'">
-                            <div class="prices price auction-list-price"
-                            >
-                                <h5>{{ trans("CeresSchaffrath::Template.closedPrice") }}
-                                    <span class="m-l-5"><i class="fa fa-lock" aria-hidden="true"></i></span></h5>
+                            <div class="auction-list-bid-text">
+                                <h4>{{ trans("CeresSchaffrath::Template.closedPrice") }}
+                                    <span class="m-l-5"><i class="fa fa-lock" aria-hidden="true"></i></span></h4>
                             </div>
-                            {#Price#}
-                            <span class="price">
-                                    ${ auctionParams.currentPrice | currency itemData.calculatedPrices.default.currency } <sup>*</sup>
-                                </span>
+                            <div class="prices price auction-list-price">
+                                ${ auctionParams.currentPrice | currency itemData.calculatedPrices.default.currency }
+                                <span class="auction-list-price-star">*</span>
+                            </div>
                         </div>
-                    </div>
-                    
-                    {#fuss#}
-                    <div class="vat-porto-info small text-muted text-right auction-list-porto">
-                        * {{ trans("Ceres::Template.itemExclusive") }} {{ trans("CeresSchaffrath::Template.surcharge") }}
-                        <span class="m-x-1">|</span>{{ trans("Ceres::Template.itemInclVAT") }}
+                        
+                        {#fuss#}
+                        <div class="vat-porto-info small text-muted text-right auction-list-porto">
+                            * {{ trans("Ceres::Template.itemExclusive") }} {{ trans("CeresSchaffrath::Template.surcharge") }}
+                            <span class="m-x-5">|</span>{{ trans("Ceres::Template.itemInclVAT") }}
+                        </div>
                     </div>
                 </div>
             </div>
