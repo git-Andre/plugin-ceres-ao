@@ -37,14 +37,13 @@
         </ul>
         
         <ul v-if="areOnlyAuctionsInList" class="product-list row grid">
-            <p v-for="itemData in itemList.documents">
-                
-                <category-item-auction-list v-for="itemDataForAuctions in itemList.documents"
             
-                        :item-data="itemDataForAuctions.data"
-                        :auction-list="auctionList"
-                        decimal-count="{{ decimalCount }}"
-                        image-url-accessor="urlMiddle"></category-item-auction-list>
+            <category-item-auction-list v-for="itemDataForAuctions in itemList.documents"
+                    
+                    :item-data="itemDataForAuctions.data"
+                    :auction-list="auctionList"
+                    decimal-count="{{ decimalCount }}"
+                    image-url-accessor="urlMiddle"></category-item-auction-list>
         
         </ul>
     </div>

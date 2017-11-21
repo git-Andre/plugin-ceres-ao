@@ -13779,30 +13779,30 @@ Vue.component("category-item-auction-list", {
 
     template: "#vue-category-item-auction-list",
 
-    props: ["auctionList", "decimalCount", "imageUrlAccessor", "itemData"],
+    props: ["auctionList", "decimalCount", "imageUrlAccessor", "itemDataForAuctions"],
 
     data: function data() {
         return {
             // recommendedRetailPrice: 0,
-            variationRetailPrice: 0,
+            // variationRetailPrice: 0,
             isAuction: false
         };
     },
 
     created: function created() {
-        this.variationRetailPrice = this.itemData.calculatedPrices.default.price;
+        // this.variationRetailPrice = this.itemData.calculatedPrices.default.price;
     },
 
     computed: {
         /**
          * returns itemData.item.storeSpecial
          */
-        storeSpecial: function storeSpecial() {
-            return this.itemData.item.storeSpecial;
-        },
+        // storeSpecial: function () {
+        //     return this.itemData.item.storeSpecial;
+        // },
 
         texts: function texts() {
-            return this.itemData.texts;
+            return this.itemDataForAuctions.texts;
         },
 
         auctionParams: function auctionParams() {
