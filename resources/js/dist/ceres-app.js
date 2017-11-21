@@ -13839,15 +13839,18 @@ Vue.component("item-list", {
 
                     // ResourceService.getResource( "auctionList" ).set( auctionList );
                     _this.auctionList = auctionList;
+                    console.log('auf: ' + _this.auctionList.length);
 
                     // NotificationService.info( "Auktionen gefunden..." ).closeAfter( 2000 );
+                } else {
+                    _this.auctionList = [];
+                    console.log('auf 0');
                 }
             }).fail(function () {
                 NotificationService.error("Error while searching in /auctions/paramlist").close;
             });
         } else {
             console.log('ELSE');
-            this.auctionList = [];
         }
     }
 });

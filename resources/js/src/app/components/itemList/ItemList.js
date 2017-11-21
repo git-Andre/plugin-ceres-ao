@@ -49,8 +49,13 @@ Vue.component( "item-list", {
 
                         // ResourceService.getResource( "auctionList" ).set( auctionList );
                         this.auctionList = auctionList;
+                        console.log( 'auf: '  + this.auctionList.length);
 
                         // NotificationService.info( "Auktionen gefunden..." ).closeAfter( 2000 );
+                    }
+                   else {
+                        this.auctionList = [];
+                        console.log( 'auf 0' );
                     }
                 } )
                 .fail( () => {
@@ -60,7 +65,6 @@ Vue.component( "item-list", {
         }
         else {
             console.log( 'ELSE' );
-            this.auctionList = [];
         }
 
     }
