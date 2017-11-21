@@ -28,8 +28,6 @@
         
         <ul v-if="!areOnlyAuctionsInList" class="product-list row grid">
             <category-item
-                    {#template="#vue-category-item"#}
-        
                     v-for="itemData in itemList.documents"
                     :item-data="itemData.data"
                     :auction-list="auctionList"
@@ -41,9 +39,7 @@
         <ul v-if="areOnlyAuctionsInList" class="product-list row grid">
             
             <category-item-auction-list
-                    {#template="#vue-category-item-auction-list"#}
                     v-for="itemData in itemList.documents"
-                    
                     :item-data="itemData.data"
                     :auction-list="auctionList"
                     {#decimal-count="{{ decimalCount }}"#}

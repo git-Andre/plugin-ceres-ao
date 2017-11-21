@@ -50,7 +50,7 @@
             </div>
         </div>
         
-
+        
         <!-- Auction Banner -->
         <div class="auction-category-item-special auction-list-special">
             {% if auction.tense == 'future' %}
@@ -64,7 +64,6 @@
         <!-- ./Auction Banner -->
         
         <!-- ITEM DETAILS CeresSchaffrath -->
-        
         <div class="col-xs-6 col-sm-8 auction-list-content">
             <div class="col-sm-7 auction-list-title-block">
                 
@@ -74,26 +73,26 @@
                 <hr class="m-t-5 m-b-1">
                 
                 <dl class="auction-list-bidderinfos">
-                     <!-- Anzahl Gebote -->
-                    <dt class="auction-list-bidderinfos-dt">{{ trans("PluginAuctions::Template.countOffers") }}</dt>
+                    <!-- Anzahl Gebote -->
+                    <dt class="auction-list-bidderinfos-dt">{{ trans("PluginAuctions::Template.countBids") }}</dt>
                     <dd class="auction-list-bidderinfos-dd">{{ bidderListLength - 1 }}</dd>
-        
-                     <!-- Anzahl Besucher -->
+                    
+                    <!-- Anzahl Besucher -->
                     <dt class="auction-list-bidderinfos-dt">{{ trans("PluginAuctions::Template.countVisitors") }}</dt>
                     <dd class="auction-list-bidderinfos-dd">{{ numberOfVisitors }}</dd>
-        
-                     <!-- Restzeit -->
+                    
+                    <!-- Restzeit -->
                     <dt class="auction-list-bidderinfos-dt">{{ trans("PluginAuctions::Template.timeLeft") }}</dt>
                     <dd class="auction-list-bidderinfos-dd">
                         <auction-countdown-itemlists
-                            template="#vue-auction-countdown-itemlists"
-                            enddate="{{ auction.expiryDate }}"
+                                template="#vue-auction-countdown-itemlists"
+                                enddate="{{ auction.expiryDate }}"
                         >
                         </auction-countdown-itemlists>
                     </dd>
                     {#<dd class="auction-list-bidderinfos-dd">2T 13Std (13.15.2017)</dd>#}
                 </dl>
-
+            
             </div>
             
             <div class="col-sm-5 thumb-meta auction-list-bid-block text-right">
@@ -140,7 +139,7 @@
                 
                 <div class="vat-porto-info small text-muted text-right auction-list-porto">
                     * {{ trans("Ceres::Template.itemExclusive") }} {{ trans("CeresSchaffrath::Template.surcharge") }}
-                    | {{ trans("Ceres::Template.itemInclVAT") }}
+                    <span class="m-x-1">|</span>{{ trans("Ceres::Template.itemInclVAT") }}
                 </div>
             </div>
         </div>

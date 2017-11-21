@@ -16,13 +16,7 @@
     {% endif %}
 {% endif %}
 
-{#{% set numberOfVisitors = auctions.visitorCounter.getNumberOfVisitorsForLists(auction.itemId) %}#}
-
-{#{% set bidderListLast = auction.bidderList | last %}#}
-{#{% set bidderListLength = auction.bidderList | length %}#}
-
 <script type="x/template" id="vue-category-item-auction-list">
-    {#<li class="col-xs-12 col-sm-6 col-md-4 col-lg-{% if (showHeaderNavBar == "side" or showHeaderNavBar == "both") and not services.template.isSearch() %}4{% else %}3{% endif %}">#}
     <li class="col-xs-12">
         
         <article class="cmp cmp-product-thumb cmp-product-thumb--grid auction-list-article">
@@ -48,28 +42,10 @@
                             <a href="${ itemData | itemURL }">
                                 <img class="img-fluid auction-list-thumb-fluid"
                                         src="${itemData.images.all[0].urlMiddle}">
-                                        {#src="itemData.images | itemImages imageUrlAccessor">#}
                             </a>
-                            
-                            {#<category-image-carousel template="#vue-category-image-carousel"#}
-                            {#:image-urls="itemData.images | itemImages imageUrlAccessor"#}
-                            {#:alt-text="texts | itemName {{ configItemName }}"#}
-                            {#:item-url="itemData | itemURL"#}
-                            {#:show-dots="{{ config("Ceres.item.category_show_dots") | json_encode() }}"#}
-                            {#:show-nav="{{ config("Ceres.item.category_show_nav") | json_encode() }}"#}
-                            {#:enable-carousel="{{ enableCarousel }}">#}
-                            {#</category-image-carousel>#}
                         </div>
                     </div>
                 </div>
-                
-                {#<!-- STORE SPECIALS -->#}
-                {#<item-store-special#}
-                {#v-if="storeSpecial"#}
-                {#:store-special="storeSpecial"#}
-                {#:variation-retail-price="variationRetailPrice"#}
-                {#:decimal-count="decimalCount"></item-store-special>#}
-                {#<!-- ./STORE SPECIALS -->#}
                 
                 <!-- Banner custom  Auktionen -->
                 <div class="auction-category-item-special auction-list-special">
@@ -89,19 +65,44 @@
                 
                 <!-- ITEM DETAILS -->
                 <div class="col-xs-6 col-sm-8 auction-list-content">
+                    {#Texte links #}
                     <div class="col-sm-7 auction-list-title-block">
                         
-                        {#Text#}
                         <div class="cat-item-titel-ao">
                             {#magic helper... ??? :) todo: begreifen... :)#}
-                            <p v-show="false" class="thumb-title small">${ auctionParams.itemId }</p>
+                            {#<p v-show="false" class="thumb-title small">${ auctionParams.itemId }</p>#}
                             
-                            <p class="thumb-title"><a href="${ itemData | itemURL }">${ texts.name2 }</a></p>
-                            <p class="thumb-title small">${ texts.name3 }</p>
-                        
-                        
+                            
+                            <p class="thumb-title auction-list-thumb-title"><a href="${ itemData | itemURL }">${ texts.name2}</a></p>
+                            
+                            {#<p class="thumb-title auction-list-thumb-title-small">{{ item.data.texts | itemName(2) }}</p>#}
+                            <hr class="m-t-5 m-b-1">
+                            
+                            <dl class="auction-list-bidderinfos">
+                                <!-- Anzahl Gebote -->
+                                <dt class="auction-list-bidderinfos-dt">{{ trans("PluginAuctions::Template.countBids") }}</dt>
+                                <dd class="auction-list-bidderinfos-dd">${ auctionParams.numberOfBids }</dd>
+                                
+                                <!-- Anzahl Besucher -->
+                                <dt class="auction-list-bidderinfos-dt">{{ trans("PluginAuctions::Template.countVisitors") }}</dt>
+                                <dd class="auction-list-bidderinfos-dd">${ auctionParams.numberOfVisitors }</dd>
+                                
+                                <!-- Restzeit -->
+                                <dt class="auction-list-bidderinfos-dt">{{ trans("PluginAuctions::Template.timeLeft") }}</dt>
+                                
+                                
+                                <dd class="auction-list-bidderinfos-dd">
+                                    <auction-countdown-itemlists
+                                            template="#vue-auction-countdown-itemlists"
+                                            enddate="${ auctionParams.deadline }"
+                                    >
+                                    </auction-countdown-itemlists>
+                                </dd>
+                            </dl>
                         </div>
                     </div>
+                    
+                    
                     {#Preis und info  #}
                     <div class="col-sm-5 thumb-meta auction-list-bid-block text-right">
                         
@@ -136,7 +137,7 @@
                         {#fuss#}
                         <div class="vat-porto-info small text-muted text-right auction-list-porto">
                             * {{ trans("Ceres::Template.itemExclusive") }} {{ trans("CeresSchaffrath::Template.surcharge") }}
-                            | {{ trans("Ceres::Template.itemInclVAT") }}
+                            <span class="m-x-1">|</span>{{ trans("Ceres::Template.itemInclVAT") }}
                         </div>
                     </div>
                 </div>
