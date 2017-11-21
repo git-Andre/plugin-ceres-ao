@@ -26,9 +26,6 @@ Vue.component( "category-item-auction-list", {
 
     },
     ready() {
-        console.dir( this.itemData );
-        console.log( 'auctionlist:' );
-        console.dir( this.auctionList );
 
     },
     computed: {
