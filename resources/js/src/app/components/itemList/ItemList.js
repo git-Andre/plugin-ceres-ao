@@ -31,7 +31,7 @@ Vue.component( "item-list", {
         ResourceService.bind( "isLoading", this );
         ResourceService.bind( "auctionList", this );
 
-        if ( this.auctionList.length === 0 && this.itemList.documents != undefined) {
+        if ( this.auctionList.length === 0 && this.itemList.documents != undefined ) {
             // compute Array of ItemIds von itemList
             var itemIds = [];
             if ( this.itemList.documents.length > 0 ) {
@@ -50,7 +50,7 @@ Vue.component( "item-list", {
 
                         // NotificationService.info( "Auktionen gefunden..." ).closeAfter( 2000 );
                     }
-                   else {
+                    else {
                         this.auctionList = [];
                         console.log( 'auf 0' );
                     }
@@ -62,6 +62,15 @@ Vue.component( "item-list", {
         }
         else {
             console.log( 'ELSE' );
+        }
+    },
+    computed: {
+        onlyAuctionsInList: () => {
+            if (this.itemList.documents.length === this.auctionList.length ) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 } );

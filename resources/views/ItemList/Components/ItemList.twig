@@ -18,38 +18,37 @@
     <div id="vue-rendered-item-list"
             class="item-list-frame{% if loadingAnimationType == "blur" %} blur-effect{% endif %}"
             v-bind:class="{ 'loading': isLoading, 'is-loaded': !isLoading }">
-
+        
         {% if loadingAnimationType != "blur" %}
             {% include "Ceres::ItemList.Partials.LoadingAnimation" %}
         {% endif %}
-    
+        
         <h3 if="auctionList">test1: ${ auctionList.length }</h3>
         <h2 if="itemList">test1: ${ itemList.documents.length }</h2>
-        {#<h4>test4: {{ services.category.getCurrentCategory() }}</h4>#}
-    {##}
-        {#<p>auctionList: ${ auctionList }</p>#}
-        {#<p>data: ${ itemList.documents }</p>#}
-    
-        <ul v-if="auctionList.length == itemList.documents.length" class="product-list row grid">
+        <h4>sind hier nur Auktionen?${onlyAuctionsInList}</h4>
+        
+        <ul v-if="!onlyAuctionsInList" class="product-list row grid">
             <category-item v-for="itemData in itemList.documents"
-
+                    
                     :item-data="itemData.data"
                     :auction-list="auctionList"
                     decimal-count="{{ decimalCount }}"
                     image-url-accessor="urlMiddle"></category-item>
-
+        
         </ul>
         
-        <ul v-if="auctionList.length != itemList.documents.length" class="product-list row grid">
-            <AddToBasket v-for="itemData in itemList.documents"></AddToBasket>
+        <ul v-if="onlyAuctionsInList" class="product-list row grid">
+            <p v-for="itemData in itemList.documents">
+                ${itemData.id}
+            </p>
             
             {#<category-item v-for="itemData in itemList.documents"#}
-
-                    {#:item-data="itemData.data"#}
-                    {#:auction-list="auctionList"#}
-                    {#decimal-count="{{ decimalCount }}"#}
-                    {#image-url-accessor="urlMiddle"></category-item>#}
-
+            
+            {#:item-data="itemData.data"#}
+            {#:auction-list="auctionList"#}
+            {#decimal-count="{{ decimalCount }}"#}
+            {#image-url-accessor="urlMiddle"></category-item>#}
+        
         </ul>
     </div>
 </script>
