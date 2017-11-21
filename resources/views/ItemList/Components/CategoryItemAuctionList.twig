@@ -1,0 +1,137 @@
+{{ component( "Ceres::Basket.Components.AddToBasket" ) }}
+{{ component( "Ceres::ItemList.Components.CountdownItemLists" ) }}
+
+{% set showHeaderNavBar = config("Ceres.header.show_navbars") %}
+{% set configItemName = config("Ceres.item.name") %}
+
+
+{% set lang = services.sessionStorage.getLang() %}
+{% set shippingCat = config("Ceres.global.shippingCostsCategoryId") %}
+
+{% if enableCarousel is not defined %}
+    {% if config("Ceres.item.enable_image_carousel") == "true" %}
+        {% set enableCarousel = "true" %}
+    {% else %}
+        {% set enableCarousel = "false" %}
+    {% endif %}
+{% endif %}
+
+{#{% set numberOfVisitors = auctions.visitorCounter.getNumberOfVisitorsForLists(auction.itemId) %}#}
+
+{#{% set bidderListLast = auction.bidderList | last %}#}
+{#{% set bidderListLength = auction.bidderList | length %}#}
+
+<script type="x/template" id="vue-category-item-auction-list">
+    <li class="col-xs-12 col-sm-6 col-md-4 col-lg-{% if (showHeaderNavBar == "side" or showHeaderNavBar == "both") and not services.template.isSearch() %}4{% else %}3{% endif %}">
+        
+        <article class="cmp cmp-product-thumb cmp-product-thumb--grid">
+            <div class="thumb-inner">
+                
+                <div class="thumb-background"></div>
+                
+                {#Auktion Ecke #}
+                <a href="{{ itemUrl }}">
+                    <div class="add-to-basket-lg-container hidden-md-down auction-basket-corner"
+                            v-tooltip data-toggle="tooltip"
+                            data-placement="top"
+                            title="{{ trans("CeresSchaffrath::Template.goToAuction") }}">
+                        
+                        <i class="fa fa-gavel fa-lg mobile-icon-right"></i>
+                    </div>
+                </a>
+                
+                {#images#}
+                <div class="thumb-image">
+                    <div class="square-container">
+                        <div class="square-inner main-image">
+                            <category-image-carousel template="#vue-category-image-carousel"
+                                    :image-urls="itemData.images | itemImages imageUrlAccessor"
+                                    :alt-text="texts | itemName {{ configItemName }}"
+                                    :item-url="itemData | itemURL"
+                                    :show-dots="{{ config("Ceres.item.category_show_dots") | json_encode() }}"
+                                    :show-nav="{{ config("Ceres.item.category_show_nav") | json_encode() }}"
+                                    :enable-carousel="{{ enableCarousel }}">
+                            </category-image-carousel>
+                        </div>
+                    </div>
+                </div>
+                
+                {#<!-- STORE SPECIALS -->#}
+                {#<item-store-special#}
+                        {#v-if="storeSpecial"#}
+                        {#:store-special="storeSpecial"#}
+                        {#:variation-retail-price="variationRetailPrice"#}
+                        {#:decimal-count="decimalCount"></item-store-special>#}
+                {#<!-- ./STORE SPECIALS -->#}
+                
+                <!-- Banner custom  Auktionen -->
+                <div class="auction-category-item-special auction-list-special">
+                    <h1 class="auction-special-tag"
+                            v-if="auctionParams.tense === 'future'"
+                    >{{ trans("CeresSchaffrath::Template.auctionFuture") }}</h1>
+                    
+                    <h1 class="auction-special-tag"
+                            v-if="auctionParams.tense === 'present'"
+                    >{{ trans("CeresSchaffrath::Template.auctionPresent") }}</h1>
+                    
+                    <h1 class="auction-special-tag"
+                            v-if="auctionParams.tense === 'past' || auctionParams.tense === 'past-perfect'"
+                    >{{ trans("CeresSchaffrath::Template.auctionPast") }}</h1>
+                </div>
+                
+                
+                <!-- ITEM DETAILS -->
+                <div class="thumb-content">
+                    
+                    {#Text#}
+                    <div class="cat-item-titel-ao">
+                        <p class="thumb-title"><a href="${ itemData | itemURL }">${ texts.name2 }</a></p>
+                        <p class="thumb-title small">${ texts.name3 }</p>
+                        
+                        {#magic helper... ??? :) todo: begreifen... :)#}
+                        <p v-show="false" class="thumb-title small">${ auctionParams.itemId }</p>
+                        
+                    </div>
+                    
+                    {#Preis und info  #}
+                    <div class="thumb-meta">
+                        
+                        <div class="prices">
+                            <span class="m-x-2" v-if="auctionParams.tense === 'future'">
+                                        <h5>{{ trans("CeresSchaffrath::Template.startPrice") }}
+                                            <span class="m-l-5"><i class="fa fa-pencil-square-o text-warning"
+                                                        aria-hidden="true"></i></span></h5>
+                                    </span>
+                            
+                            <span class="m-x-2" v-if="auctionParams.tense === 'present'">
+                                        <h5>{{ trans("CeresSchaffrath::Template.highestBid") }}
+                                            <span class="m-l-5"><i class="fa fa-gavel text-danger" aria-hidden="true"></i></span></h5>
+                                   </span>
+                            
+                            <span class="m-x-2" v-if="auctionParams.tense === 'past' || auctionParams.tense === 'past-perfect'">
+                                    <h5>{{ trans("CeresSchaffrath::Template.closedPrice") }}
+                                        <span class="m-l-5"><i class="fa fa-lock" aria-hidden="true"></i></span></h5>
+                                </span>
+                            
+                            {#Price#}
+                            <span class="price">
+                                    ${ auctionParams.currentPrice | currency itemData.calculatedPrices.default.currency } <sup>*</sup>
+                                </span>
+                        
+                        </div>
+                        <div>
+                            {#fuss#}
+                            <span v-if="isAuction" class="vat-porto-info small text-muted">
+                                <sup>*</sup> {{ trans("Ceres::Template.itemExclusive") }} {{ trans("CeresSchaffrath::Template.surcharge") }}
+                                | {{ trans("Ceres::Template.itemInclVAT") }}
+                            </span>
+                        
+                        </div>
+                    
+                    </div>
+                </div>
+                <!-- ./ITEM DETAILS  -->
+            </div>
+        </article>
+    </li>
+</script>

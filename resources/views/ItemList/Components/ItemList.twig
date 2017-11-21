@@ -9,6 +9,8 @@
 {{ component( "Ceres::ItemList.Components.ItemLazyImg" ) }}
 {{ component( "Ceres::ItemList.Components.ItemStoreSpecial" ) }}
 
+{{ component( "Ceres::ItemList.Components.CategoryItemAuctionList" ) }}
+
 <resource name="isLoading" :data="false"></resource>
 <resource name="auctionList" :data="[]"></resource>
 {#<resource name="auctionList" :data="{{ auctions.auction.getAuctionParamsListForCategoryItem([46987]) }}"></resource>#}
@@ -23,10 +25,6 @@
             {% include "Ceres::ItemList.Partials.LoadingAnimation" %}
         {% endif %}
         
-        {#<h3 if="auctionList">auctionList: ${ auctionList.length }</h3>#}
-        {#<h2 if="itemList">itemList: ${ itemList.documents.length }</h2>#}
-        
-        <h4>sind hier nur Auktionen?: ${areOnlyAuctionsInList}</h4>
         
         <ul v-if="!areOnlyAuctionsInList" class="product-list row grid">
             <category-item v-for="itemData in itemList.documents"
@@ -40,15 +38,13 @@
         
         <ul v-if="areOnlyAuctionsInList" class="product-list row grid">
             <p v-for="itemData in itemList.documents">
-                ${itemData.id}
-            </p>
+                
+                <category-item-auction-list v-for="itemData in itemList.documents"
             
-            {#<category-item v-for="itemData in itemList.documents"#}
-            
-            {#:item-data="itemData.data"#}
-            {#:auction-list="auctionList"#}
-            {#decimal-count="{{ decimalCount }}"#}
-            {#image-url-accessor="urlMiddle"></category-item>#}
+                        :item-data="itemData.data"
+                        :auction-list="auctionList"
+                        decimal-count="{{ decimalCount }}"
+                        image-url-accessor="urlMiddle"></category-item-auction-list>
         
         </ul>
     </div>

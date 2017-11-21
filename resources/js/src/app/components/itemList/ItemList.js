@@ -52,11 +52,10 @@ Vue.component( "item-list", {
                         ResourceService.getResource( "auctionList" ).set( auctionList );
                         this.auctionList = auctionList;
 
-                        // NotificationService.info( "Auktionen gefunden..." ).closeAfter( 2000 );
+                        NotificationService.info( auctionList.length + "Auktionen gefunden..." ).closeAfter( 2000 );
                     }
                     else {
                         this.auctionList = [];
-                        console.log( 'auf 0' );
                     }
                 } )
                 .fail( () => {
@@ -64,31 +63,16 @@ Vue.component( "item-list", {
                        }
                 )
         }
-        else {
-            console.log( 'test' );
-        }
     },
     computed: {
         areOnlyAuctionsInList() {
 
-            if ( !this.auctionList || this.itemList.documents == undefined ) {
+            if ( this.itemList.documents == undefined ) {
                 return false;
             }
             else {
-
                 return this.itemList.documents.length === this.auctionList.length;
             }
-            // var onlyAuction = false;
-            // console.log( 'watch' );
-            // if (  ) {
-            //     console.log( 'beides da...' );
-            //     this.areOnlyAuctionsInList = true;
-            // }
-            // // }
-            // else {
-            //     this.areOnlyAuctionsInList = false;
-            // }
-            // // return true;
         }
     }
 } );
