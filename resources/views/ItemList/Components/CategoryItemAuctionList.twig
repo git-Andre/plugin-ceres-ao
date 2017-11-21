@@ -62,23 +62,20 @@
                     >{{ trans("CeresSchaffrath::Template.auctionPast") }}</h1>
                 </div>
                 
-                
                 <!-- ITEM DETAILS -->
                 <div class="col-xs-6 col-sm-8 auction-list-content">
                     {#Texte links #}
                     <div class="col-sm-7 auction-list-title-block">
                         
                         <div class="cat-item-titel-ao">
-                            {#magic helper... ??? :) todo: begreifen... :)#}
-                            {#<p v-show="false" class="thumb-title small">${ auctionParams.itemId }</p>#}
-                            
-                            
+
                             <p class="thumb-title auction-list-thumb-title"><a href="${ itemData | itemURL }">${ texts.name2}</a></p>
-                            
                             {#<p class="thumb-title auction-list-thumb-title-small">{{ item.data.texts | itemName(2) }}</p>#}
+                            
                             <hr class="m-t-5 m-b-1">
                             
                             <dl class="auction-list-bidderinfos">
+                                
                                 <!-- Anzahl Gebote -->
                                 <dt class="auction-list-bidderinfos-dt">{{ trans("PluginAuctions::Template.countBids") }}</dt>
                                 <dd class="auction-list-bidderinfos-dd">${ auctionParams.numberOfBids }</dd>
@@ -90,7 +87,6 @@
                                 <!-- Restzeit -->
                                 <dt class="auction-list-bidderinfos-dt">{{ trans("PluginAuctions::Template.timeLeft") }}</dt>
                                 
-                                
                                 <dd class="auction-list-bidderinfos-dd">
                                     <auction-countdown-itemlists
                                             template="#vue-auction-countdown-itemlists"
@@ -101,6 +97,11 @@
                             </dl>
                         </div>
                     </div>
+                    
+                    
+                    
+                    
+                    
                     
                     
                     {#Preis und info  #}
