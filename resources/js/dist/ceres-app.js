@@ -13807,8 +13807,8 @@ Vue.component("item-list", {
             itemList: {},
             auctionList: [],
             isLoading: false,
-            filterListState: false,
-            areOnlyAuctionsInList: false
+            // areOnlyAuctionsInList: false,
+            filterListState: false
         };
     },
 
@@ -13818,7 +13818,7 @@ Vue.component("item-list", {
         ItemListService.setCategoryId(this.categoryId);
         this.auctionList = [];
 
-        areOnlyAuctionsInList = false;
+        // this.areOnlyAuctionsInList = false;
     },
 
     ready: function ready() {
@@ -13856,18 +13856,26 @@ Vue.component("item-list", {
             console.log('test');
         }
     },
-    watch: {
+    computed: {
         areOnlyAuctionsInList: function areOnlyAuctionsInList() {
-            // if ( this.auctionList != undefined && this.itemList.documents != undefined ) {
 
-            if (this.itemList.documents.length == this.auctionList.length) {
-                this.areOnlyAuctionsInList = true;
+            if (!this.auctionList || this.itemList.documents == undefined) {
+                return false;
+            } else {
+
+                return this.itemList.documents.length === this.auctionList.length;
             }
+            // var onlyAuction = false;
+            // console.log( 'watch' );
+            // if (  ) {
+            //     console.log( 'beides da...' );
+            //     this.areOnlyAuctionsInList = true;
             // }
-            else {
-                    this.areOnlyAuctionsInList = false;
-                }
-            // return true;
+            // // }
+            // else {
+            //     this.areOnlyAuctionsInList = false;
+            // }
+            // // return true;
         }
     }
 });
