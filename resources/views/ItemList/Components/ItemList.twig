@@ -23,8 +23,8 @@
             {% include "Ceres::ItemList.Partials.LoadingAnimation" %}
         {% endif %}
         
-        <h3 if="auctionList">test1: ${ auctionList.length }</h3>
-        <h2 if="itemList">test1: ${ itemList.documents.length }</h2>
+        {#<h3 if="auctionList">test1: ${ auctionList.length }</h3>#}
+        {#<h2 if="itemList">test1: ${ itemList.documents.length }</h2>#}
         <h4>sind hier nur Auktionen?${onlyAuctionsInList}</h4>
         
         <ul v-if="!onlyAuctionsInList" class="product-list row grid">

@@ -61,16 +61,21 @@ Vue.component( "item-list", {
                 )
         }
         else {
-            console.log( 'ELSE' );
+            console.log( 'rotz' );
         }
     },
     computed: {
         onlyAuctionsInList: () => {
-            if (this.itemList.documents.length === this.auctionList.length ) {
-                return true;
-            } else {
-                return false;
-            }
+            // if ( this.auctionList.length != 0 && this.itemList.documents != undefined ) {
+            //
+            //     if ( this.itemList.documents.length == this.auctionList.length ) {
+            //         return true;
+            //     }
+            // }
+            // else {
+            //     return false;
+            // }
+            return true;
         }
     }
 } );

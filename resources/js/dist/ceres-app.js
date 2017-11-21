@@ -13847,7 +13847,21 @@ Vue.component("item-list", {
                 NotificationService.error("Error while searching in /auctions/paramlist").close;
             });
         } else {
-            console.log('ELSE');
+            console.log('rotz');
+        }
+    },
+    computed: {
+        onlyAuctionsInList: function onlyAuctionsInList() {
+            // if ( this.auctionList.length != 0 && this.itemList.documents != undefined ) {
+            //
+            //     if ( this.itemList.documents.length == this.auctionList.length ) {
+            //         return true;
+            //     }
+            // }
+            // else {
+            //     return false;
+            // }
+            return true;
         }
     }
 });
