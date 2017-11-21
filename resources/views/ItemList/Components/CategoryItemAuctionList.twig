@@ -46,7 +46,7 @@
                     <div class="square-container">
                         <div class="square-inner main-image">
                             <a href="${ itemData | itemURL }">
-                                <img class="img-fluid auction-list-thumb-fluid" src="${itemData.images | itemImages imageUrlAccessor}">
+                                <img class="img-fluid auction-list-thumb-fluid" :src="${itemData.images | itemImages imageUrlAccessor}">
                             </a>
                             
                             {#<category-image-carousel template="#vue-category-image-carousel"#}
