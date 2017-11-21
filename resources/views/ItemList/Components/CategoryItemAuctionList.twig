@@ -47,7 +47,7 @@
                         <div class="square-inner main-image">
                             <a href="${ itemData | itemURL }">
                                 <img class="img-fluid auction-list-thumb-fluid"
-                                        src="itemData.images.all[0].urlMiddle">
+                                        src="${itemData.images.all[0].urlMiddle}">
                                         {#src="itemData.images | itemImages imageUrlAccessor">#}
                             </a>
                             
@@ -73,15 +73,15 @@
                 
                 <!-- Banner custom  Auktionen -->
                 <div class="auction-category-item-special auction-list-special">
-                    <h1 class="auction-special-tag"
+                    <h1 class="auction-list-special-tag"
                             v-if="auctionParams.tense === 'future'"
                     >{{ trans("CeresSchaffrath::Template.auctionFuture") }}</h1>
                     
-                    <h1 class="auction-special-tag"
+                    <h1 class="auction-list-special-tag"
                             v-if="auctionParams.tense === 'present'"
                     >{{ trans("CeresSchaffrath::Template.auctionPresent") }}</h1>
                     
-                    <h1 class="auction-special-tag"
+                    <h1 class="auction-list-special-tag"
                             v-if="auctionParams.tense === 'past' || auctionParams.tense === 'past-perfect'"
                     >{{ trans("CeresSchaffrath::Template.auctionPast") }}</h1>
                 </div>

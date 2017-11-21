@@ -39,7 +39,7 @@ Vue.component( "category-item", {
 
         auctionParams: function () {
 
-            var auctionParameter = [];
+            var auctionParameter = {};
 
             if ( this.auctionList.length > 0 ) {
 
