@@ -13779,7 +13779,7 @@ Vue.component("category-item-auction-list", {
 
     template: "#vue-category-item-auction-list",
 
-    props: ["auctionList", "decimalCount", "imageUrlAccessor", "itemDataForAuctions"],
+    props: ["auctionList", "decimalCount", "imageUrlAccessor", "itemData"],
 
     data: function data() {
         return {
@@ -13793,7 +13793,7 @@ Vue.component("category-item-auction-list", {
 
     },
     ready: function ready() {
-        console.dir(this.itemDataForAuctions);
+        console.dir(this.itemData);
         console.log('auctionlist:');
         console.dir(this.auctionList);
     },
@@ -13807,7 +13807,7 @@ Vue.component("category-item-auction-list", {
         // },
 
         texts: function texts() {
-            return this.itemDataForAuctions.texts;
+            return this.itemData.texts;
         },
 
         auctionParams: function auctionParams() {
@@ -13820,7 +13820,7 @@ Vue.component("category-item-auction-list", {
             //
             //     for (var i = this.auctionList.length; --i >= 0;) {
             //
-            //         if ( this.auctionList[i].itemId == this.itemDataForAuctions.item.id ) {
+            //         if ( this.auctionList[i].itemId == this.itemData.item.id ) {
             //
             //             // this.isAuction = true;
             //
