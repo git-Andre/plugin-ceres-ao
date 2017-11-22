@@ -52,8 +52,6 @@
     <resource name="facets" :data="{{ paginatedResult.facets | json_encode }} || []"></resource>
     <resource name="itemList" :data="{ total: {{ paginatedResult.total | json_encode() }} }"></resource>
     
-    {% set areAllItemsAuctions = services.auctions.areAllItemsAuctions(itemList) %}
-    
     
     <!-- ao Var-Dump -->
     {% include "CeresSchaffrath::VarDump" with { 'testDescription': 'areAllItemsAuctions', 'dumpData': areAllItemsAuctions } %}
@@ -110,7 +108,9 @@
                 </div>
             
             {% endif %}
-            
+    
+            {% set areAllItemsAuctions = auctions.auction.areAllItemsAuctions(itemList) %}
+    
             <div class="col-xs-12 col-lg-{% if showHeaderNavBar == "side" or showHeaderNavBar == "both" %}9{% else %}12{% endif %}">
                 
                 <div id="twig-rendered-item-list"
@@ -121,7 +121,7 @@
                     {% endif %}
                     
                     <ul class="product-list grid" v-is-loading-watcher>
-                        {% if isCategoryAuction %}
+                        {% if areAllItemsAuctions %}
                             
                             {% for item in itemList %}
                                 
