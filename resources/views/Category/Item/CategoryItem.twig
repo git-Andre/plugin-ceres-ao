@@ -52,7 +52,7 @@
     <resource name="facets" :data="{{ paginatedResult.facets | json_encode }} || []"></resource>
     <resource name="itemList" :data="{ total: {{ paginatedResult.total | json_encode() }} }"></resource>
     
-    {% set areAllItemsAuctions = services.auctions.areAllItemsAuctions() %}
+    {% set areAllItemsAuctions = services.auctions.areAllItemsAuctions(itemList) %}
     
     
     <!-- ao Var-Dump -->
