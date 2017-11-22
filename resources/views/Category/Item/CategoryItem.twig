@@ -53,7 +53,7 @@
     <resource name="itemList" :data="{ total: {{ paginatedResult.total | json_encode() }} }"></resource>
     
     
-    {# ao Var-Dump #}
+    <!-- ao Var-Dump -->
     {% include "CeresSchaffrath::VarDump" with { 'testDescription': 'itemList', 'dumpData': itemList } %}
     
     
