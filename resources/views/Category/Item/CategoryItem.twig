@@ -52,9 +52,12 @@
     <resource name="facets" :data="{{ paginatedResult.facets | json_encode }} || []"></resource>
     <resource name="itemList" :data="{ total: {{ paginatedResult.total | json_encode() }} }"></resource>
     
+    {% set areAllItemsAuctions = auctions.auction.areAllItemsAuctions(itemList) %}
     
     <!-- ao Var-Dump -->
     {% include "CeresSchaffrath::VarDump" with { 'testDescription': 'areAllItemsAuctions', 'dumpData': areAllItemsAuctions } %}
+    {% include "CeresSchaffrath::VarDump" with { 'testDescription': 'areAllItemsAuctions', 'dumpData': itemList } %}
+    
     
     
     {% if showCategoryImage %}
@@ -109,7 +112,6 @@
             
             {% endif %}
     
-            {% set areAllItemsAuctions = auctions.auction.areAllItemsAuctions(itemList) %}
     
             <div class="col-xs-12 col-lg-{% if showHeaderNavBar == "side" or showHeaderNavBar == "both" %}9{% else %}12{% endif %}">
                 
