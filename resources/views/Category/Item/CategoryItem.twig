@@ -52,11 +52,11 @@
     <resource name="facets" :data="{{ paginatedResult.facets | json_encode }} || []"></resource>
     <resource name="itemList" :data="{ total: {{ paginatedResult.total | json_encode() }} }"></resource>
     
+    {% set areAllItemsAuctions = services.auctions.areAllItemsAuctions() %}
+    
     
     <!-- ao Var-Dump -->
-    {% include "CeresSchaffrath::VarDump" with { 'testDescription': 'itemList', 'dumpData': itemList } %}
-    
-    
+    {% include "CeresSchaffrath::VarDump" with { 'testDescription': 'areAllItemsAuctions', 'dumpData': areAllItemsAuctions } %}
     
     
     {% if showCategoryImage %}
