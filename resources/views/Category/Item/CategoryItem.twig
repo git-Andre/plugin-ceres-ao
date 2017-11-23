@@ -36,8 +36,6 @@
 {% set showCategoryImage = config('Ceres.item.show_category_image') == "true" %}
 {% set showCategoryDescription = config('Ceres.item.show_category_description') == "true" %}
 
-{% set isCategoryAuction = ( category.id == config("PluginAuctions.global.liveAuctionCategoryId")) %}
-
 {% block PageBody %}
     
     {{ component( "Ceres::ItemList.Components.Filter.ItemFilterList") }}
@@ -51,6 +49,8 @@
     <resource name="facetParams" :data="[]"></resource>
     <resource name="facets" :data="{{ paginatedResult.facets | json_encode }} || []"></resource>
     <resource name="itemList" :data="{ total: {{ paginatedResult.total | json_encode() }} }"></resource>
+    
+    {% set areAllItemsAuctions = auctions.auction.areAllItemsAuctions(itemList) %}
     
     {% if showCategoryImage %}
         {% include "Ceres::Category.Item.Partials.CategoryParallaxImage" with { 'category': category } %}
