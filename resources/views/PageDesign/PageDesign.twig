@@ -109,7 +109,9 @@
                                 <h3 class="modal-title">{{ trans("Ceres::Template.accCreateAccount") }}</h3>
                             </div>
                             <div class="modal-body">
-                                <registration template="#vue-registration" :is-simple-registration="false" modal-element="simple-registration-modal-wrapper"></registration>
+                                <registration template="#vue-registration"
+                                        :is-simple-registration="false"
+                                        modal-element="simple-registration-modal-wrapper"></registration>
                             </div>
                         </div>
                     </div>
@@ -118,7 +120,8 @@
             <!-- ./REGISTRATION MODAL -->
 
             <!-- BASKET MODAL -->
-            <add-item-to-basket-overlay template="#vue-add-item-to-basket-overlay" :basket-add-information="{{ basketAddInformation | json_encode() }}"></add-item-to-basket-overlay>
+            <add-item-to-basket-overlay template="#vue-add-item-to-basket-overlay"
+                    :basket-add-information="{{ basketAddInformation | json_encode() }}"></add-item-to-basket-overlay>
             <!-- ./BASKET MODAL -->
 
             <!-- SHIPPINGCOSTS MODAL -->
